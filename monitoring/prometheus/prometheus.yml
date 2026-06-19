@@ -1,0 +1,19 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  # Scrape Prometheus's own internal metrics
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Scrape application telemetry from our Rust API
+  - job_name: 'oscar_api'
+    static_configs:
+      - targets: ['api:3000']
+
+  # Scrape infrastructure telemetry for all containers
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']

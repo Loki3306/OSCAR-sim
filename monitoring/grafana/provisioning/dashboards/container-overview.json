@@ -1,0 +1,62 @@
+{
+  "title": "Container Overview",
+  "timezone": "browser",
+  "schemaVersion": 38,
+  "panels": [
+    {
+      "title": "CPU Usage by Service",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "targets": [
+        { 
+          "expr": "sum(rate(container_cpu_usage_seconds_total{container_label_com_docker_compose_service!=\"\"}[1m])) by (container_label_com_docker_compose_service)", 
+          "legendFormat": "{{container_label_com_docker_compose_service}}" 
+        }
+      ]
+    },
+    {
+      "title": "Memory Usage by Service",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "targets": [
+        { 
+          "expr": "sum(container_memory_usage_bytes{container_label_com_docker_compose_service!=\"\"}) by (container_label_com_docker_compose_service)", 
+          "legendFormat": "{{container_label_com_docker_compose_service}}" 
+        }
+      ]
+    },
+    {
+      "title": "Network Receive Rate",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "targets": [
+        { 
+          "expr": "sum(rate(container_network_receive_bytes_total{container_label_com_docker_compose_service!=\"\"}[1m])) by (container_label_com_docker_compose_service)", 
+          "legendFormat": "{{container_label_com_docker_compose_service}}" 
+        }
+      ]
+    },
+    {
+      "title": "Network Transmit Rate",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "targets": [
+        { 
+          "expr": "sum(rate(container_network_transmit_bytes_total{container_label_com_docker_compose_service!=\"\"}[1m])) by (container_label_com_docker_compose_service)", 
+          "legendFormat": "{{container_label_com_docker_compose_service}}" 
+        }
+      ]
+    },
+    {
+      "title": "Filesystem Usage",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 16 },
+      "targets": [
+        { 
+          "expr": "sum(container_fs_usage_bytes{container_label_com_docker_compose_service!=\"\"}) by (container_label_com_docker_compose_service)", 
+          "legendFormat": "{{container_label_com_docker_compose_service}}" 
+        }
+      ]
+    }
+  ]
+}

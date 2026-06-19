@@ -1,0 +1,5 @@
+/services/api/target/
+.env
+grafana_data/
+prometheus_data/
+postgres_data/
