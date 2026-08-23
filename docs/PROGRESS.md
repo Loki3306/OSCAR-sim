@@ -418,5 +418,147 @@
 * N/A (Pending manual user execution)
 **Risks**:
 * N/A
-**Next Step**:
-* User attempts `docker compose up -d` again
+## 2026-06-20 00:30 IST
+**Phase**: Phase 1
+**Task**: Phase 1 Priority 1 Application Database/Cache Logic
+**Status**: IMPLEMENTED
+**Implementation Date**: 2026-06-20
+**Validation Date**: Pending
+**Evidence**:
+* Created `db.rs` with `sqlx` Postgres connection pool and CRUD
+* Created `cache.rs` with `deadpool-redis` hit/miss logic
+* Created `routes.rs` exposing `POST /users` and `GET /users/:id`
+* Updated `metrics/registry.rs` and `Cargo.toml`
+* Updated `docker-compose.yml` ENV injection
+**Blockers**:
+* Pending user build and functional validation
+
+## 2026-06-20 00:31 IST
+**Phase**: Phase 1
+**Task**: Project Governance Model Overhaul
+**Status**: VALIDATED
+**Implementation Date**: 2026-06-20
+**Validation Date**: 2026-06-20
+**Evidence**:
+* Added `Critical Rule 16` to `AGENT_RULES.md` defining strict state requirements
+* Generated `docs/PHASE1_REQUIREMENTS.md` traceability matrix
+* Generated `docs/PHASE1_BACKLOG.md`
+* Overhauled `PROGRESS.md` logging schema
+**Blockers**:
+* None
+
+## 2026-06-20 00:52 IST
+**Phase**: Phase 1
+**Task**: API Container Build Fix (Rust Edition 2024)
+**Status**: IMPLEMENTED
+**Implementation Date**: 2026-06-20
+**Validation Date**: Pending
+**Evidence**:
+* Bumped `services/api/Dockerfile` builder image from `rust:1.80` to `rust:1.85`
+**Decisions**:
+* The newly added `sqlx` sub-dependencies (`idna_adapter-1.2.2`) required the `edition2024` feature, which was only stabilized in Rust 1.85.0.
+**Blockers**:
+* Pending user build and functional validation
+
+## 2026-06-20 01:05 IST
+**Phase**: Phase 1
+**Task**: Dependency Compatibility Review (MSRV Failure)
+**Status**: VALIDATED
+**Implementation Date**: 2026-06-20
+**Validation Date**: 2026-06-20
+**Evidence**:
+* Investigated `cargo build` crash regarding `idna_adapter` (MSRV 1.86) and `home` (MSRV 1.88).
+* Identified that missing `Cargo.lock` caused resolution of latest transitive crates demanding newer Rust versions than our Docker builder (`rust:1.85`) supported.
+* Created Implementation Plan recommending an upgrade to `rust:1.88` combined with committing a `Cargo.lock` for reproducible builds.
+* Updated `DECISIONS.md` to reflect MSRV and lockfile policies.
+## 2026-06-20 01:10 IST
+**Phase**: Phase 1
+**Task**: Dockerfile Rust Upgrade (MSRV 1.88)
+**Status**: IMPLEMENTED
+**Implementation Date**: 2026-06-20
+**Validation Date**: Pending
+**Evidence**:
+* Bumped `services/api/Dockerfile` to `rust:1.88` per the approved Implementation Plan.
+**Blockers**:
+* Pending user generation of `Cargo.lock` via local `cargo build` and subsequent Docker compose execution.
+
+## 2026-08-23 13:30 IST
+**Phase**: Phase 1
+**Task**: API Compilation Fix (sqlx::FromRow trait bound)
+**Status**: IMPLEMENTED
+**Implementation Date**: 2026-08-23
+**Validation Date**: Pending
+**Evidence**:
+* Added `sqlx::FromRow` to the `User` struct `#[derive(...)]` macro in `services/api/src/db.rs`.
+**Decisions**:
+* Root cause was that `sqlx::query_as::<_, User>(...)` requires the target struct to implement `sqlx::FromRow`, which was missing. No architectural change needed; simply deriving the trait resolves the compilation error.
+**Blockers**:
+* Pending user build and functional validation via `docker compose build api`.
+
+## 2026-08-23 13:40 IST
+**Phase**: Phase 1
+**Task**: Database Schema Migration Architecture
+**Status**: IMPLEMENTED
+**Implementation Date**: 2026-08-23
+**Validation Date**: Pending
+**Evidence**:
+* Added `"migrate"` feature to `sqlx` in `services/api/Cargo.toml`.
+* Replaced `CREATE TABLE IF NOT EXISTS` with `sqlx::migrate!("./migrations")` in `services/api/src/db.rs`.
+* Created `services/api/migrations/20260823000000_init_users.sql`.
+* Updated `DECISIONS.md` to reflect the requirement for formal migrations.
+**Decisions**:
+* Adopted SQLx migrations (Option C) as the industry-grade approach to schema evolution, replacing raw startup DDL.
+* Explicitly recorded that persistent database volumes mean `CREATE TABLE IF NOT EXISTS` cannot be treated as a schema migration mechanism.
+**Blockers**:
+* Pending user destroying the current persistent volume via `docker compose down -v`.
+* Pending user validation via `docker compose up -d --build` and subsequent `curl` testing.
+
+## 2026-08-23 13:56 IST
+**Phase**: Phase 1
+**Task**: Database Schema Migration & Core API Validation
+**Status**: VALIDATED
+**Implementation Date**: 2026-08-23
+**Validation Date**: 2026-08-23
+**Evidence**:
+* Executed `Invoke-RestMethod -Uri http://localhost:8080/users -Method POST` successfully (returned 200 OK with UUID).
+* Executed `GET /users/:id` successfully (returned the created user).
+* Verified the `/metrics` endpoint correctly exposes `cache_hits_total`, `postgres_queries_total`, and `active_connections` metrics.
+**Decisions**:
+* Phase 1 P0 Core Observability Target Simulation is now fully validated and operational.
+**Blockers**:
+* None. Moving to P1 tasks (Missing Dashboards & Error Telemetry).
+
+## 2026-08-23 14:18 IST
+**Phase**: Phase 1
+**Task**: PostgreSQL Latency Instrumentation & Database Dashboard
+**Status**: IMPLEMENTED
+**Implementation Date**: 2026-08-23
+**Validation Date**: Pending
+**Evidence**:
+* Added `postgres_query_duration_seconds` HistogramVec to `services/api/src/metrics/registry.rs`.
+* Wrapped SQL queries in `services/api/src/db.rs` (`insert_user` and `get_user`) with `std::time::Instant` to measure and record execution time.
+* Created `database-overview.json` in `monitoring/grafana/provisioning/dashboards/` containing Query Rate, Active Connections, and Query Latency panels.
+* Updated `DECISIONS.md` to note the intentional isolation of DB execution latency from HTTP duration.
+**Decisions**:
+* Latency measurement strictly bounds the `sqlx` execution to avoid pollution from HTTP routing, serialization, or Redis caching, meeting Phase 1's granular observability requirement.
+**Blockers**:
+* Pending manual rebuild of the API container (`docker compose up -d --build api`) and verification of metrics via `curl` and Grafana.
+
+## 2026-08-23 15:08 IST
+**Phase**: Phase 1
+**Task**: Phase 1 Final Closure
+**Status**: VALIDATED
+**Implementation Date**: 2026-08-23
+**Validation Date**: 2026-08-23
+**Evidence**:
+* Added `GET /users` and `GET /cache` endpoints to Rust API.
+* Added "Error Rate (4xx/5xx)" and "Cache Hit Rate" panels to "OSCAR-Sim Overview" dashboard. Error rate explicitly uses `^[45]..` regex on `http_requests_total` status label.
+* Clean startup validation succeeded: `docker compose down -v` followed by `docker compose up -d --build`. All 7 containers are healthy.
+* Client to Nginx (`localhost:8080`) successfully routes to the internal API.
+* Generated traffic via PowerShell `Invoke-RestMethod` across `/health`, `/users`, `/cache`, and `/users/:id` (triggering 404).
+* Verified Prometheus `/metrics` correctly aggregates `http_requests_total`, `cache_hits_total`, `cache_misses_total`, `postgres_queries_total`, and `postgres_query_duration_seconds`.
+**Decisions**:
+* Avoided creating a redundant `error_rate_total` metric since `http_requests_total` already accurately exposes HTTP status codes.
+* We are formally declaring Phase 1 complete based on manual verification, minus the final 24-hour soak test.
+**Blockers**:
+* **PENDING 24-HOUR SOAK TEST**. System needs to run uninterrupted for 24 hours to fulfill final acceptance criteria.

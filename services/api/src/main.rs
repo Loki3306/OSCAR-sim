@@ -1,10 +1,13 @@
 mod metrics;
+mod db;
+mod cache;
+mod routes;
 
 use axum::{
     extract::{MatchedPath, Request},
     middleware::{self, Next},
     response::Response,
-    routing::get,
+    routing::{get, post},
     Json, Router,
 };
 use prometheus::Encoder;
@@ -54,14 +57,12 @@ async fn track_metrics(req: Request, next: Next) -> Response {
         req.uri().path().to_owned()
     };
 
-    // EXCLUDE /metrics from instrumentation so we don't measure Prometheus scraping itself
     if path == "/metrics" {
         return next.run(req).await;
     }
 
     let method = req.method().clone().to_string();
 
-    // Prevent cardinality explosion on unmatched/dynamic 404 paths
     let path = if req.extensions().get::<MatchedPath>().is_none() {
         "UNMATCHED_ROUTE".to_string()
     } else {
@@ -89,28 +90,36 @@ async fn track_metrics(req: Request, next: Next) -> Response {
 
 #[tokio::main]
 async fn main() {
-    // Initialize tracing for production-grade logging
     tracing_subscriber::fmt()
         .with_env_filter(EnvFilter::from_default_env().add_directive("info".parse().unwrap()))
         .init();
 
-    // Register Prometheus metrics
     metrics::registry::register_custom_metrics();
 
-    // Build our application with the requested routes and metrics middleware
+    // Initialize Database and Cache pools
+    let db_pool = db::init_pool().await;
+    let redis_pool = cache::init_pool();
+
+    let state = routes::AppState {
+        db: db_pool,
+        redis: redis_pool,
+    };
+
     let app = Router::new()
         .route("/", get(root))
         .route("/health", get(health))
         .route("/metrics", get(metrics_handler))
-        .layer(middleware::from_fn(track_metrics));
+        .route("/users", get(routes::list_users).post(routes::create_user))
+        .route("/users/:id", get(routes::get_user))
+        .route("/cache", get(routes::get_cache))
+        .layer(middleware::from_fn(track_metrics))
+        .with_state(state);
 
-    // Resolve port strictly from environment variable; fail fast if missing
     let port = env::var("API_PORT").expect("CRITICAL ERROR: API_PORT environment variable must be set");
     let addr = format!("0.0.0.0:{}", port);
     
     info!("Starting oscar-sim-api on {}", addr);
     
-    // Bind the listener and start the server
     let listener = tokio::net::TcpListener::bind(&addr).await.unwrap();
     axum::serve(listener, app).await.unwrap();
 }

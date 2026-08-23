@@ -1,5 +1,5 @@
 # Stage 1: Build Environment
-FROM rust:1.80 AS builder
+FROM rust:1.88 AS builder
 WORKDIR /app
 
 # Copy the dependency manifests
@@ -12,6 +12,7 @@ RUN rm -rf src
 
 # Now copy the actual source code and build
 COPY src ./src
+COPY migrations ./migrations
 # Touch the file to ensure cargo notices the change
 RUN touch src/main.rs
 RUN cargo build --release

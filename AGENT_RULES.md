@@ -274,6 +274,24 @@ The agent only modifies files and provides instructions.
 
 ---
 
+# Critical Rule 16 — Strict State Management
+
+No task may be marked COMPLETE.
+
+Allowed states:
+
+* NOT_STARTED
+* IN_PROGRESS
+* IMPLEMENTED
+* VALIDATED
+* BLOCKED
+
+Only the user may promote a task from
+IMPLEMENTED -> VALIDATED
+after executing validation.
+
+---
+
 # Required Response Format
 
 For every implementation request:
