@@ -1,0 +1,18 @@
+{
+  "name": "load",
+  "stages": [
+    { "duration": "2m", "target": 10 },
+    { "duration": "3m", "target": 25 },
+    { "duration": "3m", "target": 50 },
+    { "duration": "2m", "target": 100 }
+  ],
+  "distribution": {
+    "health": 5,
+    "listUsers": 30,
+    "createUser": 10,
+    "getUserHit": 15,
+    "getUserMiss": 15,
+    "cacheMiss": 20,
+    "invalidRequest": 5
+  }
+}

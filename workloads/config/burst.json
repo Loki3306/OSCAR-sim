@@ -1,0 +1,21 @@
+{
+  "name": "burst",
+  "stages": [
+    { "duration": "30s", "target": 25 },
+    { "duration": "10s", "target": 150 },
+    { "duration": "1m", "target": 25 },
+    { "duration": "10s", "target": 150 },
+    { "duration": "1m", "target": 25 },
+    { "duration": "10s", "target": 150 },
+    { "duration": "1m", "target": 25 }
+  ],
+  "distribution": {
+    "health": 5,
+    "listUsers": 30,
+    "createUser": 10,
+    "getUserHit": 15,
+    "getUserMiss": 15,
+    "cacheMiss": 20,
+    "invalidRequest": 5
+  }
+}

@@ -193,14 +193,17 @@ System remains healthy for 24 hours.
 
 # Future Roadmap
 
+Phase 1
+
+Environment + Observability - Complete
+
 Phase 2
 
-k6
+Workload Generation (k6) - Complete / Frozen
 
 Phase 3
 
-Pumba
-stress-ng
+Fault Injection (Pumba, stress-ng) - Not Started
 
 Phase 4
 

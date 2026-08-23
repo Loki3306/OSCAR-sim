@@ -1,0 +1,17 @@
+{
+  "name": "sustained",
+  "stages": [
+    { "duration": "1m", "target": 100 },
+    { "duration": "10m", "target": 100 },
+    { "duration": "1m", "target": 10 }
+  ],
+  "distribution": {
+    "health": 5,
+    "listUsers": 30,
+    "createUser": 10,
+    "getUserHit": 15,
+    "getUserMiss": 15,
+    "cacheMiss": 20,
+    "invalidRequest": 5
+  }
+}

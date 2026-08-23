@@ -1,0 +1,13 @@
+{
+  "name": "baseline",
+  "vus": 2,
+  "duration": "5m",
+  "distribution": {
+    "health": 90,
+    "listUsers": 10,
+    "createUser": 0,
+    "getUserHit": 0,
+    "getUserMiss": 0,
+    "cacheMiss": 0
+  }
+}

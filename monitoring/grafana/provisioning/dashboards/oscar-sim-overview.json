@@ -36,7 +36,7 @@
       ]
     },
     {
-      "title": "Error Rate (4xx/5xx) (1m)",
+      "title": "Error Request Rate (4xx/5xx) (1m)",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 16 },
       "targets": [
