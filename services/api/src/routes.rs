@@ -17,12 +17,13 @@ pub struct AppState {
     pub redis: RedisPool,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct CreateUser {
     pub name: String,
     pub email: String,
 }
 
+#[tracing::instrument(skip(state))]
 pub async fn create_user(
     State(state): State<AppState>,
     Json(payload): Json<CreateUser>,
@@ -46,6 +47,7 @@ pub async fn create_user(
     }
 }
 
+#[tracing::instrument(skip(state))]
 pub async fn get_user(
     State(state): State<AppState>,
     Path(id): Path<Uuid>,
@@ -70,6 +72,7 @@ pub async fn get_user(
     }
 }
 
+#[tracing::instrument(skip(state))]
 pub async fn list_users(State(state): State<AppState>) -> impl IntoResponse {
     match db::get_all_users(&state.db).await {
         Ok(users) => (StatusCode::OK, Json(users)).into_response(),
@@ -80,6 +83,7 @@ pub async fn list_users(State(state): State<AppState>) -> impl IntoResponse {
     }
 }
 
+#[tracing::instrument(skip(state))]
 pub async fn get_cache(State(state): State<AppState>) -> impl IntoResponse {
     // Generate cache telemetry by simulating a cache check for a nil UUID
     let dummy_id = Uuid::nil();
