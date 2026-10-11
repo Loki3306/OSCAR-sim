@@ -1,0 +1,218 @@
+{
+  "OSCAR_vs_BARO": {
+    "comparison": "OSCAR-CTRCL vs BARO",
+    "sample_size_n": 120,
+    "mcnemar": {
+      "contingency_table": {
+        "n11": 70,
+        "n10": 41,
+        "n01": 2,
+        "n00": 7
+      },
+      "hit1_model_a": 0.925,
+      "hit1_model_b": 0.6,
+      "absolute_difference": 0.32500000000000007,
+      "discordant_pairs": 43,
+      "p_value": 2.1532287064474076e-10,
+      "statistically_significant": true,
+      "sample_size_n": 120,
+      "p_value_holm_adjusted": 8.61291482578963e-10,
+      "significant_after_holm": true
+    },
+    "ranking_tests": {
+      "mean_mrr_a": 0.9427314814814814,
+      "mean_mrr_b": 0.7589219576719576,
+      "mean_difference": 0.1838095238095238,
+      "ci_95": [
+        0.12728703703703706,
+        0.2426367394179894
+      ],
+      "wilcoxon_statistic": 101.0,
+      "wilcoxon_p_value": 1.418226778397774e-07,
+      "permutation_p_value": 0.0,
+      "cohens_dz": 0.5758894509821649,
+      "statistically_significant": true,
+      "n": 120
+    }
+  },
+  "OSCAR_vs_RCD": {
+    "comparison": "OSCAR-CTRCL vs RCD",
+    "sample_size_n": 120,
+    "mcnemar": {
+      "contingency_table": {
+        "n11": 93,
+        "n10": 18,
+        "n01": 7,
+        "n00": 2
+      },
+      "hit1_model_a": 0.925,
+      "hit1_model_b": 0.8333333333333334,
+      "absolute_difference": 0.09166666666666667,
+      "discordant_pairs": 25,
+      "p_value": 0.043285250663757324,
+      "statistically_significant": true,
+      "sample_size_n": 120,
+      "p_value_holm_adjusted": 0.043285250663757324,
+      "significant_after_holm": true
+    },
+    "ranking_tests": {
+      "mean_mrr_a": 0.9427314814814814,
+      "mean_mrr_b": 0.9081944444444444,
+      "mean_difference": 0.03453703703703703,
+      "ci_95": [
+        -0.01639236111111111,
+        0.07875694444444443
+      ],
+      "wilcoxon_statistic": 154.5,
+      "wilcoxon_p_value": 0.5847115622533514,
+      "permutation_p_value": 0.1737,
+      "cohens_dz": 0.1264995306927859,
+      "statistically_significant": false,
+      "n": 120
+    }
+  },
+  "OSCAR_vs_E-Diagnosis": {
+    "comparison": "OSCAR-CTRCL vs E-Diagnosis",
+    "sample_size_n": 120,
+    "mcnemar": {
+      "contingency_table": {
+        "n11": 85,
+        "n10": 26,
+        "n01": 0,
+        "n00": 9
+      },
+      "hit1_model_a": 0.925,
+      "hit1_model_b": 0.7083333333333334,
+      "absolute_difference": 0.21666666666666667,
+      "discordant_pairs": 26,
+      "p_value": 2.9802322387695312e-08,
+      "statistically_significant": true,
+      "sample_size_n": 120,
+      "p_value_holm_adjusted": 8.940696716308594e-08,
+      "significant_after_holm": true
+    },
+    "ranking_tests": {
+      "mean_mrr_a": 0.9427314814814814,
+      "mean_mrr_b": 0.7993551587301587,
+      "mean_difference": 0.14337632275132278,
+      "ci_95": [
+        0.101494708994709,
+        0.19172371031746033
+      ],
+      "wilcoxon_statistic": 10.5,
+      "wilcoxon_p_value": 4.914433061816777e-07,
+      "permutation_p_value": 0.0,
+      "cohens_dz": 0.5364605472351354,
+      "statistically_significant": true,
+      "n": 120
+    }
+  },
+  "OSCAR_vs_Multi-Source BARO": {
+    "comparison": "OSCAR-CTRCL vs Multi-Source BARO",
+    "sample_size_n": 120,
+    "mcnemar": {
+      "contingency_table": {
+        "n11": 85,
+        "n10": 26,
+        "n01": 6,
+        "n00": 3
+      },
+      "hit1_model_a": 0.925,
+      "hit1_model_b": 0.7583333333333333,
+      "absolute_difference": 0.16666666666666674,
+      "discordant_pairs": 32,
+      "p_value": 0.0005350527353584766,
+      "statistically_significant": true,
+      "sample_size_n": 120,
+      "p_value_holm_adjusted": 0.0010701054707169533,
+      "significant_after_holm": true
+    },
+    "ranking_tests": {
+      "mean_mrr_a": 0.9427314814814814,
+      "mean_mrr_b": 0.8449305555555555,
+      "mean_difference": 0.09780092592592594,
+      "ci_95": [
+        0.0398599537037037,
+        0.15341203703703704
+      ],
+      "wilcoxon_statistic": 140.0,
+      "wilcoxon_p_value": 0.006660663287410503,
+      "permutation_p_value": 0.0019,
+      "cohens_dz": 0.295032419596694,
+      "statistically_significant": true,
+      "n": 120
+    }
+  },
+  "OSCAR_vs_MicroCause": {
+    "comparison": "OSCAR-CTRCL vs MicroCause",
+    "sample_size_n": 120,
+    "mcnemar": {
+      "contingency_table": {
+        "n11": 55,
+        "n10": 56,
+        "n01": 5,
+        "n00": 4
+      },
+      "hit1_model_a": 0.925,
+      "hit1_model_b": 0.5,
+      "absolute_difference": 0.42500000000000004,
+      "discordant_pairs": 61,
+      "p_value": 5.645556938604912e-12,
+      "statistically_significant": true,
+      "sample_size_n": 120,
+      "p_value_holm_adjusted": 2.822778469302456e-11,
+      "significant_after_holm": true
+    },
+    "ranking_tests": {
+      "mean_mrr_a": 0.9427314814814814,
+      "mean_mrr_b": 0.6691832010582011,
+      "mean_difference": 0.27354828042328044,
+      "ci_95": [
+        0.19402868716931215,
+        0.34477273478835974
+      ],
+      "wilcoxon_statistic": 194.0,
+      "wilcoxon_p_value": 6.633102220203368e-09,
+      "permutation_p_value": 0.0,
+      "cohens_dz": 0.6623342303315183,
+      "statistically_significant": true,
+      "n": 120
+    }
+  },
+  "OSCAR_vs_CIRCA": {
+    "comparison": "OSCAR-CTRCL vs CIRCA",
+    "sample_size_n": 120,
+    "mcnemar": {
+      "contingency_table": {
+        "n11": 1,
+        "n10": 110,
+        "n01": 3,
+        "n00": 6
+      },
+      "hit1_model_a": 0.925,
+      "hit1_model_b": 0.03333333333333333,
+      "absolute_difference": 0.8916666666666667,
+      "discordant_pairs": 113,
+      "p_value": 4.633363741607924e-29,
+      "statistically_significant": true,
+      "sample_size_n": 120,
+      "p_value_holm_adjusted": 2.7800182449647546e-28,
+      "significant_after_holm": true
+    },
+    "ranking_tests": {
+      "mean_mrr_a": 0.9427314814814814,
+      "mean_mrr_b": 0.15035901730098142,
+      "mean_difference": 0.7923724641805,
+      "ci_95": [
+        0.7249741513337074,
+        0.8426635129719425
+      ],
+      "wilcoxon_statistic": 33.5,
+      "wilcoxon_p_value": 2.0602785988810576e-20,
+      "permutation_p_value": 0.0,
+      "cohens_dz": 2.3633662510189533,
+      "statistically_significant": true,
+      "n": 120
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "mean_difference": 0.35,
+  "ci_95": [
+    0.2,
+    0.5
+  ],
+  "p_value": 0.0001828106329818348,
+  "statistically_significant": true,
+  "cohens_d": 0.7245688373094719,
+  "n": 40
+}

@@ -1,0 +1,4824 @@
+{
+  "BARO": [
+    {
+      "case_id": "re1ob_cartservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "emailservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "emailservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "emailservice",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "catalogue",
+      "gt_rank": 10,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "session-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-execute-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-assurance-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-admin-order-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-verification-code-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-voucher-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-preserve-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-voucher-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-avatar-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-consign-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-avatar-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-route-plan-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-auth-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-verification-code-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-voucher-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-order-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-preserve-other-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-route-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_checkoutservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_recommendationservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "recommendationservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "orders-db",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "rabbitmq-exporter",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_orders_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-auth-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-train-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-order-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-travel2-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-order-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-cancel-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-order-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-order-mongo",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-route-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-train-mongo",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-route-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-admin-route-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-train-mongo",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-travel-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-preserve-other-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-travel-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-travel-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-travel-mongo",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_delay_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_delay_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "emailservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ob_cartservice_f1_1",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3tt_ts-route-service_f2_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-rebook-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3tt_ts-auth-service_f2_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-auth-mongo",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3tt_ts-auth-service_f3_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-auth-mongo",
+      "gt_rank": 10,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ss_orders_f4_2",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "orders-db",
+      "gt_rank": 3,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_payment_loss_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "orders",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_adservice_loss_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "cartservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_socket_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    }
+  ],
+  "CIRCA": [
+    {
+      "case_id": "re1ob_adservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "main",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "main",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "main",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "main",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "main",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "main",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "main",
+      "gt_rank": 11,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "main",
+      "gt_rank": 10,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "main",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "main",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "main",
+      "gt_rank": 13,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 13,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "InboundPassthroughClusterIpv4",
+      "gt_rank": 15,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "main",
+      "gt_rank": 11,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "main",
+      "gt_rank": 10,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 11,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 13,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "front-end",
+      "gt_rank": 11,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 12,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "session-db",
+      "gt_rank": 11,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "session-db",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_orders_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "session-db",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_orders_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_orders_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "front-end",
+      "gt_rank": 8,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_orders_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_orders_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 13,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "front-end",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "front-end",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "session-db",
+      "gt_rank": 12,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "front-end",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "session-db",
+      "gt_rank": 15,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 10,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 11,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "front-end",
+      "gt_rank": 12,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_user_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 14,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-price-mongo",
+      "gt_rank": 59,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-order-other-mongo",
+      "gt_rank": 58,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-train-mongo",
+      "gt_rank": 56,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-notification-service",
+      "gt_rank": 56,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-ticket-office-service",
+      "gt_rank": 56,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-order-mongo",
+      "gt_rank": 58,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-route-mongo",
+      "gt_rank": 59,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-ticket-office-service",
+      "gt_rank": 60,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-inside-payment-service",
+      "gt_rank": 56,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-train-mongo",
+      "gt_rank": 64,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-price-mongo",
+      "gt_rank": 58,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-order-other-mongo",
+      "gt_rank": 58,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-ticket-office-service",
+      "gt_rank": 60,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-contacts-service",
+      "gt_rank": 62,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-food-mongo",
+      "gt_rank": 63,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-station-mongo",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-ticket-office-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-execute-service",
+      "gt_rank": 56,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-travel-mongo",
+      "gt_rank": 54,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-ticket-office-service",
+      "gt_rank": 54,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-ticket-office-service",
+      "gt_rank": 59,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-ticket-office-service",
+      "gt_rank": 52,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_checkoutservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 3,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_checkoutservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_currencyservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 5,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_currencyservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 6,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_currencyservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 5,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_emailservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_emailservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_emailservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 12,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_productcatalogservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 9,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_productcatalogservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 12,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 11,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_recommendationservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "recommendationservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 3,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_recommendationservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "recommendationservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 3,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_recommendationservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "recommendationservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "front-end",
+      "gt_rank": 11,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "front-end",
+      "gt_rank": 11,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "front-end",
+      "gt_rank": 14,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_catalogue_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "front-end",
+      "gt_rank": 6,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_catalogue_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "front-end",
+      "gt_rank": 12,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_catalogue_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "front-end",
+      "gt_rank": 10,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_orders_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "front-end",
+      "gt_rank": 7,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_orders_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "queue-master",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_orders_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "front-end",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_payment_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "front-end",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_payment_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "front-end",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_payment_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "front-end",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_user_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "front-end",
+      "gt_rank": 8,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_user_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "queue-master",
+      "gt_rank": 10,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_user_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "front-end",
+      "gt_rank": 7,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2tt_ts-auth-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-order-other-mongo",
+      "gt_rank": 57,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-auth-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-preserve-other-service",
+      "gt_rank": 57,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-preserve-other-service",
+      "gt_rank": 57,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-order-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-travel-plan-service",
+      "gt_rank": 64,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-order-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-consign-price-service",
+      "gt_rank": 67,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-order-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-payment-service",
+      "gt_rank": 63,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-route-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-consign-price-mongo",
+      "gt_rank": 61,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-route-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-inside-payment-service",
+      "gt_rank": 66,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-route-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-consign-service",
+      "gt_rank": 67,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-train-mongo",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-travel2-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-config-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-travel-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-preserve-service",
+      "gt_rank": 58,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-travel-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-order-other-service",
+      "gt_rank": 58,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-travel-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-travel-mongo",
+      "gt_rank": 63,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_delay_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "session-db",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_delay_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "front-end",
+      "gt_rank": 10,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_adservice_delay_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_disk_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 11,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_disk_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 13,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_disk_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ob_emailservice_f1_3",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ss_orders_f1_1",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "front-end",
+      "gt_rank": 5,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3ob_cartservice_f1_1",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 5,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3tt_ts-route-service_f2_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-route-mongo",
+      "gt_rank": 64,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3tt_ts-auth-service_f2_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 59,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ob_emailservice_f2_1",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ss_carts_f3_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "front-end",
+      "gt_rank": 12,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3tt_ts-auth-service_f3_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-travel2-service",
+      "gt_rank": 20,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ob_adservice_f3_1",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 5,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3ob_adservice_f4_1",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 5,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3ob_emailservice_f4_3",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ss_orders_f4_2",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "front-end",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3ob_adservice_f5_1",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 3,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3ob_adservice_f5_2",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3ob_emailservice_f5_3",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_loss_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 10,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_loss_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 12,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_loss_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_mem_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "rabbitmq-exporter",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_mem_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "front-end",
+      "gt_rank": 11,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_adservice_mem_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_payment_socket_2",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "front-end",
+      "gt_rank": 12,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_payment_socket_3",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "front-end",
+      "gt_rank": 10,
+      "failure_type": "RANKING_OTHER"
+    }
+  ],
+  "RCD": [
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "InboundPassthroughClusterIpv4",
+      "gt_rank": 15,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-auth-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-assurance-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-execute-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-auth-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-auth-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-user-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-order-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_productcatalogservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "recommendationservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "recommendationservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "orders-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "rabbitmq-exporter",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-consign-price-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-order-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-travel2-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-travel-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_delay_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "orders",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3ob_cartservice_f1_1",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_payment_loss_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "user-db",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_loss_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 5,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    }
+  ],
+  "MicroCause": [
+    {
+      "case_id": "re1ob_adservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "paymentservice",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "paymentservice",
+      "gt_rank": 9,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "main",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "main",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "main",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "main",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "main",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "emailservice",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "recommendationservice",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "main",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "recommendationservice",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "main",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "front-end",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "adservice",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_orders_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_orders_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_orders_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_orders_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_orders_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-contacts-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-ticket-office-service",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-security-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-consign-price-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-travel-mongo",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_checkoutservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 10,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_currencyservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "shippingservice",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_emailservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "checkoutservice",
+      "gt_rank": 7,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_emailservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_recommendationservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "recommendationservice",
+      "predicted_top1": "shippingservice",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_recommendationservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "recommendationservice",
+      "predicted_top1": "shippingservice",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_catalogue_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "user",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-preserve-other-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-travel-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-travel-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_delay_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "carts-db",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_delay_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "user-db",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_user_disk_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "user-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re3ob_emailservice_f1_3",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ss_orders_f1_1",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "shipping",
+      "gt_rank": 5,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re3ob_cartservice_f1_1",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "shippingservice",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3tt_ts-route-service_f2_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-route-mongo",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3tt_ts-auth-service_f2_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-travel-service",
+      "gt_rank": 15,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ob_emailservice_f2_1",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "currencyservice",
+      "gt_rank": 11,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ss_carts_f3_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re3tt_ts-auth-service_f3_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-ticketinfo-service",
+      "gt_rank": 12,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ob_adservice_f3_1",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "paymentservice",
+      "gt_rank": 10,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ob_adservice_f4_1",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ob_emailservice_f4_3",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "shippingservice",
+      "gt_rank": 11,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ss_orders_f4_2",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "carts",
+      "gt_rank": 11,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re3ob_adservice_f5_1",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ob_adservice_f5_2",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 12,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ob_emailservice_f5_3",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "checkoutservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_payment_loss_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "carts-db",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_loss_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "carts-db",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_loss_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "paymentservice",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_mem_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_mem_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "carts-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_mem_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "recommendationservice",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    }
+  ],
+  "E-Diagnosis": [
+    {
+      "case_id": "re1ob_cartservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "emailservice",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "checkoutservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "checkoutservice",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "checkoutservice",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "orders",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_user_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "orders",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_user_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "orders",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-ui-dashboard",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-ui-dashboard",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-ui-dashboard",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-ui-dashboard",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-preserve-service",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-preserve-service",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-preserve-service",
+      "gt_rank": 56,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-order-service",
+      "gt_rank": 56,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-travel-service",
+      "gt_rank": 56,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-order-service",
+      "gt_rank": 56,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-ui-dashboard",
+      "gt_rank": 56,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-security-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_emailservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_recommendationservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "recommendationservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "orders",
+      "gt_rank": 5,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "shipping",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_orders_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "user",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re2tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-ui-dashboard",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 60,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-security-service",
+      "gt_rank": 60,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-ui-dashboard",
+      "gt_rank": 60,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re1ss_payment_delay_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_delay_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "emailservice",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ob_cartservice_f1_1",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3tt_ts-auth-service_f3_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-order-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ss_orders_f4_2",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "orders-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_payment_loss_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "orders",
+      "gt_rank": 3,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_adservice_loss_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "checkoutservice",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_socket_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 60,
+      "failure_type": "RETRIEVAL_FAILURE"
+    }
+  ],
+  "Multi-Source BARO": [
+    {
+      "case_id": "re1ob_cartservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "emailservice",
+      "gt_rank": 10,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "emailservice",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "InboundPassthroughClusterIpv4",
+      "gt_rank": 15,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "cartservice",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "session-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-station-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-price-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-assurance-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-admin-order-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-preserve-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-voucher-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-assurance-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-voucher-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-avatar-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-consign-price-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-avatar-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-route-plan-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-verification-code-service",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-voucher-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-order-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-security-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-route-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "rabbitmq-exporter",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_orders_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-order-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-travel2-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_delay_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_delay_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "orders",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_adservice_delay_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "emailservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ss_carts_f3_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "payment",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_loss_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "catalogue",
+      "gt_rank": 12,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_loss_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    }
+  ],
+  "Hybrid-RRF": [
+    {
+      "case_id": "re1ob_adservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_cartservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "main",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "main",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "main",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "main",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "main",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_checkoutservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "checkoutservice",
+      "predicted_top1": "main",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "main",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "emailservice",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "recommendationservice",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "main",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "main",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "main",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "checkoutservice",
+      "gt_rank": 3,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "catalogue",
+      "gt_rank": 13,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_5",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "main",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "front-end",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "front-end",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_orders_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "orders",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_user_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_user_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_user_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_user_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-order-other-mongo",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-travel-plan-service",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-ticket-office-service",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-notification-service",
+      "gt_rank": 11,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-preserve-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-price-mongo",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-travel-mongo",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-news-service",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-news-service",
+      "gt_rank": 13,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-train-mongo",
+      "gt_rank": 10,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-security-mongo",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-rebook-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-payment-mongo",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-food-mongo",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-route-service",
+      "gt_rank": 12,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-food-service",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-ticket-office-service",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-travel-mongo",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-order-other-mongo",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_emailservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_emailservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_productcatalogservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 3,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_productcatalogservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 3,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_recommendationservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "recommendationservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "front-end",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "rabbitmq-exporter",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_orders_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "queue-master",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_user_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_user_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_user_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2tt_ts-auth-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-order-other-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-auth-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-route-mongo",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-preserve-other-service",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-order-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-verification-code-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-order-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-preserve-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-order-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-order-mongo",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-route-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-auth-mongo",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-route-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-admin-route-service",
+      "gt_rank": 12,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-route-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-travel-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-food-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-travel-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-travel-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-travel-mongo",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_delay_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_delay_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_user_disk_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ss_orders_f1_1",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3ob_cartservice_f1_1",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 3,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3tt_ts-route-service_f2_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-route-mongo",
+      "gt_rank": 13,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3tt_ts-auth-service_f2_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 19,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ob_emailservice_f2_1",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ss_carts_f3_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "front-end",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3tt_ts-auth-service_f3_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-travel2-service",
+      "gt_rank": 12,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ob_adservice_f3_1",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 5,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3ob_adservice_f4_1",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re3ob_emailservice_f4_3",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ss_orders_f4_2",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "orders-db",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re3ob_adservice_f5_1",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ob_adservice_f5_2",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_payment_loss_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "carts-db",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_loss_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "front-end",
+      "gt_rank": 5,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_adservice_loss_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "main",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_mem_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "front-end",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_adservice_mem_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "recommendationservice",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_payment_socket_2",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "front-end",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_payment_socket_3",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "orders",
+      "gt_rank": 3,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    }
+  ],
+  "Hybrid-CausalTemporal": [
+    {
+      "case_id": "re1ob_cartservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "cartservice",
+      "predicted_top1": "emailservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "cartservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_currencyservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "currencyservice",
+      "predicted_top1": "emailservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "InboundPassthroughClusterIpv4",
+      "gt_rank": 15,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_4",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "frontend-external",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_carts_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "orders",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_orders_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "user",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_orders_cpu_4",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "payment",
+      "gt_rank": 5,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_payment_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "session-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_cpu_2",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-payment-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-assurance-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-admin-order-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-preserve-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-auth-mongo",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-preserve-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-voucher-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-auth-mongo",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-avatar-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-avatar-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-route-plan-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-cancel-service",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-avatar-service",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-order-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-preserve-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-execute-service",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ob_emailservice_cpu_2",
+      "system": "Online Boutique",
+      "root_cause": "emailservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "orders-db",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "rabbitmq-exporter",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_orders_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-auth-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-train-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-assurance-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-order-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-order-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-route-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-auth-mongo",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-route-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-admin-route-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-route-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-travel-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-train-mongo",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-config-mongo",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-travel-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-preserve-other-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-travel-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-travel-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-travel-mongo",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_delay_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_delay_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "emailservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3tt_ts-route-service_f2_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-route-mongo",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3tt_ts-auth-service_f2_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-auth-mongo",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3tt_ts-auth-service_f3_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-auth-mongo",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re3ss_orders_f4_2",
+      "system": "Sock Shop",
+      "root_cause": "orders",
+      "predicted_top1": "orders-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1ob_adservice_loss_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "checkoutservice",
+      "gt_rank": 9,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_socket_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-admin-travel-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    }
+  ],
+  "OSCAR-CTRCL (Proposed)": [
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "InboundPassthroughClusterIpv4",
+      "gt_rank": 15,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 9,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-order-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-travel-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-travel-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-order-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-security-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-route-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_delay_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "shipping",
+      "gt_rank": 6,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_delay_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "shipping",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_loss_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "user-db",
+      "gt_rank": 8,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_loss_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 4,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    }
+  ],
+  "Ablation: w/o Causal": [
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "InboundPassthroughClusterIpv4",
+      "gt_rank": 15,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-order-other-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-auth-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-assurance-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-auth-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-execute-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-order-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-auth-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-route-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-route-service",
+      "predicted_top1": "ts-auth-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-user-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-admin-order-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_3",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "rabbitmq-exporter",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-auth-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-auth-service",
+      "predicted_top1": "ts-consign-price-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-order-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-order-service",
+      "predicted_top1": "ts-travel2-mongo",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_delay_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "shipping",
+      "gt_rank": 10,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_user_delay_3",
+      "system": "Sock Shop",
+      "root_cause": "user",
+      "predicted_top1": "rabbitmq",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_loss_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "user-db",
+      "gt_rank": 11,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_loss_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "frontend",
+      "gt_rank": 5,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    }
+  ],
+  "Ablation: w/o ResourceBoost": [
+    {
+      "case_id": "re1ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "InboundPassthroughClusterIpv4",
+      "gt_rank": 15,
+      "failure_type": "RETRIEVAL_FAILURE"
+    },
+    {
+      "case_id": "re1ss_catalogue_cpu_5",
+      "system": "Sock Shop",
+      "root_cause": "catalogue",
+      "predicted_top1": "catalogue-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-order-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-travel-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_4",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-travel-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-train-service_cpu_5",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-order-service",
+      "gt_rank": 4,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re1tt_ts-travel-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-travel-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLEE_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_productcatalogservice_cpu_1",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "recommendationservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ob_productcatalogservice_cpu_3",
+      "system": "Online Boutique",
+      "root_cause": "productcatalogservice",
+      "predicted_top1": "recommendationservice",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re2ss_carts_cpu_1",
+      "system": "Sock Shop",
+      "root_cause": "carts",
+      "predicted_top1": "orders-db",
+      "gt_rank": 2,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_2",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_cpu_3",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ss_payment_delay_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "orders",
+      "gt_rank": 2,
+      "failure_type": "RANKING_CALLER_SYMPTOM"
+    },
+    {
+      "case_id": "re1ss_payment_loss_5",
+      "system": "Sock Shop",
+      "root_cause": "payment",
+      "predicted_top1": "user-db",
+      "gt_rank": 7,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re1ob_adservice_loss_5",
+      "system": "Online Boutique",
+      "root_cause": "adservice",
+      "predicted_top1": "checkoutservice",
+      "gt_rank": 5,
+      "failure_type": "RANKING_OTHER"
+    },
+    {
+      "case_id": "re2tt_ts-train-service_socket_1",
+      "system": "Train Ticket",
+      "root_cause": "ts-train-service",
+      "predicted_top1": "ts-seat-service",
+      "gt_rank": 3,
+      "failure_type": "RANKING_OTHER"
+    }
+  ]
+}

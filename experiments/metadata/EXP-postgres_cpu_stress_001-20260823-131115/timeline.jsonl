@@ -1,0 +1,8 @@
+{"event_type":"experiment_started","experiment_id":"EXP-1787490675","timestamp":"2026-08-23T13:11:15.605687100+00:00"}
+{"event_type":"workload_started","experiment_id":"EXP-1787490675","profile":"baseline","timestamp":"2026-08-23T13:11:15.612181700+00:00"}
+{"event_type":"baseline_started","experiment_id":"EXP-1787490675","timestamp":"2026-08-23T13:11:15.613392600+00:00"}
+{"event_type":"fault_requested","experiment_id":"EXP-1787490675","fault_id":"FAULT-1787490735","fault_type":"CpuStress","target":"postgres","timestamp":"2026-08-23T13:12:15.660249+00:00"}
+{"event_type":"fault_started","experiment_id":"EXP-1787490675","fault_id":"FAULT-1787490735","fault_type":"CpuStress","target":"postgres","timestamp":"2026-08-23T13:16:20.310639600+00:00"}
+{"event_type":"fault_stopped","experiment_id":"EXP-1787490675","fault_id":"FAULT-1787490735","timestamp":"2026-08-23T13:17:20.682913800+00:00"}
+{"event_type":"recovery_started","experiment_id":"EXP-1787490675","timestamp":"2026-08-23T13:17:20.684190400+00:00"}
+{"event_type":"experiment_completed","experiment_id":"EXP-1787490675","timestamp":"2026-08-23T13:18:20.701101600+00:00"}
