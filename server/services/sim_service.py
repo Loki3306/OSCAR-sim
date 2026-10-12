@@ -274,6 +274,7 @@ class SimulationService:
         inc_id = f"INC-{int(time.time())}"
         now_iso = datetime.now(timezone.utc).isoformat()
 
+        start_epoch = time.time()
         fault_info = {
             "fault_id": fault_id,
             "fault_type": req.fault_type,
@@ -282,9 +283,27 @@ class SimulationService:
             "intensity": req.intensity,
             "status": "RUNNING",
             "started_at": now_iso,
+            "start_epoch": start_epoch,
             "incident_id": inc_id
         }
         self.active_faults[fault_id] = fault_info
+
+        # Trigger real stress-ng container if Docker is running
+        try:
+            import subprocess
+            stress_container = f"oscar_stress_{req.target_service}_{int(start_epoch)}"
+            stress_cmd = [
+                "docker", "run", "--rm", "-d",
+                "--name", stress_container,
+                f"--pid=container:{req.target_service}",
+                "polinux/stress-ng",
+                "--cpu", "2",
+                "--cpu-load", str(int(req.intensity)),
+                "--timeout", f"{req.duration_seconds}s"
+            ]
+            subprocess.Popen(stress_cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except Exception:
+            pass
 
         # Create associated incident record
         incident = IncidentRecord(
