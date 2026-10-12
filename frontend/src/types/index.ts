@@ -76,6 +76,7 @@ export interface MetricQueryResponse {
   start_time: number;
   end_time: number;
   step: number;
+  source?: string;
 }
 
 export interface FaultConfig {
