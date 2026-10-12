@@ -17,6 +17,7 @@ from server.api.rca import router as rca_router
 from server.api.benchmark import router as benchmark_router
 from server.api.research import router as research_router
 from server.api.reports import router as reports_router
+from server.api.fsm import router as fsm_router
 
 app = FastAPI(
     title="OSCAR Root Cause Analysis Platform API",
@@ -56,6 +57,7 @@ app.include_router(rca_router)
 app.include_router(benchmark_router)
 app.include_router(research_router)
 app.include_router(reports_router)
+app.include_router(fsm_router)
 
 @app.get("/")
 def root_info(request: Request):

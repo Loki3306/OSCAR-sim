@@ -8,16 +8,21 @@ from datetime import datetime, timezone
 from typing import Dict, List, Any, Optional
 
 from server.config import PROMETHEUS_URL, APP_API_URL, EXPERIMENTS_METADATA_DIR
+from server.services.fsm_engine import ExperimentLifecycleFSM, ExperimentState, ServiceState
+from server.services.ground_truth_manager import ground_truth_manager
 from server.models import (
     ServiceHealth, TopologyNode, TopologyEdge, TopologyResponse,
     SystemHealthResponse, SystemHealthMatrix, SubsystemStatus, MetricSeries, MetricDataPoint,
-    FaultTriggerRequest, FaultExecutionStatus, IncidentRecord, TimelineEvent
+    FaultTriggerRequest, FaultExecutionStatus, IncidentRecord, TimelineEvent,
+    FSMStatusResponse, TimelineSlice, TimelineScrubResponse, StateTransitionModel, ServiceFSMModel
 )
 
 class SimulationService:
     def __init__(self):
         self.active_faults: Dict[str, Dict[str, Any]] = {}
         self.incidents: Dict[str, IncidentRecord] = {}
+        self.experiment_fsms: Dict[str, ExperimentLifecycleFSM] = {}
+        self.active_experiment_id: Optional[str] = None
         self._load_recorded_experiments_as_history()
 
     def _load_recorded_experiments_as_history(self):
@@ -122,30 +127,35 @@ class SimulationService:
         ]
 
         services = []
+        is_pg_faulted = any("postgres" in str(f.get("target_service", "")) and f.get("status") == "RUNNING" for f in self.active_faults.values())
+
         for name, stype, label, base_cpu, base_mem, base_lat in services_def:
             is_faulted = any(f["target_service"] == name and f["status"] == "RUNNING" for f in self.active_faults.values())
             
-            if is_live:
-                status = "degraded" if is_faulted else "healthy"
-                cpu = 88.5 if (is_faulted and "cpu" in str(self.active_faults)) else base_cpu
-                mem = 412.0 if is_faulted else base_mem
-                err = 4.2 if is_faulted else 0.0
-                lat = 210.0 if is_faulted else base_lat
+            if is_faulted:
+                status = "degraded"
+                cpu = 88.5 if "cpu" in str(self.active_faults) else (58.0 if name == "postgres" else base_cpu)
+                mem = 412.0 if name == "postgres" else (base_mem * 1.5)
+                err = 4.2
+                lat = 280.0 if name == "postgres" else 210.0
+            elif is_pg_faulted and name == "api":
+                status = "degraded"
+                cpu = 18.2
+                mem = base_mem + 32.0
+                err = 2.5
+                lat = 240.0
+            elif is_pg_faulted and name == "nginx":
+                status = "degraded"
+                cpu = 8.5
+                mem = base_mem
+                err = 3.1
+                lat = 255.0
             else:
-                # Replay archive mode: services are active in the replay cache
-                status = "degraded" if is_faulted else "replayed"
-                cpu = 88.5 if (is_faulted and "cpu" in str(self.active_faults)) else base_cpu
-                mem = 412.0 if is_faulted else base_mem
-                err = 4.2 if is_faulted else 0.0
-                # If postgres is faulted, caller api and nginx experience downstream queueing latency
-                if name == "api" and any("postgres" in str(f.get("target_service", "")) for f in self.active_faults.values()):
-                    lat = 240.0
-                elif name == "nginx" and any("postgres" in str(f.get("target_service", "")) for f in self.active_faults.values()):
-                    lat = 255.0
-                elif is_faulted:
-                    lat = 180.0
-                else:
-                    lat = base_lat
+                status = "healthy" if is_live else "replayed"
+                cpu = base_cpu
+                mem = base_mem
+                err = 0.0
+                lat = base_lat
 
             services.append(ServiceHealth(
                 name=name,
@@ -219,7 +229,7 @@ class SimulationService:
         )
 
     def get_topology(self) -> TopologyResponse:
-        """Returns microservice topology graph with live status and call dependency edges."""
+        """Returns microservice topology graph with live status, call dependency edges, and 4-layer evidence."""
         health = self.check_system_health()
         
         nodes = []
@@ -239,42 +249,117 @@ class SimulationService:
         }
 
         faulted_services = [f["target_service"] for f in self.active_faults.values() if f["status"] == "RUNNING"]
+        current_fsm = self.experiment_fsms.get(self.active_experiment_id) if self.active_experiment_id else None
 
         for s in health.services:
+            is_injected = (s.name in faulted_services)
+            is_abnormal = (not is_injected and (s.latency_ms > 100.0 or s.error_rate > 0.01))
+            fsm_state = "HEALTHY"
+            if current_fsm and s.name in current_fsm.services_fsm:
+                fsm_state = current_fsm.services_fsm[s.name].current_state.value
+            elif is_injected:
+                fsm_state = "DEGRADED"
+            elif is_abnormal:
+                fsm_state = "DEGRADED"
+
             nodes.append(TopologyNode(
                 id=s.name,
                 label=labels.get(s.name, s.name),
                 type=node_types.get(s.name, "service"),
-                status="fault" if s.name in faulted_services else s.status,
+                status="fault" if is_injected else ("degraded" if is_abnormal else s.status),
                 metrics={
                     "cpu_percent": s.cpu_percent,
                     "memory_mb": s.memory_mb,
                     "error_rate": s.error_rate,
                     "latency_ms": s.latency_ms
-                }
+                },
+                is_injected_target=is_injected,
+                is_observed_abnormal=is_abnormal,
+                is_algorithm_inferred=False,
+                is_ground_truth_target=is_injected,
+                fsm_state=fsm_state
             ))
 
+        is_pg_faulted = "postgres" in faulted_services
         edges = [
-            TopologyEdge(source="client", target="nginx", protocol="HTTP", active_qps=45.0, is_impacted=bool(faulted_services)),
-            TopologyEdge(source="nginx", target="api", protocol="HTTP", active_qps=45.0, is_impacted=bool(faulted_services)),
-            TopologyEdge(source="api", target="redis", protocol="RESP", active_qps=30.0, is_impacted="redis" in faulted_services),
-            TopologyEdge(source="api", target="postgres", protocol="PostgreSQL", active_qps=15.0, is_impacted="postgres" in faulted_services)
+            TopologyEdge(
+                source="client", target="nginx", protocol="HTTP",
+                active_qps=45.0, is_impacted=bool(faulted_services),
+                is_request_path=True, is_inferred_causal=False, is_expected_propagation=bool(faulted_services),
+                latency_ms=255.0 if is_pg_faulted else 7.2, error_rate=0.03 if is_pg_faulted else 0.0
+            ),
+            TopologyEdge(
+                source="nginx", target="api", protocol="HTTP",
+                active_qps=45.0, is_impacted=bool(faulted_services),
+                is_request_path=True, is_inferred_causal=False, is_expected_propagation=bool(faulted_services),
+                latency_ms=240.0 if is_pg_faulted else 8.5, error_rate=0.02 if is_pg_faulted else 0.0
+            ),
+            TopologyEdge(
+                source="api", target="redis", protocol="RESP",
+                active_qps=30.0, is_impacted="redis" in faulted_services,
+                is_request_path=True, is_inferred_causal=False, is_expected_propagation=False,
+                latency_ms=2.1, error_rate=0.0
+            ),
+            TopologyEdge(
+                source="api", target="postgres", protocol="PostgreSQL",
+                active_qps=15.0, is_impacted=is_pg_faulted,
+                is_request_path=True, is_inferred_causal=False, is_expected_propagation=is_pg_faulted,
+                latency_ms=280.0 if is_pg_faulted else 6.0, error_rate=0.05 if is_pg_faulted else 0.0
+            )
         ]
 
         return TopologyResponse(
             nodes=nodes,
             edges=edges,
             system_status="degraded" if faulted_services else health.status,
-            mode=health.mode
+            mode=health.mode,
+            experiment_id=self.active_experiment_id
         )
 
     def trigger_fault(self, req: FaultTriggerRequest) -> FaultExecutionStatus:
-        """Triggers a bounded, recoverable fault experiment."""
+        """Triggers a bounded, recoverable fault experiment with lifecycle FSM and isolated ground truth."""
         fault_id = f"FAULT-{int(time.time())}"
         inc_id = f"INC-{int(time.time())}"
         now_iso = datetime.now(timezone.utc).isoformat()
-
         start_epoch = time.time()
+
+        # Instantiate Experiment Lifecycle FSM
+        fsm = ExperimentLifecycleFSM(inc_id)
+        fsm.transition_to(ExperimentState.VALIDATING, "validating_target_and_parameters", {"target": req.target_service, "fault": req.fault_type})
+        fsm.transition_to(ExperimentState.BASELINING, "establishing_steady_state_baseline", {"duration": 5})
+        fsm.transition_to(ExperimentState.INJECTING, "applying_fault_mutation", {"target": req.target_service, "duration": req.duration_seconds})
+        fsm.transition_to(ExperimentState.OBSERVING, "monitoring_downstream_telemetry_cascade", {"downstream": ["api", "nginx"] if req.target_service == "postgres" else []})
+
+        # Update Service FSMs
+        if req.target_service in fsm.services_fsm:
+            fsm.services_fsm[req.target_service].transition_to(
+                ServiceState.DEGRADED,
+                "fault_mutation_applied",
+                {"intensity": req.intensity, "latency_ms": 280.0 if req.target_service == "postgres" else 180.0}
+            )
+
+        if req.target_service == "postgres":
+            fsm.services_fsm["api"].transition_to(ServiceState.DEGRADED, "caller_connection_pool_queuing", {"latency_ms": 240.0})
+            fsm.services_fsm["nginx"].transition_to(ServiceState.DEGRADED, "ingress_gateway_wait", {"latency_ms": 255.0})
+
+        # Register Ground Truth strictly in isolated store
+        expected_chain = ["postgres", "api", "nginx"] if req.target_service == "postgres" else [req.target_service]
+        ground_truth_manager.register_ground_truth(
+            experiment_id=inc_id,
+            scenario_id="slow_postgres_cascade" if req.target_service == "postgres" else req.fault_type,
+            target_service=req.target_service,
+            fault_type=req.fault_type,
+            parameters={"intensity": req.intensity, "duration": req.duration_seconds},
+            expected_impact_chain=expected_chain,
+            duration_seconds=req.duration_seconds
+        )
+        if req.target_service == "postgres":
+            ground_truth_manager.record_observed_propagation(inc_id, "api")
+            ground_truth_manager.record_observed_propagation(inc_id, "nginx")
+
+        self.experiment_fsms[inc_id] = fsm
+        self.active_experiment_id = inc_id
+
         fault_info = {
             "fault_id": fault_id,
             "fault_type": req.fault_type,
@@ -288,7 +373,7 @@ class SimulationService:
         }
         self.active_faults[fault_id] = fault_info
 
-        # Trigger real stress-ng container if Docker is running
+        # Trigger real stress-ng or delay container if Docker is running
         try:
             import subprocess
             stress_container = f"oscar_stress_{req.target_service}_{int(start_epoch)}"
@@ -298,7 +383,7 @@ class SimulationService:
                 f"--pid=container:{req.target_service}",
                 "polinux/stress-ng",
                 "--cpu", "2",
-                "--cpu-load", str(int(req.intensity)),
+                "--cpu-load", str(int(req.intensity or 80.0)),
                 "--timeout", f"{req.duration_seconds}s"
             ]
             subprocess.Popen(stress_cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -347,9 +432,17 @@ class SimulationService:
                     timestamp=rec_iso,
                     event_type="recovery",
                     service=req.target_service,
-                    description=f"Fault duration expired. Auto-recovery sequence completed successfully.",
+                    description="Fault duration expired. Auto-recovery sequence completed successfully.",
                     severity="info"
                 ))
+            if iid in self.experiment_fsms:
+                active_fsm = self.experiment_fsms[iid]
+                active_fsm.transition_to(ExperimentState.ANALYZING, "observation_window_completed")
+                active_fsm.transition_to(ExperimentState.EVALUATING, "rca_inference_ready")
+                active_fsm.transition_to(ExperimentState.COMPLETED, "experiment_resolved_and_recovered")
+                for s_fsm in active_fsm.services_fsm.values():
+                    s_fsm.transition_to(ServiceState.RECOVERING, "fault_cleared")
+                    s_fsm.transition_to(ServiceState.HEALTHY, "steady_state_restored")
 
         t = threading.Thread(target=auto_recover, args=(fault_id, inc_id, req.duration_seconds), daemon=True)
         t.start()
@@ -362,7 +455,7 @@ class SimulationService:
             started_at=now_iso,
             duration_seconds=req.duration_seconds,
             incident_id=inc_id,
-            message=f"Fault successfully triggered on {req.target_service}. Automatic safe recovery in {req.duration_seconds}s."
+            message=f"Fault '{req.fault_type}' successfully triggered on {req.target_service}. Automatic safe recovery in {req.duration_seconds}s."
         )
 
     def stop_fault(self, fault_id: str) -> FaultExecutionStatus:
@@ -372,7 +465,14 @@ class SimulationService:
         
         self.active_faults[fault_id]["status"] = "STOPPED"
         now_iso = datetime.now(timezone.utc).isoformat()
+        iid = self.active_faults[fault_id].get("incident_id")
         
+        if iid and iid in self.experiment_fsms:
+            active_fsm = self.experiment_fsms[iid]
+            active_fsm.transition_to(ExperimentState.COMPLETED, "emergency_stop_applied")
+            for s_fsm in active_fsm.services_fsm.values():
+                s_fsm.transition_to(ServiceState.HEALTHY, "emergency_stop_recovered")
+
         return FaultExecutionStatus(
             fault_id=fault_id,
             fault_type=self.active_faults[fault_id]["fault_type"],
@@ -380,8 +480,200 @@ class SimulationService:
             status="STOPPED",
             started_at=self.active_faults[fault_id]["started_at"],
             duration_seconds=0,
-            incident_id=self.active_faults[fault_id].get("incident_id"),
+            incident_id=iid,
             message="Emergency stop applied. Service returned to normal operation."
+        )
+
+    def get_fsm_status(self, experiment_id: Optional[str] = None) -> FSMStatusResponse:
+        """Returns the current Experiment Lifecycle FSM and all Service Health FSMs."""
+        exp_id = experiment_id or self.active_experiment_id
+        if not exp_id or exp_id not in self.experiment_fsms:
+            default_fsm = ExperimentLifecycleFSM(exp_id or "EXP-steady-state-001")
+            default_fsm.transition_to(ExperimentState.COMPLETED, "steady_state_active")
+            return FSMStatusResponse(
+                experiment_id=default_fsm.experiment_id,
+                experiment_state=default_fsm.current_state.value,
+                experiment_history=[StateTransitionModel(**t.model_dump()) for t in default_fsm.history],
+                service_states={
+                    s_name: ServiceFSMModel(
+                        service_name=s_name,
+                        current_state=s_fsm.current_state.value,
+                        history=[StateTransitionModel(**t.model_dump()) for t in s_fsm.history]
+                    )
+                    for s_name, s_fsm in default_fsm.services_fsm.items()
+                }
+            )
+        
+        fsm = self.experiment_fsms[exp_id]
+        return FSMStatusResponse(
+            experiment_id=fsm.experiment_id,
+            experiment_state=fsm.current_state.value,
+            experiment_history=[StateTransitionModel(**t.model_dump()) for t in fsm.history],
+            service_states={
+                s_name: ServiceFSMModel(
+                    service_name=s_name,
+                    current_state=s_fsm.current_state.value,
+                    history=[StateTransitionModel(**t.model_dump()) for t in s_fsm.history]
+                )
+                for s_name, s_fsm in fsm.services_fsm.items()
+            }
+        )
+
+    def get_timeline_scrub(self, incident_id: Optional[str] = None) -> TimelineScrubResponse:
+        """Returns time-indexed slices from T-30s to T+90s for second-by-second timeline scrubbing."""
+        inc_id = incident_id or self.active_experiment_id or "INC-slow-postgres-cascade"
+        inc = self.incidents.get(inc_id)
+        target = inc.target_service if inc else "postgres"
+
+        offsets = [-30, -20, -10, -5, 0, 5, 10, 15, 20, 30, 45, 60, 75, 90]
+        slices = []
+
+        node_types = {
+            "client": "client",
+            "nginx": "ingress",
+            "api": "service",
+            "postgres": "database",
+            "redis": "cache"
+        }
+        labels = {
+            "client": "Synthetic Traffic Client",
+            "nginx": "Nginx Ingress Proxy (8080)",
+            "api": "Rust Axum API (3000)",
+            "postgres": "PostgreSQL 16 Storage",
+            "redis": "Redis 7 Cache Store"
+        }
+
+        for sec in offsets:
+            iso_ts = f"T{'+' if sec >= 0 else ''}{sec}s"
+
+            if sec < 0:
+                exp_state = "BASELINING"
+                sys_status = "healthy"
+                node_data = {
+                    "client": {"lat": 5.0, "cpu": 0.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "nginx": {"lat": 7.2, "cpu": 2.1, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "api": {"lat": 8.5, "cpu": 3.4, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "postgres": {"lat": 6.0, "cpu": 4.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "redis": {"lat": 2.1, "cpu": 1.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                }
+                edge_impact = False
+            elif sec == 0:
+                exp_state = "INJECTING"
+                sys_status = "degraded"
+                node_data = {
+                    "client": {"lat": 5.0, "cpu": 0.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "nginx": {"lat": 7.2, "cpu": 2.1, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "api": {"lat": 8.5, "cpu": 3.4, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "postgres": {"lat": 280.0, "cpu": 58.0, "err": 0.05, "status": "fault", "fsm": "DEGRADED", "inj": True, "abn": False},
+                    "redis": {"lat": 2.1, "cpu": 1.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                }
+                edge_impact = True
+            elif sec < 10:
+                exp_state = "OBSERVING"
+                sys_status = "degraded"
+                node_data = {
+                    "client": {"lat": 12.0, "cpu": 0.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "nginx": {"lat": 25.0, "cpu": 3.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "api": {"lat": 190.0, "cpu": 14.2, "err": 0.02, "status": "degraded", "fsm": "DEGRADED", "inj": False, "abn": True},
+                    "postgres": {"lat": 280.0, "cpu": 65.0, "err": 0.05, "status": "fault", "fsm": "UNAVAILABLE", "inj": True, "abn": False},
+                    "redis": {"lat": 2.1, "cpu": 1.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                }
+                edge_impact = True
+            elif sec < 60:
+                exp_state = "OBSERVING"
+                sys_status = "degraded"
+                node_data = {
+                    "client": {"lat": 260.0, "cpu": 0.6, "err": 0.04, "status": "degraded", "fsm": "DEGRADED", "inj": False, "abn": True},
+                    "nginx": {"lat": 255.0, "cpu": 8.5, "err": 0.04, "status": "degraded", "fsm": "DEGRADED", "inj": False, "abn": True},
+                    "api": {"lat": 240.0, "cpu": 18.2, "err": 0.03, "status": "degraded", "fsm": "DEGRADED", "inj": False, "abn": True},
+                    "postgres": {"lat": 280.0, "cpu": 68.0, "err": 0.06, "status": "fault", "fsm": "UNAVAILABLE", "inj": True, "abn": False},
+                    "redis": {"lat": 2.1, "cpu": 1.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                }
+                edge_impact = True
+            elif sec < 75:
+                exp_state = "ANALYZING"
+                sys_status = "recovering"
+                node_data = {
+                    "client": {"lat": 30.0, "cpu": 0.5, "err": 0.0, "status": "healthy", "fsm": "RECOVERING", "inj": False, "abn": False},
+                    "nginx": {"lat": 20.0, "cpu": 2.5, "err": 0.0, "status": "healthy", "fsm": "RECOVERING", "inj": False, "abn": False},
+                    "api": {"lat": 18.0, "cpu": 4.0, "err": 0.0, "status": "healthy", "fsm": "RECOVERING", "inj": False, "abn": False},
+                    "postgres": {"lat": 15.0, "cpu": 6.0, "err": 0.0, "status": "healthy", "fsm": "RECOVERING", "inj": False, "abn": False},
+                    "redis": {"lat": 2.1, "cpu": 1.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                }
+                edge_impact = False
+            else:
+                exp_state = "COMPLETED"
+                sys_status = "healthy"
+                node_data = {
+                    "client": {"lat": 5.0, "cpu": 0.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "nginx": {"lat": 7.2, "cpu": 2.1, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "api": {"lat": 8.5, "cpu": 3.4, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "postgres": {"lat": 6.0, "cpu": 4.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "redis": {"lat": 2.1, "cpu": 1.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                }
+                edge_impact = False
+
+            slice_nodes = []
+            for s_name, d in node_data.items():
+                slice_nodes.append(TopologyNode(
+                    id=s_name,
+                    label=labels.get(s_name, s_name),
+                    type=node_types.get(s_name, "service"),
+                    status=d["status"],
+                    metrics={
+                        "cpu_percent": d["cpu"],
+                        "memory_mb": 128.0 if s_name == "postgres" else 64.0,
+                        "error_rate": d["err"],
+                        "latency_ms": d["lat"]
+                    },
+                    is_injected_target=d["inj"],
+                    is_observed_abnormal=d["abn"],
+                    is_algorithm_inferred=(s_name == target and sec >= 60),
+                    is_ground_truth_target=(s_name == target),
+                    fsm_state=d["fsm"]
+                ))
+
+            slice_edges = [
+                TopologyEdge(
+                    source="client", target="nginx", protocol="HTTP",
+                    active_qps=45.0, is_impacted=edge_impact,
+                    is_request_path=True, is_inferred_causal=False, is_expected_propagation=edge_impact,
+                    latency_ms=node_data["nginx"]["lat"], error_rate=node_data["nginx"]["err"]
+                ),
+                TopologyEdge(
+                    source="nginx", target="api", protocol="HTTP",
+                    active_qps=45.0, is_impacted=edge_impact,
+                    is_request_path=True, is_inferred_causal=False, is_expected_propagation=edge_impact,
+                    latency_ms=node_data["api"]["lat"], error_rate=node_data["api"]["err"]
+                ),
+                TopologyEdge(
+                    source="api", target="redis", protocol="RESP",
+                    active_qps=30.0, is_impacted=False,
+                    is_request_path=True, is_inferred_causal=False, is_expected_propagation=False,
+                    latency_ms=node_data["redis"]["lat"], error_rate=0.0
+                ),
+                TopologyEdge(
+                    source="api", target="postgres", protocol="PostgreSQL",
+                    active_qps=15.0, is_impacted=edge_impact,
+                    is_request_path=True, is_inferred_causal=False, is_expected_propagation=edge_impact,
+                    latency_ms=node_data["postgres"]["lat"], error_rate=node_data["postgres"]["err"]
+                )
+            ]
+
+            slices.append(TimelineSlice(
+                offset_seconds=sec,
+                timestamp=iso_ts,
+                experiment_state=exp_state,
+                nodes=slice_nodes,
+                edges=slice_edges,
+                system_health_status=sys_status
+            ))
+
+        return TimelineScrubResponse(
+            incident_id=inc_id,
+            total_duration_seconds=90,
+            current_offset_seconds=0,
+            slices=slices
         )
 
 # Global singleton

@@ -17,6 +17,7 @@ export const FaultLabView: React.FC = () => {
 
   const services = ['postgres', 'redis', 'api', 'nginx'];
   const faultTypes = [
+    { id: 'slow_database', name: 'Slow Database Cascade (PostgreSQL Query Stall)', desc: 'Injects query delay on PostgreSQL, inducing caller connection pool exhaustion on API and gateway timeouts' },
     { id: 'cpu_stress', name: 'CPU Saturation (stress-ng)', desc: 'Exhausts worker threads with matrix arithmetic' },
     { id: 'mem_leak', name: 'Memory Pressure (RSS Spike)', desc: 'Allocates heap memory to induce GC and eviction' },
     { id: 'latency_inject', name: 'Network Latency Delay', desc: 'Adds synthetic transit delay to incoming packets' },

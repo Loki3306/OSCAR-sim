@@ -24,3 +24,10 @@ def list_algorithms():
 def run_diagnosis(req: RCADiagnosisRequest):
     """Executes selected algorithms against the chosen incident or benchmark case."""
     return rca_service.diagnose(req)
+
+@router.post("/evaluate")
+def evaluate_diagnosis(req: Dict[str, Any]):
+    """Evaluates algorithm candidate ranking against isolated ground truth strictly post-inference."""
+    incident_id = req.get("incident_id") or req.get("case_id") or "sim_live_incident"
+    results = req.get("results", {})
+    return rca_service.evaluate_post_inference(incident_id, results)

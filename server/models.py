@@ -18,6 +18,11 @@ class TopologyNode(BaseModel):
     type: str  # ingress, service, database, cache, client
     status: str
     metrics: Dict[str, float] = {}
+    is_injected_target: bool = False
+    is_observed_abnormal: bool = False
+    is_algorithm_inferred: bool = False
+    is_ground_truth_target: bool = False
+    fsm_state: str = "HEALTHY"
 
 class TopologyEdge(BaseModel):
     source: str
@@ -25,12 +30,19 @@ class TopologyEdge(BaseModel):
     protocol: str = "HTTP"
     active_qps: float = 0.0
     is_impacted: bool = False
+    is_request_path: bool = True
+    is_inferred_causal: bool = False
+    is_expected_propagation: bool = False
+    latency_ms: float = 0.0
+    error_rate: float = 0.0
 
 class TopologyResponse(BaseModel):
     nodes: List[TopologyNode]
     edges: List[TopologyEdge]
     system_status: str
     mode: str  # "LIVE_SIM" or "REPLAY_DEMO"
+    experiment_id: Optional[str] = None
+    timeline_offset_sec: Optional[int] = None
 
 class SubsystemStatus(BaseModel):
     name: str
@@ -125,6 +137,7 @@ class RCACandidate(BaseModel):
     score: float
     suspected_indicator: str
     evidence: str
+    score_breakdown: Optional[Dict[str, float]] = None
 
 class RCADiagnosisRequest(BaseModel):
     incident_id: Optional[str] = None
@@ -178,3 +191,36 @@ class BenchmarkCaseDetail(BaseModel):
     services: List[str]
     metric_sample: Dict[str, List[float]]
     time_series_timestamps: List[float]
+ 
+# --- FSM & Timeline Scrub Models ---
+class StateTransitionModel(BaseModel):
+    timestamp: str
+    from_state: str
+    to_state: str
+    trigger_event: str
+    evidence: Dict[str, Any] = {}
+
+class ServiceFSMModel(BaseModel):
+    service_name: str
+    current_state: str
+    history: List[StateTransitionModel] = []
+
+class FSMStatusResponse(BaseModel):
+    experiment_id: str
+    experiment_state: str
+    experiment_history: List[StateTransitionModel] = []
+    service_states: Dict[str, ServiceFSMModel] = {}
+
+class TimelineSlice(BaseModel):
+    offset_seconds: int
+    timestamp: str
+    experiment_state: str
+    nodes: List[TopologyNode]
+    edges: List[TopologyEdge]
+    system_health_status: str
+
+class TimelineScrubResponse(BaseModel):
+    incident_id: str
+    total_duration_seconds: int
+    current_offset_seconds: int
+    slices: List[TimelineSlice]

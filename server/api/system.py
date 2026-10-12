@@ -50,7 +50,12 @@ def get_system_topology():
             "memory_mb": m.get("memory_mb", 120.0),
             "error_rate": m.get("error_rate", 0.0),
             "latency_ms": m.get("latency_ms", 5.0),
-            "is_root_cause": n.id in faulted_targets
+            "is_root_cause": n.id in faulted_targets,
+            "is_injected_target": n.is_injected_target,
+            "is_observed_abnormal": n.is_observed_abnormal,
+            "is_algorithm_inferred": n.is_algorithm_inferred,
+            "is_ground_truth_target": n.is_ground_truth_target,
+            "fsm_state": n.fsm_state
         })
 
     edges = []
@@ -59,13 +64,22 @@ def get_system_topology():
             "from_service": e.source,
             "to_service": e.target,
             "relationship": e.protocol,
-            "is_active_path": e.is_impacted
+            "is_active_path": e.is_impacted,
+            "active_qps": e.active_qps,
+            "is_impacted": e.is_impacted,
+            "is_request_path": e.is_request_path,
+            "is_inferred_causal": e.is_inferred_causal,
+            "is_expected_propagation": e.is_expected_propagation,
+            "latency_ms": e.latency_ms,
+            "error_rate": e.error_rate
         })
 
     return {
         "services": services,
+        "nodes": [n.model_dump() for n in topo.nodes],
         "edges": edges,
-        "updated_at": int(datetime.now(timezone.utc).timestamp())
+        "updated_at": int(datetime.now(timezone.utc).timestamp()),
+        "mode": topo.mode
     }
 
 @router.post("/system/simulate/start")

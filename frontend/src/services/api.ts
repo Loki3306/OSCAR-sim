@@ -7,7 +7,10 @@ import {
   RCADiagnosisResponse,
   BenchmarkCaseSummary,
   BenchmarkCaseDetail,
-  ResearchSummary
+  ResearchSummary,
+  FSMStatusResponse,
+  TimelineScrubResponse,
+  EvaluationReportData
 } from '../types';
 
 const BASE_URL = '';
@@ -118,6 +121,29 @@ export const api = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
+  },
+
+  async evaluateDiagnosis(data: {
+    incident_id?: string;
+    case_id?: string;
+    results: any;
+  }): Promise<EvaluationReportData> {
+    return fetchJson<EvaluationReportData>('/api/rca/evaluate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+  },
+
+  // FSM & Timeline Scrubber
+  async getFSMStatus(experimentId?: string): Promise<FSMStatusResponse> {
+    const query = experimentId ? `?experiment_id=${encodeURIComponent(experimentId)}` : '';
+    return fetchJson<FSMStatusResponse>(`/api/fsm/status${query}`);
+  },
+
+  async getTimelineScrub(incidentId?: string): Promise<TimelineScrubResponse> {
+    const query = incidentId ? `?incident_id=${encodeURIComponent(incidentId)}` : '';
+    return fetchJson<TimelineScrubResponse>(`/api/fsm/timeline-scrub${query}`);
   },
 
   // Benchmark

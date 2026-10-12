@@ -37,12 +37,17 @@ export interface SystemStatus {
 export interface ServiceNode {
   name: string;
   display_name: string;
-  status: 'healthy' | 'degraded' | 'unhealthy' | 'unknown';
+  status: 'healthy' | 'degraded' | 'unhealthy' | 'unknown' | 'fault';
   cpu_percent?: number;
   memory_mb?: number;
   error_rate?: number;
   latency_ms?: number;
   is_root_cause?: boolean;
+  is_injected_target?: boolean;
+  is_observed_abnormal?: boolean;
+  is_algorithm_inferred?: boolean;
+  is_ground_truth_target?: boolean;
+  fsm_state?: string;
 }
 
 export interface DependencyEdge {
@@ -50,12 +55,20 @@ export interface DependencyEdge {
   to_service: string;
   relationship: string;
   is_active_path?: boolean;
+  active_qps?: number;
+  is_impacted?: boolean;
+  is_request_path?: boolean;
+  is_inferred_causal?: boolean;
+  is_expected_propagation?: boolean;
+  latency_ms?: number;
+  error_rate?: number;
 }
 
 export interface TopologyData {
   services: ServiceNode[];
   edges: DependencyEdge[];
   updated_at: number;
+  nodes?: any[];
 }
 
 export interface MetricPoint {
@@ -121,10 +134,14 @@ export interface RankedCandidate {
   confidence?: number;
   supporting_evidence?: string[];
   anomalous_metrics?: string[];
+  suspected_indicator?: string;
+  evidence?: string;
+  score_breakdown?: Record<string, number>;
 }
 
 export interface AlgorithmDiagnosis {
   algorithm_name: string;
+  version?: string;
   status: string;
   runtime_sec: number;
   top_1_prediction?: string;
@@ -184,4 +201,67 @@ export interface ResearchSummary {
   algorithms: AlgorithmMetricSummary[];
   mcnemar_p_value_vs_rcd: number;
   key_findings: string[];
+}
+
+export interface StateTransitionItem {
+  timestamp: string;
+  from_state: string;
+  to_state: string;
+  trigger_event: string;
+  evidence: Record<string, any>;
+}
+
+export interface ServiceFSMData {
+  service_name: string;
+  current_state: string;
+  history: StateTransitionItem[];
+}
+
+export interface FSMStatusResponse {
+  experiment_id: string;
+  experiment_state: string;
+  experiment_history: StateTransitionItem[];
+  service_states: Record<string, ServiceFSMData>;
+}
+
+export interface TimelineSliceData {
+  offset_seconds: number;
+  timestamp: string;
+  experiment_state: string;
+  nodes: ServiceNode[];
+  edges: DependencyEdge[];
+  system_health_status: string;
+}
+
+export interface TimelineScrubResponse {
+  incident_id: string;
+  total_duration_seconds: number;
+  current_offset_seconds: number;
+  slices: TimelineSliceData[];
+}
+
+export interface AlgorithmEvaluationData {
+  algorithm: string;
+  top_1_prediction: string;
+  hit_1: boolean;
+  hit_3: boolean;
+  hit_5: boolean;
+  reciprocal_rank: number;
+  ground_truth: string;
+  runtime_sec: number;
+}
+
+export interface EvaluationReportData {
+  experiment_id: string;
+  ground_truth: {
+    target_service: string;
+    fault_type: string;
+    expected_impact_chain: string[];
+    observed_impact_chain: string[];
+  };
+  algorithm_evaluations: Record<string, AlgorithmEvaluationData>;
+  expected_vs_observed_match: boolean;
+  observed_chain: string[];
+  expected_chain: string[];
+  evaluated_at: string;
 }

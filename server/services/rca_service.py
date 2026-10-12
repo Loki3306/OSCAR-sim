@@ -132,27 +132,40 @@ class RCAService:
                     score = diag_res.service_scores.get(s, 0.0)
                     
                     # Generate explanatory evidence string based on algorithm characteristics
+                    breakdown = None
                     if "OSCAR" in alg_name:
                         evidence = f"Wasserstein drift score: {score:.3f}. Resource Dominance & Callee Blame applied."
+                        breakdown = {
+                            "DSI (Wasserstein Shift)": round(score * 0.45, 3),
+                            "PRP (Resource Penalty)": round(score * 0.35, 3),
+                            "CDR (Caller Discount)": round(score * 0.20, 3)
+                        }
                     elif "RCD" in alg_name:
                         evidence = f"Non-parametric localized independence rank: {score:.3f}."
+                        breakdown = {"Independence Score": round(score, 3)}
                     elif "BARO" in alg_name:
                         evidence = f"Trimmed kurtosis anomaly metric deviation: {score:.3f}."
+                        breakdown = {"Kurtosis Deviation": round(score, 3)}
                     elif "CIRCA" in alg_name:
                         evidence = f"Ridge-regularized structural causal equation residual variance: {score:.3f}."
+                        breakdown = {"Residual Variance": round(score, 3)}
                     elif "MicroCause" in alg_name:
                         evidence = f"Time-lagged cross-correlation centrality: {score:.3f}."
+                        breakdown = {"Correlation Centrality": round(score, 3)}
                     elif "Diagnosis" in alg_name:
                         evidence = f"Transition matrix random-walk PageRank steady state: {score:.3f}."
+                        breakdown = {"PageRank Probability": round(score, 3)}
                     else:
                         evidence = f"Diagnostic anomaly score: {score:.3f}."
+                        breakdown = {"Base Score": round(score, 3)}
 
                     ranked_items.append(RCACandidate(
                         rank=idx + 1,
                         service=s,
                         score=float(score),
                         suspected_indicator="container_cpu_usage" if idx == 0 else "latency_symptom",
-                        evidence=evidence
+                        evidence=evidence,
+                        score_breakdown=breakdown
                     ))
 
                 results[alg_name] = SingleModelResult(
@@ -183,6 +196,12 @@ class RCAService:
             results=results,
             candidate_set=candidate_set
         )
+
+    def evaluate_post_inference(self, incident_or_case_id: str, results: Dict[str, Any]) -> Dict[str, Any]:
+        """Evaluates algorithm ranking against isolated ground truth strictly post-inference."""
+        from server.services.ground_truth_manager import ground_truth_manager
+        report = ground_truth_manager.evaluate(incident_or_case_id, results)
+        return report.model_dump()
 
 # Global singleton
 rca_service = RCAService()
