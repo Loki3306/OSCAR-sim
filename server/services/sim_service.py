@@ -76,6 +76,23 @@ class SimulationService:
         docker_ok = False
         prom_ok = False
         api_ok = False
+        pg_ok = False
+
+        # Probe Docker Engine
+        try:
+            import subprocess
+            res = subprocess.run(["docker", "version", "--format", "{{.Server.Version}}"], capture_output=True, text=True, timeout=1.2)
+            docker_ok = (res.returncode == 0)
+        except Exception:
+            docker_ok = False
+
+        # Probe PostgreSQL
+        try:
+            import socket
+            with socket.create_connection(("localhost", 5432), timeout=0.4):
+                pg_ok = True
+        except Exception:
+            pg_ok = False
 
         # Probe Prometheus
         try:
@@ -92,7 +109,7 @@ class SimulationService:
             api_ok = False
 
         # Determine mode
-        is_live = prom_ok and api_ok
+        is_live = (docker_ok or (prom_ok and api_ok))
         mode = "LIVE_SIM" if is_live else "REPLAY_DEMO"
 
         # Baseline services definitions (name, type, label, base_cpu, base_mem, base_lat)
@@ -170,9 +187,9 @@ class SimulationService:
             ),
             persistence_store=SubsystemStatus(
                 name="State Store (PostgreSQL)",
-                status="postgresql_live" if False else "in_memory_ephemeral",
-                detail="PostgreSQL offline. Operating with degraded in-memory ephemeral store.",
-                is_live=False
+                status="postgresql_live" if pg_ok else "in_memory_ephemeral",
+                detail="PostgreSQL container connected on port 5432" if pg_ok else "PostgreSQL offline. Operating with degraded in-memory ephemeral store.",
+                is_live=pg_ok
             ),
             rca_workers=SubsystemStatus(
                 name="RCA Diagnostic Engine",
