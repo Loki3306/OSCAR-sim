@@ -1,0 +1,5702 @@
+[
+  {
+    "case_id": "re1ss_payment_cpu_5",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "session-db",
+      "payment",
+      "orders"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.025267599965445697
+  },
+  {
+    "case_id": "re1ss_payment_cpu_5",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "front-end",
+      "rabbitmq",
+      "session-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.16666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.004593400051817298
+  },
+  {
+    "case_id": "re1ss_payment_cpu_5",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "payment",
+      "orders",
+      "queue-master"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.004040300031192601
+  },
+  {
+    "case_id": "re1ss_payment_cpu_5",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "carts-db",
+      "payment",
+      "carts"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.02240510005503893
+  },
+  {
+    "case_id": "re1ss_payment_cpu_5",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "payment",
+      "orders",
+      "carts"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.008264699950814247
+  },
+  {
+    "case_id": "re1ss_payment_cpu_5",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "session-db",
+      "payment",
+      "orders"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.0028083999641239643
+  },
+  {
+    "case_id": "re1ss_user_cpu_3",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02229069999884814
+  },
+  {
+    "case_id": "re1ss_user_cpu_3",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "rabbitmq",
+      "front-end",
+      "session-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.09090909090909091,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0036718000192195177
+  },
+  {
+    "case_id": "re1ss_user_cpu_3",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.004046899965032935
+  },
+  {
+    "case_id": "re1ss_user_cpu_3",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "carts-db",
+      "user",
+      "user-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.022366899996995926
+  },
+  {
+    "case_id": "re1ss_user_cpu_3",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "orders",
+      "user",
+      "front-end"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.006091099930927157
+  },
+  {
+    "case_id": "re1ss_user_cpu_3",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0025341000873595476
+  },
+  {
+    "case_id": "re1ob_adservice_cpu_5",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "adservice",
+      "paymentservice",
+      "main"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.019271799945272505
+  },
+  {
+    "case_id": "re1ob_adservice_cpu_5",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "main",
+      "frontend",
+      "redis"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.16666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0035556000657379627
+  },
+  {
+    "case_id": "re1ob_adservice_cpu_5",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "adservice",
+      "paymentservice",
+      "main"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0034446000354364514
+  },
+  {
+    "case_id": "re1ob_adservice_cpu_5",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "main",
+      "recommendationservice",
+      "currencyservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.017368500004522502
+  },
+  {
+    "case_id": "re1ob_adservice_cpu_5",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "adservice",
+      "frontend",
+      "checkoutservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.008161800098605454
+  },
+  {
+    "case_id": "re1ob_adservice_cpu_5",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "adservice",
+      "frontend",
+      "checkoutservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0024027000181376934
+  },
+  {
+    "case_id": "re1tt_ts-order-service_cpu_1",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-order-service",
+    "ranked_top3": [
+      "ts-voucher-service",
+      "ts-auth-mongo",
+      "ts-order-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.3333333333333333,
+    "ndcg@3": 0.5,
+    "runtime_sec": 0.08662499999627471
+  },
+  {
+    "case_id": "re1tt_ts-order-service_cpu_1",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-order-service",
+    "ranked_top3": [
+      "ts-order-mongo",
+      "ts-station-mongo",
+      "ts-travel-plan-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.017241379310344827,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.015195099986158311
+  },
+  {
+    "case_id": "re1tt_ts-order-service_cpu_1",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-order-service",
+    "ranked_top3": [
+      "ts-auth-mongo",
+      "ts-order-service",
+      "ts-travel-mongo"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.020091400016099215
+  },
+  {
+    "case_id": "re1tt_ts-order-service_cpu_1",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-order-service",
+    "ranked_top3": [
+      "ts-order-service",
+      "ts-travel-mongo",
+      "ts-consign-price-mongo"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.3481041999766603
+  },
+  {
+    "case_id": "re1tt_ts-order-service_cpu_1",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-order-service",
+    "ranked_top3": [
+      "ts-order-service",
+      "ts-ticketinfo-service",
+      "ts-preserve-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.06156820000614971
+  },
+  {
+    "case_id": "re1tt_ts-order-service_cpu_1",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-order-service",
+    "ranked_top3": [
+      "ts-voucher-service",
+      "ts-order-service",
+      "ts-admin-basic-info-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.00827749993186444
+  },
+  {
+    "case_id": "re1ss_carts_cpu_2",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02245970000512898
+  },
+  {
+    "case_id": "re1ss_carts_cpu_2",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "rabbitmq",
+      "session-db",
+      "front-end"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.07692307692307693,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0037383000599220395
+  },
+  {
+    "case_id": "re1ss_carts_cpu_2",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.004624199937097728
+  },
+  {
+    "case_id": "re1ss_carts_cpu_2",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts-db",
+      "carts",
+      "front-end"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.02353799995034933
+  },
+  {
+    "case_id": "re1ss_carts_cpu_2",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0073862000135704875
+  },
+  {
+    "case_id": "re1ss_carts_cpu_2",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "rabbitmq",
+      "catalogue-db"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.004190400009974837
+  },
+  {
+    "case_id": "re1tt_ts-route-service_cpu_5",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-avatar-service",
+      "ts-route-service",
+      "ts-admin-travel-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.07115830003749579
+  },
+  {
+    "case_id": "re1tt_ts-route-service_cpu_5",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-food-mongo",
+      "ts-travel2-service",
+      "ts-food-map-mongo"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.015873015873015872,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.01754949998576194
+  },
+  {
+    "case_id": "re1tt_ts-route-service_cpu_5",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-service",
+      "ts-travel-service",
+      "ts-admin-travel-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.016496600001119077
+  },
+  {
+    "case_id": "re1tt_ts-route-service_cpu_5",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-service",
+      "ts-food-mongo",
+      "ts-route-mongo"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.35328090004622936
+  },
+  {
+    "case_id": "re1tt_ts-route-service_cpu_5",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-service",
+      "ts-travel-service",
+      "ts-ui-dashboard"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.025371199939399958
+  },
+  {
+    "case_id": "re1tt_ts-route-service_cpu_5",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-avatar-service",
+      "ts-admin-travel-service",
+      "ts-travel-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.2,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.010290300007909536
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_cpu_4",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-preserve-other-service",
+      "ts-security-service",
+      "ts-preserve-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.07729709998238832
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_cpu_4",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-ticket-office-service",
+      "ts-train-mongo",
+      "ts-travel-mongo"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.01694915254237288,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.01720290002413094
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_cpu_4",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-admin-user-service",
+      "ts-food-service",
+      "ts-travel-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.3333333333333333,
+    "ndcg@3": 0.5,
+    "runtime_sec": 0.014970900025218725
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_cpu_4",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-travel-mongo",
+      "ts-notification-service",
+      "ts-admin-travel-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.16666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.3622141999658197
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_cpu_4",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-security-service",
+      "ts-preserve-service",
+      "ts-order-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.02886149997357279
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_cpu_4",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-security-service",
+      "ts-preserve-service",
+      "ts-food-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.007728799944743514
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_1",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "emailservice",
+      "adservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.016344600007869303
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_1",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "main",
+      "frontend",
+      "frontend-external"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.2,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0029583999421447515
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_1",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "adservice",
+      "main"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0029893999453634024
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_1",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "paymentservice",
+      "recommendationservice",
+      "adservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.1111111111111111,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.018745799898169935
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_1",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "emailservice",
+      "shippingservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.008397799916565418
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_1",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "cartservice",
+      "paymentservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.002599500003270805
+  },
+  {
+    "case_id": "re1ss_payment_cpu_1",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "payment",
+      "carts",
+      "shipping"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02022809989284724
+  },
+  {
+    "case_id": "re1ss_payment_cpu_1",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "rabbitmq",
+      "rabbitmq-exporter",
+      "session-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.07692307692307693,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.005193699966184795
+  },
+  {
+    "case_id": "re1ss_payment_cpu_1",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "payment",
+      "user",
+      "shipping"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0038597999373450875
+  },
+  {
+    "case_id": "re1ss_payment_cpu_1",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "carts-db",
+      "payment",
+      "user-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.020730199990794063
+  },
+  {
+    "case_id": "re1ss_payment_cpu_1",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "payment",
+      "orders",
+      "carts"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.008247700054198503
+  },
+  {
+    "case_id": "re1ss_payment_cpu_1",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "payment",
+      "carts",
+      "shipping"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0030721999937668443
+  },
+  {
+    "case_id": "re2tt_ts-auth-service_cpu_3",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-auth-service",
+      "ts-assurance-service",
+      "ts-food-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.14251780009362847
+  },
+  {
+    "case_id": "re2tt_ts-auth-service_cpu_3",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-preserve-other-service",
+      "ts-admin-order-service",
+      "ts-payment-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.017543859649122806,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.020443700021132827
+  },
+  {
+    "case_id": "re2tt_ts-auth-service_cpu_3",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-consign-price-service",
+      "ts-auth-service",
+      "ts-consign-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.032435899949632585
+  },
+  {
+    "case_id": "re2tt_ts-auth-service_cpu_3",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-seat-service",
+      "ts-preserve-service",
+      "ts-auth-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.3333333333333333,
+    "ndcg@3": 0.5,
+    "runtime_sec": 0.42181049997452646
+  },
+  {
+    "case_id": "re2tt_ts-auth-service_cpu_3",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-ui-dashboard",
+      "ts-auth-service",
+      "ts-route-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.030367199913598597
+  },
+  {
+    "case_id": "re2tt_ts-auth-service_cpu_3",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-auth-service",
+      "ts-route-service",
+      "ts-ui-dashboard"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.016758200014010072
+  },
+  {
+    "case_id": "re1ob_currencyservice_cpu_4",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "currencyservice",
+      "cartservice",
+      "productcatalogservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.019187400001101196
+  },
+  {
+    "case_id": "re1ob_currencyservice_cpu_4",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "main",
+      "frontend",
+      "redis"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.2,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0032290000235661864
+  },
+  {
+    "case_id": "re1ob_currencyservice_cpu_4",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "currencyservice",
+      "main",
+      "recommendationservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0028880999889224768
+  },
+  {
+    "case_id": "re1ob_currencyservice_cpu_4",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "main",
+      "adservice",
+      "recommendationservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.16666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.014030499965883791
+  },
+  {
+    "case_id": "re1ob_currencyservice_cpu_4",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "currencyservice",
+      "checkoutservice",
+      "frontend"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0063884000992402434
+  },
+  {
+    "case_id": "re1ob_currencyservice_cpu_4",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "currencyservice",
+      "checkoutservice",
+      "recommendationservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0024820000398904085
+  },
+  {
+    "case_id": "re1tt_ts-route-service_cpu_3",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-consign-service",
+      "ts-route-service",
+      "ts-assurance-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.07698539993725717
+  },
+  {
+    "case_id": "re1tt_ts-route-service_cpu_3",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-ticket-office-service",
+      "ts-consign-price-service",
+      "ts-travel2-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.016666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.01799429999664426
+  },
+  {
+    "case_id": "re1tt_ts-route-service_cpu_3",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-service",
+      "ts-rebook-service",
+      "ts-admin-travel-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.016551199951209128
+  },
+  {
+    "case_id": "re1tt_ts-route-service_cpu_3",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-service",
+      "ts-execute-service",
+      "ts-travel2-mongo"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.3822302999906242
+  },
+  {
+    "case_id": "re1tt_ts-route-service_cpu_3",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-service",
+      "ts-ui-dashboard",
+      "ts-travel-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.023125800071284175
+  },
+  {
+    "case_id": "re1tt_ts-route-service_cpu_3",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-service",
+      "ts-admin-travel-service",
+      "ts-consign-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.009225900052115321
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_2",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "adservice",
+      "redis"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.01853970007505268
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_2",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "main",
+      "frontend",
+      "redis"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.16666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.004038500017486513
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_2",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "main",
+      "redis"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0031068999087437987
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_2",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "main",
+      "recommendationservice",
+      "adservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.1111111111111111,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.015338600031100214
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_2",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "cartservice",
+      "productcatalogservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0064289000583812594
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_2",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "currencyservice",
+      "cartservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0022341000149026513
+  },
+  {
+    "case_id": "re1ss_orders_cpu_2",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "orders",
+    "ranked_top3": [
+      "orders",
+      "front-end",
+      "catalogue"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02081919996999204
+  },
+  {
+    "case_id": "re1ss_orders_cpu_2",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "orders",
+    "ranked_top3": [
+      "rabbitmq",
+      "front-end",
+      "session-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.16666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.004289200063794851
+  },
+  {
+    "case_id": "re1ss_orders_cpu_2",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "orders",
+    "ranked_top3": [
+      "orders",
+      "queue-master",
+      "shipping"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0035518999211490154
+  },
+  {
+    "case_id": "re1ss_orders_cpu_2",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "orders",
+    "ranked_top3": [
+      "carts-db",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.023950899951159954
+  },
+  {
+    "case_id": "re1ss_orders_cpu_2",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "orders",
+    "ranked_top3": [
+      "orders",
+      "carts",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.007079200004227459
+  },
+  {
+    "case_id": "re1ss_orders_cpu_2",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "orders",
+    "ranked_top3": [
+      "orders",
+      "rabbitmq",
+      "carts-db"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0026718999724835157
+  },
+  {
+    "case_id": "re2ob_recommendationservice_cpu_3",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "shippingservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02504680003039539
+  },
+  {
+    "case_id": "re2ob_recommendationservice_cpu_3",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "frontend",
+      "frontend-external",
+      "redis"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.002949699992313981
+  },
+  {
+    "case_id": "re2ob_recommendationservice_cpu_3",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "currencyservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.005269099958240986
+  },
+  {
+    "case_id": "re2ob_recommendationservice_cpu_3",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "shippingservice",
+      "cartservice",
+      "checkoutservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.14285714285714285,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.013379600015468895
+  },
+  {
+    "case_id": "re2ob_recommendationservice_cpu_3",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "productcatalogservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.00592210004106164
+  },
+  {
+    "case_id": "re2ob_recommendationservice_cpu_3",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "shippingservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.00314539996907115
+  },
+  {
+    "case_id": "re2ss_carts_cpu_2",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "shipping",
+      "catalogue"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02937300002668053
+  },
+  {
+    "case_id": "re2ss_carts_cpu_2",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "front-end",
+      "rabbitmq-exporter",
+      "session-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.09090909090909091,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.005092600011266768
+  },
+  {
+    "case_id": "re2ss_carts_cpu_2",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "carts-db",
+      "orders-db"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.005189700052142143
+  },
+  {
+    "case_id": "re2ss_carts_cpu_2",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "user",
+      "payment"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.021066299988888204
+  },
+  {
+    "case_id": "re2ss_carts_cpu_2",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "shipping",
+      "orders",
+      "carts"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.3333333333333333,
+    "ndcg@3": 0.5,
+    "runtime_sec": 0.008210100000724196
+  },
+  {
+    "case_id": "re2ss_carts_cpu_2",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.003537000040523708
+  },
+  {
+    "case_id": "re2tt_ts-order-service_cpu_2",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-order-service",
+    "ranked_top3": [
+      "ts-cancel-service",
+      "ts-order-service",
+      "ts-security-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.13431860005948693
+  },
+  {
+    "case_id": "re2tt_ts-order-service_cpu_2",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-order-service",
+    "ranked_top3": [
+      "ts-consign-price-service",
+      "ts-preserve-other-service",
+      "ts-admin-user-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.014925373134328358,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.021696300012990832
+  },
+  {
+    "case_id": "re2tt_ts-order-service_cpu_2",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-order-service",
+    "ranked_top3": [
+      "ts-order-service",
+      "ts-ticket-office-mongo",
+      "ts-security-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.030147199984639883
+  },
+  {
+    "case_id": "re2tt_ts-order-service_cpu_2",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-order-service",
+    "ranked_top3": [
+      "ts-order-service",
+      "ts-seat-service",
+      "ts-news-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.40889800002332777
+  },
+  {
+    "case_id": "re2tt_ts-order-service_cpu_2",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-order-service",
+    "ranked_top3": [
+      "ts-order-service",
+      "ts-security-service",
+      "ts-preserve-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.03025599999818951
+  },
+  {
+    "case_id": "re2tt_ts-order-service_cpu_2",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-order-service",
+    "ranked_top3": [
+      "ts-order-service",
+      "ts-security-service",
+      "ts-ticket-office-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.01701179996598512
+  },
+  {
+    "case_id": "re1ob_adservice_cpu_1",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "adservice",
+      "recommendationservice",
+      "emailservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.018307299935258925
+  },
+  {
+    "case_id": "re1ob_adservice_cpu_1",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "main",
+      "frontend",
+      "redis"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.2,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0036822999827563763
+  },
+  {
+    "case_id": "re1ob_adservice_cpu_1",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "adservice",
+      "main",
+      "paymentservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.003602700075134635
+  },
+  {
+    "case_id": "re1ob_adservice_cpu_1",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "adservice",
+      "main",
+      "checkoutservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.015224399976432323
+  },
+  {
+    "case_id": "re1ob_adservice_cpu_1",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "adservice",
+      "frontend",
+      "recommendationservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.005507500027306378
+  },
+  {
+    "case_id": "re1ob_adservice_cpu_1",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "adservice",
+      "frontend",
+      "cartservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0022379999281838536
+  },
+  {
+    "case_id": "re2ob_recommendationservice_cpu_2",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "cartservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.025879599968902767
+  },
+  {
+    "case_id": "re2ob_recommendationservice_cpu_2",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "frontend",
+      "frontend-external",
+      "recommendationservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.3333333333333333,
+    "ndcg@3": 0.5,
+    "runtime_sec": 0.003675099927932024
+  },
+  {
+    "case_id": "re2ob_recommendationservice_cpu_2",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "paymentservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.006705100066028535
+  },
+  {
+    "case_id": "re2ob_recommendationservice_cpu_2",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "cartservice",
+      "paymentservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.013579400023445487
+  },
+  {
+    "case_id": "re2ob_recommendationservice_cpu_2",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "productcatalogservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.005431300029158592
+  },
+  {
+    "case_id": "re2ob_recommendationservice_cpu_2",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "paymentservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0034990001004189253
+  },
+  {
+    "case_id": "re2ss_user_cpu_3",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02624510007444769
+  },
+  {
+    "case_id": "re2ss_user_cpu_3",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "front-end",
+      "session-db",
+      "rabbitmq"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.14285714285714285,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.00391869992017746
+  },
+  {
+    "case_id": "re2ss_user_cpu_3",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0051374000031501055
+  },
+  {
+    "case_id": "re2ss_user_cpu_3",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "user-db",
+      "orders-db"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0219694001134485
+  },
+  {
+    "case_id": "re2ss_user_cpu_3",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.007415800006128848
+  },
+  {
+    "case_id": "re2ss_user_cpu_3",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.004993399954400957
+  },
+  {
+    "case_id": "re1tt_ts-train-service_cpu_1",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-route-plan-service",
+      "ts-avatar-service",
+      "ts-train-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.3333333333333333,
+    "ndcg@3": 0.5,
+    "runtime_sec": 0.08210930007044226
+  },
+  {
+    "case_id": "re1tt_ts-train-service_cpu_1",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-station-mongo",
+      "ts-admin-order-service",
+      "ts-price-mongo"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.01537889998871833
+  },
+  {
+    "case_id": "re1tt_ts-train-service_cpu_1",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-train-service",
+      "ts-admin-travel-service",
+      "ts-auth-mongo"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.018487100023776293
+  },
+  {
+    "case_id": "re1tt_ts-train-service_cpu_1",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-consign-price-mongo",
+      "ts-train-service",
+      "ts-payment-mongo"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.358370800036937
+  },
+  {
+    "case_id": "re1tt_ts-train-service_cpu_1",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-preserve-service",
+      "ts-seat-service",
+      "ts-ticketinfo-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.017857142857142856,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.024332699947990477
+  },
+  {
+    "case_id": "re1tt_ts-train-service_cpu_1",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-route-plan-service",
+      "ts-admin-travel-service",
+      "ts-train-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.3333333333333333,
+    "ndcg@3": 0.5,
+    "runtime_sec": 0.009741900023072958
+  },
+  {
+    "case_id": "re1ss_user_cpu_1",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02145819994620979
+  },
+  {
+    "case_id": "re1ss_user_cpu_1",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "session-db",
+      "front-end",
+      "rabbitmq"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.06666666666666667,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.004124800092540681
+  },
+  {
+    "case_id": "re1ss_user_cpu_1",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0037972000427544117
+  },
+  {
+    "case_id": "re1ss_user_cpu_1",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "carts-db",
+      "user",
+      "front-end"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.020619099959731102
+  },
+  {
+    "case_id": "re1ss_user_cpu_1",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.009318399941548705
+  },
+  {
+    "case_id": "re1ss_user_cpu_1",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.003052899963222444
+  },
+  {
+    "case_id": "re1ss_catalogue_cpu_2",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "catalogue",
+      "user",
+      "catalogue-db"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.022869499982334673
+  },
+  {
+    "case_id": "re1ss_catalogue_cpu_2",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "rabbitmq",
+      "front-end",
+      "session-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.16666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0034222000977024436
+  },
+  {
+    "case_id": "re1ss_catalogue_cpu_2",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "catalogue",
+      "catalogue-db",
+      "rabbitmq"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.003515699994750321
+  },
+  {
+    "case_id": "re1ss_catalogue_cpu_2",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "carts-db",
+      "catalogue",
+      "user-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.020705499919131398
+  },
+  {
+    "case_id": "re1ss_catalogue_cpu_2",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "catalogue",
+      "catalogue-db",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.00816960004158318
+  },
+  {
+    "case_id": "re1ss_catalogue_cpu_2",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "catalogue",
+      "catalogue-db",
+      "carts"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.002703299978747964
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_cpu_1",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-verification-code-service",
+      "ts-admin-route-service",
+      "ts-cancel-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.2,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0823927999008447
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_cpu_1",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-execute-service",
+      "ts-cancel-service",
+      "ts-admin-user-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.017857142857142856,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.01456849998794496
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_cpu_1",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-admin-travel-service",
+      "ts-travel-service",
+      "ts-food-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.017844000016339123
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_cpu_1",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-travel-service",
+      "ts-rebook-service",
+      "ts-admin-route-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.35362220008391887
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_cpu_1",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-travel-service",
+      "ts-seat-service",
+      "ts-order-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02559800003655255
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_cpu_1",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-verification-code-service",
+      "ts-admin-travel-service",
+      "ts-admin-route-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.125,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.009608899941667914
+  },
+  {
+    "case_id": "re1ss_payment_cpu_3",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "payment",
+      "orders",
+      "queue-master"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.022571499925106764
+  },
+  {
+    "case_id": "re1ss_payment_cpu_3",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "front-end",
+      "rabbitmq",
+      "session-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.16666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0032796000596135855
+  },
+  {
+    "case_id": "re1ss_payment_cpu_3",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "payment",
+      "orders",
+      "user"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.003570399945601821
+  },
+  {
+    "case_id": "re1ss_payment_cpu_3",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "payment",
+      "carts-db",
+      "carts"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02373509993776679
+  },
+  {
+    "case_id": "re1ss_payment_cpu_3",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "orders",
+      "payment",
+      "user"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.008142400067299604
+  },
+  {
+    "case_id": "re1ss_payment_cpu_3",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "payment",
+      "orders",
+      "user"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.003004699945449829
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_3",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "paymentservice",
+      "cartservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.017094100010581315
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_3",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "main",
+      "frontend",
+      "frontend-external"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0035415999591350555
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_3",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "main",
+      "cartservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.003590799984522164
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_3",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "main",
+      "redis",
+      "paymentservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.1111111111111111,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.015428299899213016
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_3",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "paymentservice",
+      "cartservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.007790499948896468
+  },
+  {
+    "case_id": "re1ob_checkoutservice_cpu_3",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "cartservice",
+      "frontend"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.00213639996945858
+  },
+  {
+    "case_id": "re1ob_currencyservice_cpu_1",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "currencyservice",
+      "cartservice",
+      "adservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.01787129999138415
+  },
+  {
+    "case_id": "re1ob_currencyservice_cpu_1",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "main",
+      "redis",
+      "frontend"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.14285714285714285,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.004538799985311925
+  },
+  {
+    "case_id": "re1ob_currencyservice_cpu_1",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "currencyservice",
+      "main",
+      "paymentservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0034612000454217196
+  },
+  {
+    "case_id": "re1ob_currencyservice_cpu_1",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "main",
+      "emailservice",
+      "checkoutservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.2,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.015421399963088334
+  },
+  {
+    "case_id": "re1ob_currencyservice_cpu_1",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "currencyservice",
+      "frontend",
+      "checkoutservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0056841999758034945
+  },
+  {
+    "case_id": "re1ob_currencyservice_cpu_1",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "currencyservice",
+      "cartservice",
+      "recommendationservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.002021100022830069
+  },
+  {
+    "case_id": "re2tt_ts-train-service_cpu_1",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-train-mongo",
+      "ts-assurance-service",
+      "ts-cancel-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.1381283999653533
+  },
+  {
+    "case_id": "re2tt_ts-train-service_cpu_1",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-train-mongo",
+      "ts-inside-payment-service",
+      "ts-payment-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.02213810000102967
+  },
+  {
+    "case_id": "re2tt_ts-train-service_cpu_1",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-train-service",
+      "ts-admin-travel-service",
+      "ts-consign-price-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.032448100042529404
+  },
+  {
+    "case_id": "re2tt_ts-train-service_cpu_1",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-train-service",
+      "ts-admin-travel-service",
+      "ts-ticket-office-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.39920840004924685
+  },
+  {
+    "case_id": "re2tt_ts-train-service_cpu_1",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-seat-service",
+      "ts-preserve-service",
+      "ts-travel-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.016666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.031364699942059815
+  },
+  {
+    "case_id": "re2tt_ts-train-service_cpu_1",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-train-service",
+      "ts-seat-service",
+      "ts-travel2-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.017581299995072186
+  },
+  {
+    "case_id": "re2ob_checkoutservice_cpu_2",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "frontend-external",
+      "checkoutservice",
+      "currencyservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.028929300024174154
+  },
+  {
+    "case_id": "re2ob_checkoutservice_cpu_2",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "frontend-external",
+      "frontend"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0038687000051140785
+  },
+  {
+    "case_id": "re2ob_checkoutservice_cpu_2",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "emailservice",
+      "paymentservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0049897999269887805
+  },
+  {
+    "case_id": "re2ob_checkoutservice_cpu_2",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "frontend",
+      "currencyservice",
+      "cartservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.1,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.01951110002119094
+  },
+  {
+    "case_id": "re2ob_checkoutservice_cpu_2",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "currencyservice",
+      "productcatalogservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.006466999999247491
+  },
+  {
+    "case_id": "re2ob_checkoutservice_cpu_2",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "checkoutservice",
+    "ranked_top3": [
+      "checkoutservice",
+      "frontend-external",
+      "frontend"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0039823999395594
+  },
+  {
+    "case_id": "re2ss_orders_cpu_2",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "orders",
+    "ranked_top3": [
+      "orders",
+      "catalogue-db",
+      "rabbitmq"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0326082999818027
+  },
+  {
+    "case_id": "re2ss_orders_cpu_2",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "orders",
+    "ranked_top3": [
+      "queue-master",
+      "front-end",
+      "session-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.14285714285714285,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.004040900035761297
+  },
+  {
+    "case_id": "re2ss_orders_cpu_2",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "orders",
+    "ranked_top3": [
+      "orders",
+      "carts-db",
+      "orders-db"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.005103000090457499
+  },
+  {
+    "case_id": "re2ss_orders_cpu_2",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "orders",
+    "ranked_top3": [
+      "orders",
+      "carts-db",
+      "payment"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.025046900031156838
+  },
+  {
+    "case_id": "re2ss_orders_cpu_2",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "orders",
+    "ranked_top3": [
+      "orders",
+      "orders-db",
+      "shipping"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.008085799985565245
+  },
+  {
+    "case_id": "re2ss_orders_cpu_2",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "cpu",
+    "is_cpu": true,
+    "root_cause": "orders",
+    "ranked_top3": [
+      "orders",
+      "rabbitmq",
+      "queue-master"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.005079700029455125
+  },
+  {
+    "case_id": "re1tt_ts-route-service_disk_4",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-admin-user-service",
+      "ts-route-service",
+      "ts-station-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.0882625998929143
+  },
+  {
+    "case_id": "re1tt_ts-route-service_disk_4",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-ticket-office-service",
+      "ts-consign-price-mongo",
+      "ts-order-mongo"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.01639344262295082,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.017407699953764677
+  },
+  {
+    "case_id": "re1tt_ts-route-service_disk_4",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-service",
+      "ts-station-service",
+      "ts-assurance-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02140019997023046
+  },
+  {
+    "case_id": "re1tt_ts-route-service_disk_4",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-service",
+      "ts-station-service",
+      "ts-travel-mongo"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.38283130002673715
+  },
+  {
+    "case_id": "re1tt_ts-route-service_disk_4",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-user-service",
+      "ts-preserve-service",
+      "ts-route-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.3333333333333333,
+    "ndcg@3": 0.5,
+    "runtime_sec": 0.027306400006636977
+  },
+  {
+    "case_id": "re1tt_ts-route-service_disk_4",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-admin-user-service",
+      "ts-station-service",
+      "ts-route-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.3333333333333333,
+    "ndcg@3": 0.5,
+    "runtime_sec": 0.010111000039614737
+  },
+  {
+    "case_id": "re2ob_recommendationservice_disk_3",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "currencyservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02939669997431338
+  },
+  {
+    "case_id": "re2ob_recommendationservice_disk_3",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "frontend",
+      "frontend-external",
+      "checkoutservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0033008999889716506
+  },
+  {
+    "case_id": "re2ob_recommendationservice_disk_3",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "currencyservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0047250998904928565
+  },
+  {
+    "case_id": "re2ob_recommendationservice_disk_3",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "paymentservice",
+      "checkoutservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.015094000031240284
+  },
+  {
+    "case_id": "re2ob_recommendationservice_disk_3",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "productcatalogservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.007749599986709654
+  },
+  {
+    "case_id": "re2ob_recommendationservice_disk_3",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "currencyservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.004231799975968897
+  },
+  {
+    "case_id": "re2ss_payment_socket_1",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "socket",
+    "is_cpu": false,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "payment",
+      "shipping",
+      "carts"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.03185709996614605
+  },
+  {
+    "case_id": "re2ss_payment_socket_1",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "socket",
+    "is_cpu": false,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "front-end",
+      "queue-master",
+      "session-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.1111111111111111,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0034215999767184258
+  },
+  {
+    "case_id": "re2ss_payment_socket_1",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "socket",
+    "is_cpu": false,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "payment",
+      "orders-db",
+      "carts-db"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.005759599967859685
+  },
+  {
+    "case_id": "re2ss_payment_socket_1",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "socket",
+    "is_cpu": false,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "carts-db",
+      "carts",
+      "front-end"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.02088900003582239
+  },
+  {
+    "case_id": "re2ss_payment_socket_1",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "socket",
+    "is_cpu": false,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "payment",
+      "orders",
+      "shipping"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.007814600015990436
+  },
+  {
+    "case_id": "re2ss_payment_socket_1",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "socket",
+    "is_cpu": false,
+    "root_cause": "payment",
+    "ranked_top3": [
+      "payment",
+      "shipping",
+      "user-db"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.004415699979290366
+  },
+  {
+    "case_id": "re3tt_ts-route-service_f3_5",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "f3",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-mongo",
+      "ts-route-service",
+      "ts-admin-user-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.12253309995867312
+  },
+  {
+    "case_id": "re3tt_ts-route-service_f3_5",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "f3",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-travel2-service",
+      "ts-food-service",
+      "ts-admin-travel-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.015625,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.020710499957203865
+  },
+  {
+    "case_id": "re3tt_ts-route-service_f3_5",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "f3",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-service",
+      "ts-config-mongo",
+      "ts-assurance-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02767179999500513
+  },
+  {
+    "case_id": "re3tt_ts-route-service_f3_5",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "f3",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-news-service",
+      "ts-admin-route-service",
+      "ts-cancel-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.05263157894736842,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.4211088999873027
+  },
+  {
+    "case_id": "re3tt_ts-route-service_f3_5",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "f3",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-service",
+      "ts-travel-service",
+      "ts-order-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.031432899995706975
+  },
+  {
+    "case_id": "re3tt_ts-route-service_f3_5",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "f3",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-service",
+      "ts-admin-travel-service",
+      "ts-consign-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.015271899988874793
+  },
+  {
+    "case_id": "re1ss_catalogue_loss_3",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "catalogue-db",
+      "catalogue",
+      "front-end"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.021726399892941117
+  },
+  {
+    "case_id": "re1ss_catalogue_loss_3",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "front-end",
+      "session-db",
+      "orders-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.09090909090909091,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.004604600020684302
+  },
+  {
+    "case_id": "re1ss_catalogue_loss_3",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "catalogue",
+      "front-end",
+      "payment"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.005002700025215745
+  },
+  {
+    "case_id": "re1ss_catalogue_loss_3",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "carts-db",
+      "carts",
+      "catalogue"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.3333333333333333,
+    "ndcg@3": 0.5,
+    "runtime_sec": 0.021093300078064203
+  },
+  {
+    "case_id": "re1ss_catalogue_loss_3",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "catalogue-db",
+      "catalogue",
+      "orders"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.006785499979741871
+  },
+  {
+    "case_id": "re1ss_catalogue_loss_3",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "catalogue-db",
+      "catalogue",
+      "front-end"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.0031458999728783965
+  },
+  {
+    "case_id": "re3tt_ts-route-service_f1_3",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "f1",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-avatar-service",
+      "ts-route-mongo",
+      "ts-travel-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.16666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.1533029000274837
+  },
+  {
+    "case_id": "re3tt_ts-route-service_f1_3",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "f1",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-mongo",
+      "ts-admin-travel-service",
+      "ts-travel2-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.017241379310344827,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.020158999948762357
+  },
+  {
+    "case_id": "re3tt_ts-route-service_f1_3",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "f1",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-service",
+      "ts-security-service",
+      "ts-travel-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02616680006030947
+  },
+  {
+    "case_id": "re3tt_ts-route-service_f1_3",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "f1",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-mongo",
+      "ts-travel-plan-service",
+      "ts-preserve-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.05,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.4226669000927359
+  },
+  {
+    "case_id": "re3tt_ts-route-service_f1_3",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "f1",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-travel-service",
+      "ts-route-service",
+      "ts-user-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.032138400012627244
+  },
+  {
+    "case_id": "re3tt_ts-route-service_f1_3",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "f1",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-avatar-service",
+      "ts-admin-travel-service",
+      "ts-route-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.3333333333333333,
+    "ndcg@3": 0.5,
+    "runtime_sec": 0.01511979999486357
+  },
+  {
+    "case_id": "re1ss_user_disk_4",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "user",
+    "ranked_top3": [
+      "session-db",
+      "user",
+      "payment"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.025166100007481873
+  },
+  {
+    "case_id": "re1ss_user_disk_4",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "user",
+    "ranked_top3": [
+      "session-db",
+      "rabbitmq",
+      "front-end"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.1,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.004345199908129871
+  },
+  {
+    "case_id": "re1ss_user_disk_4",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "front-end",
+      "orders"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0047710000071674585
+  },
+  {
+    "case_id": "re1ss_user_disk_4",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "carts-db",
+      "user-db"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.024847500026226044
+  },
+  {
+    "case_id": "re1ss_user_disk_4",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "user",
+    "ranked_top3": [
+      "user",
+      "front-end",
+      "user-db"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.006408700020983815
+  },
+  {
+    "case_id": "re1ss_user_disk_4",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "user",
+    "ranked_top3": [
+      "session-db",
+      "user",
+      "front-end"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.0024468000046908855
+  },
+  {
+    "case_id": "re1ob_adservice_delay_3",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "adservice",
+      "frontend-external",
+      "checkoutservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.020729499985463917
+  },
+  {
+    "case_id": "re1ob_adservice_delay_3",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "main",
+      "frontend",
+      "frontend-external"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.002956399926915765
+  },
+  {
+    "case_id": "re1ob_adservice_delay_3",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "adservice",
+      "checkoutservice",
+      "main"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0038481999654322863
+  },
+  {
+    "case_id": "re1ob_adservice_delay_3",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "frontend",
+      "productcatalogservice",
+      "shippingservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.2,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.01724299998022616
+  },
+  {
+    "case_id": "re1ob_adservice_delay_3",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "adservice",
+      "frontend",
+      "checkoutservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.006829700083471835
+  },
+  {
+    "case_id": "re1ob_adservice_delay_3",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "adservice",
+    "ranked_top3": [
+      "adservice",
+      "main",
+      "frontend-external"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.002378700068220496
+  },
+  {
+    "case_id": "re1tt_ts-train-service_loss_2",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-avatar-service",
+      "ts-train-service",
+      "ts-travel2-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.08548950008116663
+  },
+  {
+    "case_id": "re1tt_ts-train-service_loss_2",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-config-mongo",
+      "ts-train-service",
+      "ts-price-mongo"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.02021919994149357
+  },
+  {
+    "case_id": "re1tt_ts-train-service_loss_2",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-admin-travel-service",
+      "ts-train-service",
+      "ts-travel2-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.018806499894708395
+  },
+  {
+    "case_id": "re1tt_ts-train-service_loss_2",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-travel-mongo",
+      "ts-preserve-service",
+      "ts-consign-price-mongo"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.36711810005363077
+  },
+  {
+    "case_id": "re1tt_ts-train-service_loss_2",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-seat-service",
+      "ts-travel-service",
+      "ts-preserve-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.017857142857142856,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.028161499998532236
+  },
+  {
+    "case_id": "re1tt_ts-train-service_loss_2",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "ts-train-service",
+    "ranked_top3": [
+      "ts-avatar-service",
+      "ts-train-service",
+      "ts-travel2-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.009988500038161874
+  },
+  {
+    "case_id": "re1ob_currencyservice_mem_3",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "mem",
+    "is_cpu": false,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "currencyservice",
+      "checkoutservice",
+      "frontend"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.01786230003926903
+  },
+  {
+    "case_id": "re1ob_currencyservice_mem_3",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "mem",
+    "is_cpu": false,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "main",
+      "frontend",
+      "frontend-external"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.09090909090909091,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0027580999303609133
+  },
+  {
+    "case_id": "re1ob_currencyservice_mem_3",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "mem",
+    "is_cpu": false,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "currencyservice",
+      "checkoutservice",
+      "frontend"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0033300999784842134
+  },
+  {
+    "case_id": "re1ob_currencyservice_mem_3",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "mem",
+    "is_cpu": false,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "currencyservice",
+      "redis",
+      "cartservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.015271399985067546
+  },
+  {
+    "case_id": "re1ob_currencyservice_mem_3",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "mem",
+    "is_cpu": false,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "currencyservice",
+      "checkoutservice",
+      "frontend"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.006674900068901479
+  },
+  {
+    "case_id": "re1ob_currencyservice_mem_3",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "mem",
+    "is_cpu": false,
+    "root_cause": "currencyservice",
+    "ranked_top3": [
+      "currencyservice",
+      "checkoutservice",
+      "frontend"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.002098600030876696
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_disk_2",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-admin-user-service",
+      "ts-rebook-service",
+      "ts-travel-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.3333333333333333,
+    "ndcg@3": 0.5,
+    "runtime_sec": 0.09042450005654246
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_disk_2",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-food-map-mongo",
+      "ts-travel2-mongo",
+      "ts-order-other-mongo"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.017857142857142856,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.01917179999873042
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_disk_2",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-travel-service",
+      "ts-execute-service",
+      "ts-basic-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.01878520008176565
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_disk_2",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-execute-service",
+      "ts-travel-service",
+      "ts-price-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.36126499995589256
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_disk_2",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-travel-service",
+      "ts-route-service",
+      "ts-seat-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.029217700008302927
+  },
+  {
+    "case_id": "re1tt_ts-travel-service_disk_2",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-travel-service",
+    "ranked_top3": [
+      "ts-rebook-service",
+      "ts-admin-user-service",
+      "ts-admin-travel-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.010362999979406595
+  },
+  {
+    "case_id": "re1tt_ts-route-service_delay_5",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-admin-travel-service",
+      "ts-ui-dashboard",
+      "ts-food-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.2,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.08252860000357032
+  },
+  {
+    "case_id": "re1tt_ts-route-service_delay_5",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-station-mongo",
+      "ts-travel2-service",
+      "ts-ticket-office-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.016666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.018470500013791025
+  },
+  {
+    "case_id": "re1tt_ts-route-service_delay_5",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-food-service",
+      "ts-route-service",
+      "ts-travel2-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.01977919996716082
+  },
+  {
+    "case_id": "re1tt_ts-route-service_delay_5",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-news-service",
+      "ts-basic-service",
+      "ts-station-mongo"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.125,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.3599181000608951
+  },
+  {
+    "case_id": "re1tt_ts-route-service_delay_5",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-route-service",
+      "ts-travel-service",
+      "ts-ui-dashboard"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.024707900010980666
+  },
+  {
+    "case_id": "re1tt_ts-route-service_delay_5",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "ts-route-service",
+    "ranked_top3": [
+      "ts-admin-travel-service",
+      "ts-travel2-service",
+      "ts-route-mongo"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.16666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.009448500000871718
+  },
+  {
+    "case_id": "re1ss_carts_disk_5",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "queue-master",
+      "orders"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.020984399947337806
+  },
+  {
+    "case_id": "re1ss_carts_disk_5",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "rabbitmq",
+      "front-end",
+      "session-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.09090909090909091,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0035764999920502305
+  },
+  {
+    "case_id": "re1ss_carts_disk_5",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "orders",
+      "catalogue"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0035661000292748213
+  },
+  {
+    "case_id": "re1ss_carts_disk_5",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "user-db",
+      "carts-db"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.022878399933688343
+  },
+  {
+    "case_id": "re1ss_carts_disk_5",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.007969800033606589
+  },
+  {
+    "case_id": "re1ss_carts_disk_5",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "orders",
+      "catalogue"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0024766999995335937
+  },
+  {
+    "case_id": "re2ob_recommendationservice_socket_3",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "socket",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "currencyservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02797840000130236
+  },
+  {
+    "case_id": "re2ob_recommendationservice_socket_3",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "socket",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "frontend",
+      "frontend-external",
+      "checkoutservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.16666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.004053600016050041
+  },
+  {
+    "case_id": "re2ob_recommendationservice_socket_3",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "socket",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "currencyservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.005312000052072108
+  },
+  {
+    "case_id": "re2ob_recommendationservice_socket_3",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "socket",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "frontend-external",
+      "frontend",
+      "checkoutservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.01644430006854236
+  },
+  {
+    "case_id": "re2ob_recommendationservice_socket_3",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "socket",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "productcatalogservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.005738499923609197
+  },
+  {
+    "case_id": "re2ob_recommendationservice_socket_3",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "socket",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "currencyservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0029654999962076545
+  },
+  {
+    "case_id": "re1ss_catalogue_mem_3",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "mem",
+    "is_cpu": false,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "catalogue-db",
+      "catalogue",
+      "front-end"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.02192470000591129
+  },
+  {
+    "case_id": "re1ss_catalogue_mem_3",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "mem",
+    "is_cpu": false,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "session-db",
+      "front-end",
+      "rabbitmq"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.1111111111111111,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.003999900072813034
+  },
+  {
+    "case_id": "re1ss_catalogue_mem_3",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "mem",
+    "is_cpu": false,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "catalogue",
+      "front-end",
+      "carts"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.005010199965909123
+  },
+  {
+    "case_id": "re1ss_catalogue_mem_3",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "mem",
+    "is_cpu": false,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "carts-db",
+      "catalogue-db",
+      "catalogue"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.3333333333333333,
+    "ndcg@3": 0.5,
+    "runtime_sec": 0.0217988999793306
+  },
+  {
+    "case_id": "re1ss_catalogue_mem_3",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "mem",
+    "is_cpu": false,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "catalogue-db",
+      "catalogue",
+      "front-end"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.006372200092300773
+  },
+  {
+    "case_id": "re1ss_catalogue_mem_3",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "mem",
+    "is_cpu": false,
+    "root_cause": "catalogue",
+    "ranked_top3": [
+      "catalogue",
+      "catalogue-db",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0026000000070780516
+  },
+  {
+    "case_id": "re2ob_recommendationservice_loss_2",
+    "algorithm": "BARO",
+    "system": "Online Boutique",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "frontend",
+      "recommendationservice",
+      "checkoutservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.026848700013943017
+  },
+  {
+    "case_id": "re2ob_recommendationservice_loss_2",
+    "algorithm": "CIRCA",
+    "system": "Online Boutique",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "frontend",
+      "frontend-external",
+      "checkoutservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.14285714285714285,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0046530000399798155
+  },
+  {
+    "case_id": "re2ob_recommendationservice_loss_2",
+    "algorithm": "RCD",
+    "system": "Online Boutique",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "frontend",
+      "adservice",
+      "recommendationservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.3333333333333333,
+    "ndcg@3": 0.5,
+    "runtime_sec": 0.004539799992926419
+  },
+  {
+    "case_id": "re2ob_recommendationservice_loss_2",
+    "algorithm": "MicroCause",
+    "system": "Online Boutique",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend-external",
+      "frontend"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.013485400006175041
+  },
+  {
+    "case_id": "re2ob_recommendationservice_loss_2",
+    "algorithm": "E-Diagnosis",
+    "system": "Online Boutique",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "frontend",
+      "recommendationservice",
+      "checkoutservice"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.005799799924716353
+  },
+  {
+    "case_id": "re2ob_recommendationservice_loss_2",
+    "algorithm": "Multi-Source BARO",
+    "system": "Online Boutique",
+    "fault": "loss",
+    "is_cpu": false,
+    "root_cause": "recommendationservice",
+    "ranked_top3": [
+      "recommendationservice",
+      "frontend",
+      "adservice"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.003215000033378601
+  },
+  {
+    "case_id": "re1tt_ts-auth-service_disk_5",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-admin-user-service",
+      "ts-verification-code-service",
+      "ts-admin-route-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.08225750003475696
+  },
+  {
+    "case_id": "re1tt_ts-auth-service_disk_5",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-avatar-service",
+      "ts-food-mongo",
+      "ts-payment-mongo"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.017857142857142856,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.01446950004901737
+  },
+  {
+    "case_id": "re1tt_ts-auth-service_disk_5",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-auth-service",
+      "ts-assurance-service",
+      "ts-assurance-mongo"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.021348800044506788
+  },
+  {
+    "case_id": "re1tt_ts-auth-service_disk_5",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-auth-service",
+      "ts-ticket-office-service",
+      "ts-travel2-mongo"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.3643298000097275
+  },
+  {
+    "case_id": "re1tt_ts-auth-service_disk_5",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-auth-service",
+      "ts-ui-dashboard",
+      "ts-security-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02899339993018657
+  },
+  {
+    "case_id": "re1tt_ts-auth-service_disk_5",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "disk",
+    "is_cpu": false,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-ui-dashboard",
+      "ts-admin-route-service",
+      "ts-verification-code-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.16666666666666666,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.00973559997510165
+  },
+  {
+    "case_id": "re1ss_carts_delay_2",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "front-end",
+      "orders"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.019874899997375906
+  },
+  {
+    "case_id": "re1ss_carts_delay_2",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "session-db",
+      "front-end",
+      "rabbitmq"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.09090909090909091,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.0037330000195652246
+  },
+  {
+    "case_id": "re1ss_carts_delay_2",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.0035752999829128385
+  },
+  {
+    "case_id": "re1ss_carts_delay_2",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts-db",
+      "carts",
+      "orders-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.02046560007147491
+  },
+  {
+    "case_id": "re1ss_carts_delay_2",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "front-end",
+      "orders"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.006624200032092631
+  },
+  {
+    "case_id": "re1ss_carts_delay_2",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "carts-db",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.002450799918733537
+  },
+  {
+    "case_id": "re1tt_ts-auth-service_delay_5",
+    "algorithm": "BARO",
+    "system": "Train Ticket",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-route-plan-service",
+      "ts-admin-route-service",
+      "ts-execute-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.2,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.07418599992524832
+  },
+  {
+    "case_id": "re1tt_ts-auth-service_delay_5",
+    "algorithm": "CIRCA",
+    "system": "Train Ticket",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-train-mongo",
+      "ts-price-mongo",
+      "ts-cancel-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.017857142857142856,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.017106299987062812
+  },
+  {
+    "case_id": "re1tt_ts-auth-service_delay_5",
+    "algorithm": "RCD",
+    "system": "Train Ticket",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-auth-service",
+      "ts-ui-dashboard",
+      "ts-route-plan-service"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.018639700021594763
+  },
+  {
+    "case_id": "re1tt_ts-auth-service_delay_5",
+    "algorithm": "MicroCause",
+    "system": "Train Ticket",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-notification-service",
+      "ts-food-mongo",
+      "ts-contacts-mongo"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "mrr": 0.25,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.36159710003994405
+  },
+  {
+    "case_id": "re1tt_ts-auth-service_delay_5",
+    "algorithm": "E-Diagnosis",
+    "system": "Train Ticket",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-ui-dashboard",
+      "ts-auth-service",
+      "ts-user-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.027023800066672266
+  },
+  {
+    "case_id": "re1tt_ts-auth-service_delay_5",
+    "algorithm": "Multi-Source BARO",
+    "system": "Train Ticket",
+    "fault": "delay",
+    "is_cpu": false,
+    "root_cause": "ts-auth-service",
+    "ranked_top3": [
+      "ts-route-plan-service",
+      "ts-auth-service",
+      "ts-admin-route-service"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 0.5,
+    "ndcg@3": 0.6309297535714575,
+    "runtime_sec": 0.00873699993826449
+  },
+  {
+    "case_id": "re3ss_carts_f1_1",
+    "algorithm": "BARO",
+    "system": "Sock Shop",
+    "fault": "f1",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "carts-db",
+      "shipping"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.02950060006696731
+  },
+  {
+    "case_id": "re3ss_carts_f1_1",
+    "algorithm": "CIRCA",
+    "system": "Sock Shop",
+    "fault": "f1",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "front-end",
+      "session-db",
+      "carts-db"
+    ],
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "mrr": 0.1,
+    "ndcg@3": 0.0,
+    "runtime_sec": 0.003532600007019937
+  },
+  {
+    "case_id": "re3ss_carts_f1_1",
+    "algorithm": "RCD",
+    "system": "Sock Shop",
+    "fault": "f1",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "front-end",
+      "rabbitmq"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.005196099984459579
+  },
+  {
+    "case_id": "re3ss_carts_f1_1",
+    "algorithm": "MicroCause",
+    "system": "Sock Shop",
+    "fault": "f1",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "user",
+      "catalogue"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.022748999996110797
+  },
+  {
+    "case_id": "re3ss_carts_f1_1",
+    "algorithm": "E-Diagnosis",
+    "system": "Sock Shop",
+    "fault": "f1",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "carts-db",
+      "catalogue"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.008780599921010435
+  },
+  {
+    "case_id": "re3ss_carts_f1_1",
+    "algorithm": "Multi-Source BARO",
+    "system": "Sock Shop",
+    "fault": "f1",
+    "is_cpu": false,
+    "root_cause": "carts",
+    "ranked_top3": [
+      "carts",
+      "orders",
+      "front-end"
+    ],
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "mrr": 1.0,
+    "ndcg@3": 1.0,
+    "runtime_sec": 0.004054199904203415
+  }
+]

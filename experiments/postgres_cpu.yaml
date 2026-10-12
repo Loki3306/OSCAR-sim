@@ -1,0 +1,16 @@
+name: postgres_cpu_stress_001
+
+workload:
+  profile: baseline
+
+phases:
+  baseline: 60s
+  fault: 60s
+  recovery: 60s
+
+fault:
+  type: cpu_stress
+  target: postgres
+  parameters:
+    workers: 4
+    load: 80

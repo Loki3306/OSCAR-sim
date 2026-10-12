@@ -15,7 +15,10 @@ use serde::Serialize;
 use std::env;
 use std::time::Instant;
 use tracing::info;
-use tracing_subscriber::EnvFilter;
+use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt, EnvFilter};
+use opentelemetry::KeyValue;
+use opentelemetry_sdk::{trace as sdktrace, Resource};
+use opentelemetry_otlp::WithExportConfig;
 
 #[derive(Serialize)]
 struct RootResponse {
@@ -90,8 +93,32 @@ async fn track_metrics(req: Request, next: Next) -> Response {
 
 #[tokio::main]
 async fn main() {
-    tracing_subscriber::fmt()
-        .with_env_filter(EnvFilter::from_default_env().add_directive("info".parse().unwrap()))
+    let env_filter = EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new("info"));
+
+    // Configure OTLP exporter
+    let tracer = opentelemetry_otlp::new_pipeline()
+        .tracing()
+        .with_exporter(
+            opentelemetry_otlp::new_exporter()
+                .tonic()
+                .with_endpoint("http://tempo:4317"),
+        )
+        .with_trace_config(
+            sdktrace::config().with_resource(Resource::new(vec![KeyValue::new(
+                "service.name",
+                "oscar-sim-api",
+            )])),
+        )
+        .install_batch(opentelemetry_sdk::runtime::Tokio)
+        .expect("Failed to initialize OTLP tracer");
+
+    let telemetry = tracing_opentelemetry::layer().with_tracer(tracer);
+    let fmt_layer = tracing_subscriber::fmt::layer();
+
+    tracing_subscriber::registry()
+        .with(env_filter)
+        .with(fmt_layer)
+        .with(telemetry)
         .init();
 
     metrics::registry::register_custom_metrics();

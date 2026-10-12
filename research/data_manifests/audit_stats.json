@@ -1,0 +1,69 @@
+{
+  "total_cases": 735,
+  "suites": {
+    "RE1": 375,
+    "RE2": 270,
+    "RE3": 90
+  },
+  "systems": {
+    "Online Boutique": 245,
+    "Sock Shop": 245,
+    "Train Ticket": 245
+  },
+  "faults": {
+    "cpu": 120,
+    "delay": 120,
+    "disk": 120,
+    "loss": 120,
+    "mem": 120,
+    "socket": 45,
+    "f3": 26,
+    "f1": 26,
+    "f4": 19,
+    "f2": 13,
+    "f5": 6
+  },
+  "cpu_count": 120,
+  "cpu_by_suite": {
+    "RE1": 75,
+    "RE2": 45
+  },
+  "cpu_by_system": {
+    "Online Boutique": 40,
+    "Sock Shop": 40,
+    "Train Ticket": 40
+  },
+  "cpu_services": {
+    "Online Boutique": [
+      "adservice",
+      "cartservice",
+      "checkoutservice",
+      "currencyservice",
+      "productcatalogservice",
+      "emailservice",
+      "recommendationservice"
+    ],
+    "Sock Shop": [
+      "carts",
+      "catalogue",
+      "orders",
+      "payment",
+      "user"
+    ],
+    "Train Ticket": [
+      "ts-auth-service",
+      "ts-order-service",
+      "ts-route-service",
+      "ts-train-service",
+      "ts-travel-service"
+    ]
+  },
+  "telemetry": {
+    "metrics_min": 49,
+    "metrics_max": 376,
+    "metrics_mean": 137.42857142857142,
+    "timesteps_mean": 1348.334693877551,
+    "cases_with_logs": 359,
+    "cases_with_traces": 240
+  }
+}

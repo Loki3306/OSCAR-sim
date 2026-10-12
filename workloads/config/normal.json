@@ -1,0 +1,14 @@
+{
+  "name": "normal",
+  "vus": 25,
+  "duration": "10m",
+  "distribution": {
+    "health": 5,
+    "listUsers": 30,
+    "createUser": 10,
+    "getUserHit": 15,
+    "getUserMiss": 15,
+    "cacheMiss": 20,
+    "invalidRequest": 5
+  }
+}

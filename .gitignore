@@ -1,5 +1,39 @@
+# Rust targets
 /services/api/target/
+/controller/target/
+target/
+
+# Environment and secrets
 .env
+*.env.local
+
+# Service persistent data
 grafana_data/
 prometheus_data/
 postgres_data/
+
+# Python caches and virtualenvs
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+ENV/
+
+# Node / Frontend build artifacts
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.npm/
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

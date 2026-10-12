@@ -1,0 +1,7 @@
+# PROGRESS LOG
+
+2026-08-23T12:00:00Z | Phase 1.5 | Observability | Added OpenTelemetry, Loki, Promtail, Tempo | Grafana Datasources configured | Validated traces flowing from Rust API | Next: Phase 3
+2026-08-23T12:25:00Z | Phase 3 | Fault Injection First Vertical Slice | Implemented Rust Controller (CLI, target resolver, docker/pumba/stress-ng executors, experiment runner, safety limits, event writer). | No RCA logic introduced. Target containers remain immutable. Pumba handles network, stress-ng handles resource exhaustion. | Unit/Compilation verified. End-to-end execution pending user run. | None | Run `cargo run -- experiment run experiments/postgres_cpu.yaml`
+2026-08-23T12:30:00Z | Phase 3 | Bug Fix | Fixed missing `chrono` dependency in controller/Cargo.toml and unused import in limits.rs | | | | Ready for user validation.
+2026-08-23T13:15:00Z | Phase 3 | Bug Fix | Fixed 4-minute delay deadlock in fault_started caused by output().await waiting for EOF on inherited pipes. Replaced with spawn() + wait() in stress_ng and pumba executors. | | NOT YET VALIDATED | | Pending user validation to ensure fault overlaps with workload.
+2026-08-23T13:30:00Z | Phase 3 | Bug Fix | Refactored `stress_ng.rs` and `pumba.rs` to use `bollard` HTTP requests bypassing `std::process::Command` entirely to fix the OS-level console deadlock caused by the concurrent `powershell.exe` workload. | | VALIDATED | | CPU Stress fault overlaps with workload perfectly. Delay is ~269ms.
