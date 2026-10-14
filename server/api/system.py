@@ -82,6 +82,15 @@ def get_system_topology():
         "mode": topo.mode
     }
 
+@router.get("/propagation/trace")
+def get_propagation_trace(
+    scenario_id: str = "slow_database",
+    target: str = None
+):
+    """Returns millisecond-resolution causal propagation trace and hop breakdown."""
+    from server.services.propagation_tracer import propagation_tracer
+    return propagation_tracer.build_trace(scenario_id, target)
+
 @router.post("/system/simulate/start")
 def start_simulation():
     """Starts simulated synthetic background traffic."""

@@ -10,7 +10,8 @@ import {
   ResearchSummary,
   FSMStatusResponse,
   TimelineScrubResponse,
-  EvaluationReportData
+  EvaluationReportData,
+  ScenarioTraceData
 } from '../types';
 
 const BASE_URL = '';
@@ -59,6 +60,10 @@ export const api = {
   },
 
   // Faults
+  async getFaultScenarios(): Promise<{ scenarios: any[]; total: number }> {
+    return fetchJson('/api/faults/scenarios');
+  },
+
   async getActiveFaults(): Promise<FaultRecord[]> {
     return fetchJson<FaultRecord[]>('/api/faults/active');
   },
@@ -72,6 +77,8 @@ export const api = {
     target_service: string;
     intensity: number;
     duration_seconds: number;
+    scenario_id?: string;
+    parameters?: Record<string, any>;
   }): Promise<FaultRecord> {
     return fetchJson<FaultRecord>('/api/faults/inject', {
       method: 'POST',
@@ -187,5 +194,12 @@ export const api = {
     if (caseId) query.append('case_id', caseId);
     const res = await fetch(`/api/reports/generate?${query.toString()}`);
     return res.text();
+  },
+
+  // Propagation Trace Laboratory
+  async getPropagationTrace(scenarioId: string = 'slow_database', target?: string): Promise<ScenarioTraceData> {
+    const query = new URLSearchParams({ scenario_id: scenarioId });
+    if (target) query.append('target', target);
+    return fetchJson<ScenarioTraceData>(`/api/propagation/trace?${query.toString()}`);
   }
 };

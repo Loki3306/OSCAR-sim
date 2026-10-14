@@ -3,6 +3,7 @@ import { Navigation, ViewType } from './components/Navigation';
 import { Header } from './components/Header';
 import { OverviewView } from './views/OverviewView';
 import { TopologyView } from './views/TopologyView';
+import { PropagationTraceView } from './views/PropagationTraceView';
 import { ObservabilityView } from './views/ObservabilityView';
 import { FaultLabView } from './views/FaultLabView';
 import { IncidentTimelineView } from './views/IncidentTimelineView';
@@ -83,8 +84,9 @@ export const App: React.FC = () => {
     switch (currentView) {
       case 'overview': return <OverviewView onNavigate={setCurrentView} onOpenGuide={() => setIsGuideOpen(true)} />;
       case 'topology': return <TopologyView />;
+      case 'fault_trace': return <PropagationTraceView />;
       case 'observability': return <ObservabilityView />;
-      case 'fault_lab': return <FaultLabView />;
+      case 'fault_lab': return <FaultLabView onNavigate={setCurrentView} />;
       case 'timeline': return <IncidentTimelineView />;
       case 'rca_workbench': return <RCAWorkbenchView />;
       case 'benchmark': return <BenchmarkExplorerView />;

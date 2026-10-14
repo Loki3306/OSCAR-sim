@@ -1,13 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { Flame, Play, Square, CheckCircle2, History, AlertTriangle, Info } from 'lucide-react';
+import {
+  Flame,
+  Play,
+  Square,
+  History,
+  AlertTriangle,
+  Layers,
+  Activity,
+  Network,
+  Cpu,
+  Database,
+  Radio,
+  Zap,
+  Repeat,
+  Inbox
+} from 'lucide-react';
 import { api } from '../services/api';
 import { FaultRecord, SystemStatus } from '../types';
 
-export const FaultLabView: React.FC = () => {
+interface ScenarioMeta {
+  id: string;
+  name: string;
+  category: 'resource' | 'network' | 'application' | 'composite';
+  desc: string;
+  defaultTarget: string;
+  allowedTargets: string[];
+  expectedChain: string[];
+  effects: string[];
+}
+
+interface FaultLabViewProps {
+  onNavigate?: (view: any) => void;
+}
+
+export const FaultLabView: React.FC<FaultLabViewProps> = ({ onNavigate }) => {
   const [targetService, setTargetService] = useState('postgres');
-  const [faultType, setFaultType] = useState('cpu_stress');
-  const [intensity, setIntensity] = useState(85);
+  const [selectedScenarioId, setSelectedScenarioId] = useState('slow_database');
   const [duration, setDuration] = useState(60);
+  const [intensity, setIntensity] = useState(85);
+
+  // Specific custom parameter states
+  const [queryDelayMs, setQueryDelayMs] = useState(300);
+  const [netDelayMs, setNetDelayMs] = useState(250);
+  const [netJitterMs, setNetJitterMs] = useState(30);
+  const [packetLossRate, setPacketLossRate] = useState(20);
+  const [trafficMultiplier, setTrafficMultiplier] = useState(4);
+  const [retryMultiplier, setRetryMultiplier] = useState(4);
+  const [queueArrivalQps, setQueueArrivalQps] = useState(30);
+
   const [activeFaults, setActiveFaults] = useState<FaultRecord[]>([]);
   const [faultHistory, setFaultHistory] = useState<FaultRecord[]>([]);
   const [systemStatus, setSystemStatus] = useState<SystemStatus | null>(null);
@@ -15,14 +55,124 @@ export const FaultLabView: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [actionMessage, setActionMessage] = useState<string | null>(null);
 
-  const services = ['postgres', 'redis', 'api', 'nginx'];
-  const faultTypes = [
-    { id: 'slow_database', name: 'Slow Database Cascade (PostgreSQL Query Stall)', desc: 'Injects query delay on PostgreSQL, inducing caller connection pool exhaustion on API and gateway timeouts' },
-    { id: 'cpu_stress', name: 'CPU Saturation (stress-ng)', desc: 'Exhausts worker threads with matrix arithmetic' },
-    { id: 'mem_leak', name: 'Memory Pressure (RSS Spike)', desc: 'Allocates heap memory to induce GC and eviction' },
-    { id: 'latency_inject', name: 'Network Latency Delay', desc: 'Adds synthetic transit delay to incoming packets' },
-    { id: 'service_kill', name: 'Service Unavailability', desc: 'Sends SIGSTOP or simulated pause to target' }
+  const allServices = [
+    'postgres',
+    'redis',
+    'api',
+    'nginx',
+    'order-service',
+    'catalog-service',
+    'auth-service',
+    'payment-service',
+    'notification-service',
+    'queue',
+    'client'
   ];
+
+  const scenarios: ScenarioMeta[] = [
+    {
+      id: 'slow_database',
+      name: 'Slow Database Query Cascade',
+      category: 'application',
+      desc: 'Injects query stall on PostgreSQL, exhausting caller connection pools and inducing gateway timeouts.',
+      defaultTarget: 'postgres',
+      allowedTargets: ['postgres'],
+      expectedChain: ['postgres', 'order-service', 'catalog-service', 'api', 'nginx'],
+      effects: ['Active connections maxed', 'Caller wait queue > 200ms', 'API latency 240ms', '504 Gateway Timeouts']
+    },
+    {
+      id: 'cpu_saturation',
+      name: 'CPU Saturation (stress-ng)',
+      category: 'resource',
+      desc: 'Saturates worker CPU cores with heavy matrix loops, causing thread starvation and context switching.',
+      defaultTarget: 'order-service',
+      allowedTargets: ['order-service', 'catalog-service', 'auth-service', 'api', 'postgres'],
+      expectedChain: ['order-service', 'api', 'nginx'],
+      effects: ['CPU utilization > 85%', 'Thread queueing', 'Downstream latency increase']
+    },
+    {
+      id: 'memory_pressure',
+      name: 'Memory Pressure & RSS Leak',
+      category: 'resource',
+      desc: 'Rapidly claims RSS memory pages, triggering garbage collection thrashing and cgroup eviction.',
+      defaultTarget: 'catalog-service',
+      allowedTargets: ['catalog-service', 'api', 'auth-service', 'order-service'],
+      expectedChain: ['catalog-service', 'api', 'nginx'],
+      effects: ['Memory working set spike', 'GC stop-the-world pauses', '504 Gateway timeouts']
+    },
+    {
+      id: 'network_latency',
+      name: 'Network Latency & Jitter',
+      category: 'network',
+      desc: 'Injects transit latency and packet jitter across service boundaries via synthetic netem delay.',
+      defaultTarget: 'payment-service',
+      allowedTargets: ['payment-service', 'postgres', 'redis', 'order-service'],
+      expectedChain: ['payment-service', 'order-service', 'api', 'nginx'],
+      effects: ['Trace span latency spikes', 'Caller socket timeout', 'Cascading queueing']
+    },
+    {
+      id: 'packet_loss',
+      name: 'Packet Loss & Corruption',
+      category: 'network',
+      desc: 'Drops configured percentage of TCP packets, inducing retransmission storms and connection resets.',
+      defaultTarget: 'payment-service',
+      allowedTargets: ['payment-service', 'catalog-service', 'order-service'],
+      expectedChain: ['payment-service', 'order-service', 'api'],
+      effects: ['TCP retransmission rate surge', '502 Bad Gateway', 'Throughput degradation']
+    },
+    {
+      id: 'service_crash',
+      name: 'Service Crash / Downtime',
+      category: 'application',
+      desc: 'Sends SIGSTOP or simulates process failure, triggering immediate connection refusal on callers.',
+      defaultTarget: 'auth-service',
+      allowedTargets: ['auth-service', 'payment-service', 'notification-service', 'redis'],
+      expectedChain: ['auth-service', 'api', 'nginx'],
+      effects: ['100% error rate on target', 'Immediate 503 Service Unavailable', 'Caller circuit trip']
+    },
+    {
+      id: 'cache_failure',
+      name: 'Cache Eviction Storm & Miss Spike',
+      category: 'application',
+      desc: 'Evicts Redis cache keys, forcing 100% of read requests to fall back directly to PostgreSQL.',
+      defaultTarget: 'redis',
+      allowedTargets: ['redis'],
+      expectedChain: ['redis', 'catalog-service', 'postgres'],
+      effects: ['100% Redis cache misses', 'PostgreSQL QPS doubles', 'Catalog latency increases']
+    },
+    {
+      id: 'traffic_spike',
+      name: 'Ingress Traffic Spike & Surge',
+      category: 'composite',
+      desc: 'Surges workload generator traffic by up to 10x, saturating ingress gateway worker threads.',
+      defaultTarget: 'nginx',
+      allowedTargets: ['nginx', 'api'],
+      expectedChain: ['nginx', 'api', 'auth-service', 'catalog-service', 'order-service'],
+      effects: ['Ingress QPS surge', 'Nginx CPU spike', '429 Rate Limited / 503 Overload']
+    },
+    {
+      id: 'retry_storm',
+      name: 'Retry Storm Amplification',
+      category: 'composite',
+      desc: 'Induces intermittent dependency failure with aggressive retries, amplifying request volume 4x.',
+      defaultTarget: 'payment-service',
+      allowedTargets: ['payment-service', 'order-service'],
+      expectedChain: ['payment-service', 'order-service', 'api'],
+      effects: ['Request amplification factor 4x', 'Thread pool exhaustion', 'Gateway timeout']
+    },
+    {
+      id: 'queue_backlog',
+      name: 'Queue Backpressure & Backlog',
+      category: 'composite',
+      desc: 'Stalls notification consumption while event publish rate continues, growing backlog buffer.',
+      defaultTarget: 'queue',
+      allowedTargets: ['queue'],
+      expectedChain: ['queue', 'notification-service'],
+      effects: ['Queue depth backlog growth', 'Processing delay > 180ms', 'Broker memory expansion']
+    }
+  ];
+
+  const currentScenario = scenarios.find(s => s.id === selectedScenarioId) || scenarios[0];
 
   useEffect(() => {
     loadData();
@@ -43,19 +193,49 @@ export const FaultLabView: React.FC = () => {
     }
   };
 
+  const handleSelectScenario = (scenId: string) => {
+    setSelectedScenarioId(scenId);
+    const scen = scenarios.find(s => s.id === scenId);
+    if (scen) {
+      if (!scen.allowedTargets.includes(targetService)) {
+        setTargetService(scen.defaultTarget);
+      }
+    }
+  };
+
   const handleTriggerFault = async () => {
     setShowConfirmModal(false);
     setLoading(true);
     setActionMessage(null);
+
+    // Build specific parameter payload
+    const customParams: Record<string, any> = { intensity };
+    if (selectedScenarioId === 'slow_database') {
+      customParams.query_delay_ms = queryDelayMs;
+    } else if (selectedScenarioId === 'network_latency') {
+      customParams.delay_ms = netDelayMs;
+      customParams.jitter_ms = netJitterMs;
+    } else if (selectedScenarioId === 'packet_loss') {
+      customParams.loss_rate = packetLossRate;
+    } else if (selectedScenarioId === 'traffic_spike') {
+      customParams.rate_multiplier = trafficMultiplier;
+    } else if (selectedScenarioId === 'retry_storm') {
+      customParams.retry_multiplier = retryMultiplier;
+    } else if (selectedScenarioId === 'queue_backlog') {
+      customParams.arrival_qps = queueArrivalQps;
+    }
+
     try {
       const res = await api.injectFault({
         target_service: targetService,
-        fault_type: faultType,
+        fault_type: selectedScenarioId,
         intensity: intensity,
-        duration_seconds: duration
+        duration_seconds: duration,
+        scenario_id: selectedScenarioId,
+        parameters: customParams
       });
-      const modeLabel = systemStatus?.docker_available ? 'Live Container Mutation' : 'Replay Incident Simulated';
-      setActionMessage(`${modeLabel} triggered successfully (Incident ID: ${res.incident_id})`);
+      const modeLabel = systemStatus?.docker_available ? 'Live Container Mutation' : 'Replay Simulation Mode';
+      setActionMessage(`${modeLabel} initiated successfully (Incident ID: ${res.incident_id})`);
       await loadData();
     } catch (err: any) {
       setActionMessage(`Execution error: ${err.message}`);
@@ -75,7 +255,7 @@ export const FaultLabView: React.FC = () => {
   };
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '420px 1fr', gap: 20 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '460px 1fr', gap: 20 }}>
       {/* Fault Injection Configuration */}
       <div className="panel-card">
         <div className="panel-title">
@@ -84,13 +264,13 @@ export const FaultLabView: React.FC = () => {
             <span>Controlled Fault Experiment</span>
           </div>
           <span className={`badge ${systemStatus?.docker_available ? 'badge-rose' : 'badge-amber'}`}>
-            {systemStatus?.docker_available ? 'LIVE CONTAINER MUTATION' : 'RECORDED REPLAY EXPERIMENT'}
+            {systemStatus?.docker_available ? 'LIVE CONTAINER MUTATION' : 'VERIFIED REPLAY MODE'}
           </span>
         </div>
 
         {!systemStatus?.docker_available && (
           <div style={{ padding: 10, background: 'var(--amber-bg)', border: '1px solid var(--amber-border)', borderRadius: 6, marginBottom: 14, fontSize: 11, color: 'var(--amber-text)' }}>
-            <strong>Transparent Replay:</strong> Docker daemon is offline. Triggering will replay the verified timeline and telemetry of experiment <code>EXP-postgres_cpu_stress_001</code>.
+            <strong>Transparent Replay:</strong> Docker daemon is offline. Triggering will simulate the causal timeline, state transitions, and downstream telemetry cascade.
           </div>
         )}
 
@@ -103,51 +283,205 @@ export const FaultLabView: React.FC = () => {
               borderRadius: 6,
               marginBottom: 16,
               fontSize: 12,
-              color: 'var(--text-main)'
+              color: 'var(--text-main)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 8
             }}
           >
-            {actionMessage}
+            <div>{actionMessage}</div>
+            {onNavigate && (
+              <button
+                className="action-btn"
+                style={{
+                  alignSelf: 'flex-start',
+                  padding: '4px 10px',
+                  fontSize: 11,
+                  background: '#fef3f2',
+                  borderColor: '#fda29b',
+                  color: '#b42318',
+                  fontWeight: 700
+                }}
+                onClick={() => onNavigate('fault_trace')}
+              >
+                Watch Traveling Cascade in Fault Trace Lab →
+              </button>
+            )}
           </div>
         )}
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+          {/* Scenario Selection Dropdown */}
           <div>
-            <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', display: 'block', marginBottom: 6 }}>
-              Target Microservice
+            <label style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-main)', display: 'block', marginBottom: 6 }}>
+              Failure Scenario ({scenarios.length} Parameterized Scenarios)
             </label>
             <select
-              style={{ width: '100%' }}
-              value={targetService}
-              onChange={e => setTargetService(e.target.value)}
+              style={{ width: '100%', padding: '7px 10px', fontSize: 12 }}
+              value={selectedScenarioId}
+              onChange={e => handleSelectScenario(e.target.value)}
             >
-              {services.map(s => (
-                <option key={s} value={s}>{s.toUpperCase()}</option>
-              ))}
+              <optgroup label="Application & Database Cascades">
+                {scenarios.filter(s => s.category === 'application').map(s => (
+                  <option key={s.id} value={s.id}>{s.name}</option>
+                ))}
+              </optgroup>
+              <optgroup label="Resource Saturation (CPU / Memory)">
+                {scenarios.filter(s => s.category === 'resource').map(s => (
+                  <option key={s.id} value={s.id}>{s.name}</option>
+                ))}
+              </optgroup>
+              <optgroup label="Network Degradation & Netem">
+                {scenarios.filter(s => s.category === 'network').map(s => (
+                  <option key={s.id} value={s.id}>{s.name}</option>
+                ))}
+              </optgroup>
+              <optgroup label="Composite & Cascading Storms">
+                {scenarios.filter(s => s.category === 'composite').map(s => (
+                  <option key={s.id} value={s.id}>{s.name}</option>
+                ))}
+              </optgroup>
             </select>
-          </div>
-
-          <div>
-            <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', display: 'block', marginBottom: 6 }}>
-              Fault Type
-            </label>
-            <select
-              style={{ width: '100%' }}
-              value={faultType}
-              onChange={e => setFaultType(e.target.value)}
-            >
-              {faultTypes.map(f => (
-                <option key={f.id} value={f.id}>{f.name}</option>
-              ))}
-            </select>
-            <p style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4 }}>
-              {faultTypes.find(f => f.id === faultType)?.desc}
+            <p style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 5, lineHeight: 1.4 }}>
+              {currentScenario.desc}
             </p>
           </div>
 
+          {/* Target Microservice */}
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: 12 }}>
-              <span style={{ color: 'var(--text-muted)' }}>Load Intensity</span>
-              <span className="font-mono">{intensity}%</span>
+            <label style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-main)', display: 'block', marginBottom: 6 }}>
+              Target Microservice (11-Service Topology)
+            </label>
+            <select
+              style={{ width: '100%', padding: '7px 10px', fontSize: 12 }}
+              value={targetService}
+              onChange={e => setTargetService(e.target.value)}
+            >
+              {allServices.map(s => {
+                const isAllowed = currentScenario.allowedTargets.includes(s);
+                return (
+                  <option key={s} value={s} disabled={!isAllowed}>
+                    {s.toUpperCase()} {isAllowed ? '' : '(Not supported for this scenario)'}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+
+          {/* Scenario-Specific Parameter Controls */}
+          {selectedScenarioId === 'slow_database' && (
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, fontSize: 11 }}>
+                <span style={{ color: 'var(--text-muted)' }}>Query Stall Delay:</span>
+                <span className="font-mono font-bold">{queryDelayMs} ms</span>
+              </div>
+              <input
+                type="range"
+                min="50"
+                max="2000"
+                step="50"
+                value={queryDelayMs}
+                onChange={e => setQueryDelayMs(Number(e.target.value))}
+                style={{ width: '100%' }}
+              />
+            </div>
+          )}
+
+          {selectedScenarioId === 'network_latency' && (
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, fontSize: 11 }}>
+                <span style={{ color: 'var(--text-muted)' }}>Packet Delay / Jitter:</span>
+                <span className="font-mono font-bold">{netDelayMs} ms (±{netJitterMs}ms)</span>
+              </div>
+              <input
+                type="range"
+                min="50"
+                max="1500"
+                step="25"
+                value={netDelayMs}
+                onChange={e => setNetDelayMs(Number(e.target.value))}
+                style={{ width: '100%' }}
+              />
+            </div>
+          )}
+
+          {selectedScenarioId === 'packet_loss' && (
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, fontSize: 11 }}>
+                <span style={{ color: 'var(--text-muted)' }}>TCP Packet Drop Rate:</span>
+                <span className="font-mono font-bold">{packetLossRate}%</span>
+              </div>
+              <input
+                type="range"
+                min="5"
+                max="60"
+                step="5"
+                value={packetLossRate}
+                onChange={e => setPacketLossRate(Number(e.target.value))}
+                style={{ width: '100%' }}
+              />
+            </div>
+          )}
+
+          {selectedScenarioId === 'traffic_spike' && (
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, fontSize: 11 }}>
+                <span style={{ color: 'var(--text-muted)' }}>Ingress QPS Surge Multiplier:</span>
+                <span className="font-mono font-bold">{trafficMultiplier}x (~{trafficMultiplier * 45} QPS)</span>
+              </div>
+              <input
+                type="range"
+                min="2"
+                max="10"
+                step="1"
+                value={trafficMultiplier}
+                onChange={e => setTrafficMultiplier(Number(e.target.value))}
+                style={{ width: '100%' }}
+              />
+            </div>
+          )}
+
+          {selectedScenarioId === 'retry_storm' && (
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, fontSize: 11 }}>
+                <span style={{ color: 'var(--text-muted)' }}>Retry Amplification:</span>
+                <span className="font-mono font-bold">{retryMultiplier}x request amplification</span>
+              </div>
+              <input
+                type="range"
+                min="2"
+                max="6"
+                step="1"
+                value={retryMultiplier}
+                onChange={e => setRetryMultiplier(Number(e.target.value))}
+                style={{ width: '100%' }}
+              />
+            </div>
+          )}
+
+          {selectedScenarioId === 'queue_backlog' && (
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, fontSize: 11 }}>
+                <span style={{ color: 'var(--text-muted)' }}>Event Arrival Rate:</span>
+                <span className="font-mono font-bold">{queueArrivalQps} msg/sec</span>
+              </div>
+              <input
+                type="range"
+                min="10"
+                max="80"
+                step="5"
+                value={queueArrivalQps}
+                onChange={e => setQueueArrivalQps(Number(e.target.value))}
+                style={{ width: '100%' }}
+              />
+            </div>
+          )}
+
+          {/* Universal Workload Intensity */}
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, fontSize: 11 }}>
+              <span style={{ color: 'var(--text-muted)' }}>Base Mutation Intensity</span>
+              <span className="font-mono font-bold">{intensity}%</span>
             </div>
             <input
               type="range"
@@ -160,23 +494,47 @@ export const FaultLabView: React.FC = () => {
             />
           </div>
 
+          {/* Universal Duration with Safety Cap */}
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: 12 }}>
-              <span style={{ color: 'var(--text-muted)' }}>Duration (Safety Max 300s)</span>
-              <span className="font-mono">{duration} seconds</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, fontSize: 11 }}>
+              <span style={{ color: 'var(--text-muted)' }}>Bounded Duration (Safety Limit: 300s)</span>
+              <span className="font-mono font-bold">{duration} seconds</span>
             </div>
             <input
               type="range"
               min="10"
               max="300"
-              step="10"
+              step="5"
               value={duration}
               onChange={e => setDuration(Number(e.target.value))}
               style={{ width: '100%' }}
             />
           </div>
 
-          <div style={{ marginTop: 6 }}>
+          {/* Expected Ground Truth Impact Chain Callout */}
+          <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 6, padding: 10 }}>
+            <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', color: '#64748b', display: 'block', marginBottom: 6 }}>
+              Expected Ground Truth Blast Chain (Isolated from RCA)
+            </span>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, alignItems: 'center' }}>
+              {currentScenario.expectedChain.map((svc, i) => (
+                <React.Fragment key={svc}>
+                  <span
+                    className={`badge ${i === 0 ? 'badge-rose' : 'badge-amber'}`}
+                    style={{ fontSize: 10, fontFamily: 'monospace' }}
+                  >
+                    {svc}
+                  </span>
+                  {i < currentScenario.expectedChain.length - 1 && (
+                    <span style={{ color: '#94a3b8', fontSize: 10 }}>→</span>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+
+          {/* Trigger Button */}
+          <div style={{ marginTop: 4 }}>
             <button
               className="action-btn primary"
               style={{ width: '100%', padding: '10px 0', justifyContent: 'center' }}
@@ -207,7 +565,7 @@ export const FaultLabView: React.FC = () => {
                 <tr>
                   <th>Fault ID</th>
                   <th>Target</th>
-                  <th>Type</th>
+                  <th>Scenario</th>
                   <th>Duration</th>
                   <th>Action</th>
                 </tr>
@@ -248,13 +606,13 @@ export const FaultLabView: React.FC = () => {
               <tr>
                 <th>Incident ID</th>
                 <th>Target Service</th>
-                <th>Fault Type</th>
+                <th>Scenario</th>
                 <th>Status</th>
-                <th>Logs</th>
+                <th>Outcome / Logs</th>
               </tr>
             </thead>
             <tbody>
-              {(faultHistory || []).slice(0, 6).map(f => (
+              {(faultHistory || []).slice(0, 8).map(f => (
                 <tr key={f.fault_id}>
                   <td className="font-mono" style={{ fontSize: 11 }}>{f.incident_id || f.fault_id}</td>
                   <td><strong>{f.target_service}</strong></td>
@@ -265,7 +623,7 @@ export const FaultLabView: React.FC = () => {
                     </span>
                   </td>
                   <td style={{ fontSize: 11, color: 'var(--text-muted)' }}>
-                    {f.logs[0] || 'Completed normally'}
+                    {f.logs?.[0] || 'Completed normally. Auto-recovered.'}
                   </td>
                 </tr>
               ))}
@@ -283,10 +641,10 @@ export const FaultLabView: React.FC = () => {
               <h3 style={{ fontSize: 16 }}>Confirm Fault Experiment</h3>
             </div>
             <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.5, marginBottom: 16 }}>
-              You are about to execute <strong>{faultType}</strong> ({intensity}% intensity) against target microservice <strong>{targetService}</strong> for <strong>{duration}s</strong>.
+              You are about to execute scenario <strong>{currentScenario.name}</strong> against target microservice <strong>{targetService}</strong> for <strong>{duration}s</strong>.
               {systemStatus?.docker_available
                 ? ' This will apply real container load and degrade service performance.'
-                : ' This will replay the recorded incident and propagate telemetry changes.'}
+                : ' This will simulate the causal cascade, update FSM lifecycles, and generate time-indexed evidence.'}
             </p>
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 10 }}>
               <button className="action-btn" onClick={() => setShowConfirmModal(false)}>

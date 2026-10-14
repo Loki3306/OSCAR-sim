@@ -75,13 +75,30 @@ export const TopologyView: React.FC = () => {
     }
   };
 
-  // Node positions in the SVG graph: (Client -> Nginx -> API -> Postgres / Redis)
+  // View mode: Application services (default) vs Infrastructure containers
+  const [viewScope, setViewScope] = useState<'application' | 'infrastructure'>('application');
+
+  // Node positions in the SVG graph: 11-service realistic distributed topology across 6 clear columns
   const nodePositions: Record<string, { x: number; y: number }> = {
-    client: { x: 100, y: 220 },
-    nginx: { x: 290, y: 220 },
-    api: { x: 490, y: 220 },
-    postgres: { x: 710, y: 130 },
-    redis: { x: 710, y: 310 }
+    client: { x: 75, y: 220 },
+    nginx: { x: 215, y: 220 },
+    api: { x: 360, y: 220 },
+    'auth-service': { x: 530, y: 95 },
+    'catalog-service': { x: 530, y: 220 },
+    'order-service': { x: 530, y: 350 },
+    redis: { x: 710, y: 80 },
+    postgres: { x: 710, y: 195 },
+    'payment-service': { x: 710, y: 310 },
+    queue: { x: 710, y: 420 },
+    'notification-service': { x: 885, y: 420 }
+  };
+
+  // Infrastructure containers positions (visible when viewScope === 'infrastructure')
+  const infraPositions: Record<string, { x: number; y: number; label: string; desc: string }> = {
+    prometheus: { x: 215, y: 440, label: 'Prometheus TSDB', desc: 'PromQL Telemetry (:9090)' },
+    cadvisor: { x: 360, y: 440, label: 'cAdvisor Daemon', desc: 'Container Cgroups Exporter' },
+    loki: { x: 530, y: 440, label: 'Grafana Loki', desc: 'Structured Trace & Log Index' },
+    controller: { x: 885, y: 220, label: 'OSCAR Control Plane', desc: 'Fault Engine & FSM Manager' }
   };
 
   // Current active slice based on slider position
@@ -126,7 +143,7 @@ export const TopologyView: React.FC = () => {
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 <Network size={16} color="var(--text-main)" />
                 <span style={{ fontWeight: 700, fontSize: 13, color: 'var(--text-main)' }}>
-                  Distributed System Causal Propagation Graph
+                  Distributed System Causal Propagation Graph ({displayNodes.length} Services)
                 </span>
               </div>
 
@@ -159,6 +176,38 @@ export const TopologyView: React.FC = () => {
                   State Machines
                 </button>
               </div>
+
+              {/* View Scope: Application Services vs Infrastructure View */}
+              {activeTab === 'graph' && (
+                <div style={{ display: 'flex', background: 'var(--bg-secondary)', borderRadius: 6, padding: 2 }}>
+                  <button
+                    className="action-btn"
+                    style={{
+                      padding: '3px 8px',
+                      fontSize: 11,
+                      background: viewScope === 'application' ? '#ffffff' : 'transparent',
+                      border: 'none',
+                      fontWeight: viewScope === 'application' ? 700 : 500
+                    }}
+                    onClick={() => setViewScope('application')}
+                  >
+                    Application View
+                  </button>
+                  <button
+                    className="action-btn"
+                    style={{
+                      padding: '3px 8px',
+                      fontSize: 11,
+                      background: viewScope === 'infrastructure' ? '#ffffff' : 'transparent',
+                      border: 'none',
+                      fontWeight: viewScope === 'infrastructure' ? 700 : 500
+                    }}
+                    onClick={() => setViewScope('infrastructure')}
+                  >
+                    Infrastructure View
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Layer Visibility Toggles */}
@@ -197,7 +246,7 @@ export const TopologyView: React.FC = () => {
 
           {activeTab === 'graph' ? (
             <div style={{ flex: 1, position: 'relative', background: 'var(--bg-secondary)', borderRadius: 8, border: '1px solid var(--border-subtle)', overflow: 'hidden' }}>
-              <svg width="100%" height="100%" viewBox="0 0 840 440" preserveAspectRatio="xMidYMid meet">
+              <svg width="100%" height="100%" viewBox="0 0 980 500" preserveAspectRatio="xMidYMid meet">
                 <defs>
                   {/* Arrow markers */}
                   <marker id="arrow-normal" markerWidth="8" markerHeight="6" refX="28" refY="3" orient="auto">
@@ -240,10 +289,10 @@ export const TopologyView: React.FC = () => {
                       />
                       {/* Edge Latency & Protocol Pill */}
                       <rect
-                        x={(from.x + to.x) / 2 - 28}
-                        y={(from.y + to.y) / 2 - 18}
-                        width="56"
-                        height="16"
+                        x={(from.x + to.x) / 2 - 24}
+                        y={(from.y + to.y) / 2 - 14}
+                        width="48"
+                        height="15"
                         rx="3"
                         fill="#ffffff"
                         stroke={isImpacted ? '#fda29b' : '#d0d5dd'}
@@ -251,9 +300,9 @@ export const TopologyView: React.FC = () => {
                       />
                       <text
                         x={(from.x + to.x) / 2}
-                        y={(from.y + to.y) / 2 - 7}
+                        y={(from.y + to.y) / 2 - 3}
                         fill={isImpacted ? '#b42318' : '#344054'}
-                        fontSize="9"
+                        fontSize="8.5"
                         fontWeight="700"
                         fontFamily="monospace"
                         textAnchor="middle"
@@ -267,43 +316,86 @@ export const TopologyView: React.FC = () => {
                 {/* Layer 4: Algorithm-Inferred Causal Paths (Purple Overlays) */}
                 {showInferredCausal && (
                   <g>
-                    <path
-                      d={`M ${nodePositions.postgres.x} ${nodePositions.postgres.y} Q 600 170 ${nodePositions.api.x} ${nodePositions.api.y}`}
-                      fill="none"
-                      stroke="#7f56d9"
-                      strokeWidth="2.5"
-                      strokeDasharray="4,4"
-                      markerEnd="url(#arrow-inferred)"
-                    />
-                    <path
-                      d={`M ${nodePositions.api.x} ${nodePositions.api.y} Q 380 180 ${nodePositions.nginx.x} ${nodePositions.nginx.y}`}
-                      fill="none"
-                      stroke="#7f56d9"
-                      strokeWidth="2.5"
-                      strokeDasharray="4,4"
-                      markerEnd="url(#arrow-inferred)"
-                    />
+                    {displayEdges
+                      .filter(e => e.is_inferred_causal || e.is_impacted)
+                      .map((e, i) => {
+                        const from = nodePositions[e.from_service] || { x: 0, y: 0 };
+                        const to = nodePositions[e.to_service] || { x: 0, y: 0 };
+                        // Reverse path overlay from suspected cause to affected caller
+                        return (
+                          <line
+                            key={`inferred-${i}`}
+                            x1={to.x}
+                            y1={to.y}
+                            x2={from.x}
+                            y2={from.y}
+                            stroke="#7f56d9"
+                            strokeWidth="2.5"
+                            strokeDasharray="4,4"
+                            markerEnd="url(#arrow-inferred)"
+                          />
+                        );
+                      })}
                   </g>
                 )}
 
                 {/* Layer 5: Ground-Truth Expected Path (Golden Overlays) */}
                 {showGroundTruth && (
                   <g>
-                    <path
-                      d={`M ${nodePositions.postgres.x} ${nodePositions.postgres.y} Q 600 120 ${nodePositions.api.x} ${nodePositions.api.y}`}
-                      fill="none"
-                      stroke="#f79009"
-                      strokeWidth="3"
-                      strokeDasharray="2,6"
-                      markerEnd="url(#arrow-groundtruth)"
-                    />
+                    {displayEdges
+                      .filter(e => e.is_expected_propagation || e.is_impacted)
+                      .map((e, i) => {
+                        const from = nodePositions[e.from_service] || { x: 0, y: 0 };
+                        const to = nodePositions[e.to_service] || { x: 0, y: 0 };
+                        return (
+                          <line
+                            key={`gt-${i}`}
+                            x1={to.x}
+                            y1={to.y}
+                            x2={from.x}
+                            y2={from.y}
+                            stroke="#f79009"
+                            strokeWidth="3"
+                            strokeDasharray="2,6"
+                            markerEnd="url(#arrow-groundtruth)"
+                          />
+                        );
+                      })}
                   </g>
                 )}
 
+                {/* Infrastructure View Nodes (rendered only in Infrastructure View mode) */}
+                {viewScope === 'infrastructure' && Object.entries(infraPositions).map(([key, infra]) => (
+                  <g key={key} transform={`translate(${infra.x}, ${infra.y})`}>
+                    <rect
+                      x="-60"
+                      y="-22"
+                      width="120"
+                      height="44"
+                      rx="6"
+                      fill="#f8fafc"
+                      stroke="#94a3b8"
+                      strokeWidth="1.5"
+                      strokeDasharray="3,3"
+                    />
+                    <circle cx="-46" cy="0" r="4" fill="#0284c7" />
+                    <text x="-36" y="-3" fill="#0f172a" fontSize="10" fontWeight="700" fontFamily="inherit">
+                      {infra.label}
+                    </text>
+                    <text x="-36" y="10" fill="#64748b" fontSize="8" fontFamily="monospace">
+                      {infra.desc}
+                    </text>
+                  </g>
+                ))}
+
                 {/* Microservice Nodes */}
                 {displayNodes.map(svc => {
-                  const pos = nodePositions[svc.name] || { x: 400, y: 200 };
-                  const isSelected = selectedService?.name === svc.name;
+                  const svcName = svc.name || (svc as any).id || '';
+                  const displayName = svc.display_name || (svc as any).label || svcName;
+                  const pos = nodePositions[svcName] || { x: 400, y: 200 };
+                  const isSelected = selectedService
+                    ? (selectedService.name === svcName || (selectedService as any).id === svcName)
+                    : false;
                   const isInjected = svc.is_injected_target || svc.status === 'fault';
                   const isAbnormal = svc.is_observed_abnormal || (svc.latency_ms || 0) > 100;
 
@@ -327,7 +419,7 @@ export const TopologyView: React.FC = () => {
 
                   return (
                     <g
-                      key={svc.name}
+                      key={svcName || Math.random().toString()}
                       transform={`translate(${pos.x}, ${pos.y})`}
                       style={{ cursor: 'pointer' }}
                       onClick={() => setSelectedService(svc)}
@@ -363,11 +455,11 @@ export const TopologyView: React.FC = () => {
                         x="-40"
                         y="-16"
                         fill="#181d27"
-                        fontSize="13"
+                        fontSize={svcName.length > 12 ? "10" : "11.5"}
                         fontWeight="800"
                         fontFamily="inherit"
                       >
-                        {svc.name.toUpperCase()}
+                        {svcName ? svcName.replace('-service', '').toUpperCase() : 'UNKNOWN'}
                       </text>
 
                       {/* Visual Role Pill */}
@@ -471,14 +563,17 @@ export const TopologyView: React.FC = () => {
             )}
           </div>
 
-          {selectedService ? (
+          {selectedService ? (() => {
+            const selName = selectedService.name || (selectedService as any).id || '';
+            const selDisplay = selectedService.display_name || (selectedService as any).label || (selName ? selName.toUpperCase() : 'UNKNOWN');
+            return (
             <div>
               <div style={{ marginBottom: 14 }}>
                 <h3 style={{ fontSize: 15, color: 'var(--text-main)', fontWeight: 800 }}>
-                  {selectedService.display_name || selectedService.name.toUpperCase()}
+                  {selDisplay}
                 </h3>
                 <p style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'monospace' }}>
-                  Node ID: {selectedService.name} | Timeline: T{currentOffset >= 0 ? `+${currentOffset}` : currentOffset}s
+                  Node ID: {selName} | Timeline: T{currentOffset >= 0 ? `+${currentOffset}` : currentOffset}s
                 </p>
               </div>
 
@@ -555,12 +650,21 @@ export const TopologyView: React.FC = () => {
                 <h4 style={{ fontSize: 11, textTransform: 'uppercase', color: 'var(--text-dim)', marginBottom: 6 }}>
                   Inbound Upstream Callers
                 </h4>
-                {getInbound(selectedService.name).length === 0 ? (
+                {getInbound(selName).length === 0 ? (
                   <p style={{ fontSize: 11, color: 'var(--text-dim)' }}>None (Traffic Ingress)</p>
                 ) : (
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                    {getInbound(selectedService.name).map(s => (
-                      <span key={s} className="badge badge-indigo">
+                    {getInbound(selName).map(s => (
+                      <span
+                        key={s}
+                        className="badge badge-indigo"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => {
+                          const target = displayNodes.find(n => (n.name === s || (n as any).id === s));
+                          if (target) setSelectedService(target);
+                        }}
+                        title={`Select caller ${s}`}
+                      >
                         <ArrowDown size={10} style={{ marginRight: 4 }} />
                         {s}
                       </span>
@@ -574,12 +678,21 @@ export const TopologyView: React.FC = () => {
                 <h4 style={{ fontSize: 11, textTransform: 'uppercase', color: 'var(--text-dim)', marginBottom: 6 }}>
                   Outbound Downstream Callees
                 </h4>
-                {getOutbound(selectedService.name).length === 0 ? (
-                  <p style={{ fontSize: 11, color: 'var(--text-dim)' }}>None (Leaf Database)</p>
+                {getOutbound(selName).length === 0 ? (
+                  <p style={{ fontSize: 11, color: 'var(--text-dim)' }}>None (Leaf Node)</p>
                 ) : (
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                    {getOutbound(selectedService.name).map(s => (
-                      <span key={s} className="badge badge-cyan">
+                    {getOutbound(selName).map(s => (
+                      <span
+                        key={s}
+                        className="badge badge-cyan"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => {
+                          const target = displayNodes.find(n => (n.name === s || (n as any).id === s));
+                          if (target) setSelectedService(target);
+                        }}
+                        title={`Select callee ${s}`}
+                      >
                         <ArrowUp size={10} style={{ marginRight: 4 }} />
                         {s}
                       </span>
@@ -588,7 +701,8 @@ export const TopologyView: React.FC = () => {
                 )}
               </div>
             </div>
-          ) : (
+            );
+          })() : (
             <div style={{ color: 'var(--text-dim)', fontSize: 12, textAlign: 'center', marginTop: 40 }}>
               Select a microservice in the topology to inspect its time-indexed metrics.
             </div>

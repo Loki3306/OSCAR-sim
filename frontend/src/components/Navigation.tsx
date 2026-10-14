@@ -17,6 +17,7 @@ import { SystemStatus } from '../types';
 export type ViewType =
   | 'overview'
   | 'topology'
+  | 'fault_trace'
   | 'observability'
   | 'fault_lab'
   | 'timeline'
@@ -63,6 +64,14 @@ export const Navigation: React.FC<NavigationProps> = ({
         >
           <Network className="icon" />
           <span>Service Topology</span>
+        </button>
+
+        <button
+          className={`nav-item ${currentView === 'fault_trace' ? 'active' : ''}`}
+          onClick={() => onSelectView('fault_trace')}
+        >
+          <Activity className="icon" />
+          <span>Propagation Trace</span>
         </button>
 
         <button

@@ -265,3 +265,38 @@ export interface EvaluationReportData {
   expected_chain: string[];
   evaluated_at: string;
 }
+
+export interface PropagationHopData {
+  hop_index: number;
+  offset_ms: number;
+  service: string;
+  display_name: string;
+  status: 'fault' | 'degraded' | 'healthy';
+  fsm_state: string;
+  role: string;
+  edge?: {
+    from: string;
+    to: string;
+    protocol: string;
+    latency_jump_ms: number;
+  };
+  causal_mechanism: string;
+  telemetry_delta: {
+    latency_before_ms: number;
+    latency_after_ms: number;
+    cpu_delta_pct: number;
+    error_rate: number;
+  };
+  symptoms: string[];
+}
+
+export interface ScenarioTraceData {
+  scenario_id: string;
+  title: string;
+  target_service: string;
+  total_propagation_ms: number;
+  blast_chain: string[];
+  unaffected_services: string[];
+  hops: PropagationHopData[];
+  generated_at: string;
+}

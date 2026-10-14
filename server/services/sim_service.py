@@ -117,39 +117,75 @@ class SimulationService:
         is_live = (docker_ok or (prom_ok and api_ok))
         mode = "LIVE_SIM" if is_live else "REPLAY_DEMO"
 
-        # Baseline services definitions (name, type, label, base_cpu, base_mem, base_lat)
+        # Baseline services definitions for 11-service realistic distributed topology
         services_def = [
-            ("client", "client", "Traffic Ingress Client", 0.5, 32.0, 5.0),
-            ("nginx", "ingress", "Nginx Reverse Proxy", 2.1, 48.0, 7.2),
-            ("api", "service", "Rust Axum API Server", 3.4, 64.0, 8.5),
-            ("postgres", "database", "PostgreSQL 16 Database", 4.8, 128.0, 6.0),
+            ("client", "client", "k6 Workload Generator", 0.5, 32.0, 5.0),
+            ("nginx", "ingress", "Nginx Ingress Gateway", 2.1, 48.0, 7.2),
+            ("api", "gateway", "Axum API Gateway & Router", 3.4, 64.0, 8.5),
+            ("auth-service", "service", "Authentication & JWT Service", 1.5, 52.0, 4.2),
+            ("catalog-service", "service", "Product Catalog Service", 2.8, 70.0, 6.1),
+            ("order-service", "service", "Order Processing Service", 3.2, 85.0, 9.4),
+            ("payment-service", "dependency", "Payment Simulator & External Gateway", 1.9, 45.0, 12.0),
+            ("notification-service", "worker", "Notification Worker", 1.2, 40.0, 3.5),
+            ("queue", "broker", "Message Broker & Backpressure Buffer", 2.5, 60.0, 2.0),
+            ("postgres", "database", "PostgreSQL 16 Relational Store", 4.8, 128.0, 6.0),
             ("redis", "cache", "Redis 7 In-Memory Cache", 1.8, 38.0, 2.1)
         ]
 
         services = []
         is_pg_faulted = any("postgres" in str(f.get("target_service", "")) and f.get("status") == "RUNNING" for f in self.active_faults.values())
+        is_pay_faulted = any("payment" in str(f.get("target_service", "")) and f.get("status") == "RUNNING" for f in self.active_faults.values())
+        is_redis_faulted = any("redis" in str(f.get("target_service", "")) and f.get("status") == "RUNNING" for f in self.active_faults.values())
+        is_queue_faulted = any("queue" in str(f.get("target_service", "")) and f.get("status") == "RUNNING" for f in self.active_faults.values())
 
         for name, stype, label, base_cpu, base_mem, base_lat in services_def:
             is_faulted = any(f["target_service"] == name and f["status"] == "RUNNING" for f in self.active_faults.values())
             
             if is_faulted:
                 status = "degraded"
-                cpu = 88.5 if "cpu" in str(self.active_faults) else (58.0 if name == "postgres" else base_cpu)
+                cpu = 88.5 if "cpu" in str(self.active_faults) else (58.0 if name == "postgres" else base_cpu * 3)
                 mem = 412.0 if name == "postgres" else (base_mem * 1.5)
                 err = 4.2
                 lat = 280.0 if name == "postgres" else 210.0
-            elif is_pg_faulted and name == "api":
+            elif is_pg_faulted and name in ["order-service", "catalog-service"]:
+                # Direct callers to slow database experience connection pool hold
                 status = "degraded"
                 cpu = 18.2
+                mem = base_mem + 28.0
+                err = 2.8
+                lat = 240.0 if name == "order-service" else 220.0
+            elif is_pg_faulted and name == "api":
+                # Tier 1 router queues on order/catalog services
+                status = "degraded"
+                cpu = 14.5
                 mem = base_mem + 32.0
                 err = 2.5
                 lat = 240.0
             elif is_pg_faulted and name == "nginx":
+                # Ingress reverse proxy waits on API
                 status = "degraded"
                 cpu = 8.5
                 mem = base_mem
                 err = 3.1
                 lat = 255.0
+            elif is_pay_faulted and name in ["order-service", "api", "nginx"]:
+                status = "degraded"
+                cpu = base_cpu + 5.0
+                mem = base_mem
+                err = 5.0
+                lat = 260.0
+            elif is_redis_faulted and name == "catalog-service":
+                status = "degraded"
+                cpu = base_cpu + 8.0
+                mem = base_mem
+                err = 0.5
+                lat = 45.0
+            elif is_queue_faulted and name == "notification-service":
+                status = "degraded"
+                cpu = 1.0
+                mem = base_mem
+                err = 0.0
+                lat = 180.0
             else:
                 status = "healthy" if is_live else "replayed"
                 cpu = base_cpu
@@ -236,14 +272,26 @@ class SimulationService:
         node_types = {
             "client": "client",
             "nginx": "ingress",
-            "api": "service",
+            "api": "gateway",
+            "auth-service": "service",
+            "catalog-service": "service",
+            "order-service": "service",
+            "payment-service": "dependency",
+            "notification-service": "worker",
+            "queue": "broker",
             "postgres": "database",
             "redis": "cache"
         }
         labels = {
-            "client": "Synthetic Traffic Client",
-            "nginx": "Nginx Ingress Proxy (8080)",
-            "api": "Rust Axum API (3000)",
+            "client": "k6 Traffic Client",
+            "nginx": "Nginx Ingress (8080)",
+            "api": "Axum API Router",
+            "auth-service": "Auth & JWT Service",
+            "catalog-service": "Product Catalog Service",
+            "order-service": "Order Processing Service",
+            "payment-service": "Payment Simulator",
+            "notification-service": "Notification Worker",
+            "queue": "Message Broker",
             "postgres": "PostgreSQL 16 Storage",
             "redis": "Redis 7 Cache Store"
         }
@@ -264,6 +312,7 @@ class SimulationService:
 
             nodes.append(TopologyNode(
                 id=s.name,
+                name=s.name,
                 label=labels.get(s.name, s.name),
                 type=node_types.get(s.name, "service"),
                 status="fault" if is_injected else ("degraded" if is_abnormal else s.status),
@@ -281,6 +330,9 @@ class SimulationService:
             ))
 
         is_pg_faulted = "postgres" in faulted_services
+        is_pay_faulted = "payment-service" in faulted_services
+        is_queue_faulted = "queue" in faulted_services
+
         edges = [
             TopologyEdge(
                 source="client", target="nginx", protocol="HTTP",
@@ -295,16 +347,59 @@ class SimulationService:
                 latency_ms=240.0 if is_pg_faulted else 8.5, error_rate=0.02 if is_pg_faulted else 0.0
             ),
             TopologyEdge(
-                source="api", target="redis", protocol="RESP",
-                active_qps=30.0, is_impacted="redis" in faulted_services,
+                source="api", target="auth-service", protocol="gRPC",
+                active_qps=45.0, is_impacted="auth-service" in faulted_services,
+                is_request_path=True, is_inferred_causal=False, is_expected_propagation=False,
+                latency_ms=4.2, error_rate=0.0
+            ),
+            TopologyEdge(
+                source="api", target="catalog-service", protocol="HTTP",
+                active_qps=30.0, is_impacted=is_pg_faulted or ("catalog-service" in faulted_services),
+                is_request_path=True, is_inferred_causal=False, is_expected_propagation=is_pg_faulted,
+                latency_ms=220.0 if is_pg_faulted else 6.1, error_rate=0.01 if is_pg_faulted else 0.0
+            ),
+            TopologyEdge(
+                source="catalog-service", target="redis", protocol="RESP",
+                active_qps=28.0, is_impacted="redis" in faulted_services,
                 is_request_path=True, is_inferred_causal=False, is_expected_propagation=False,
                 latency_ms=2.1, error_rate=0.0
             ),
             TopologyEdge(
-                source="api", target="postgres", protocol="PostgreSQL",
+                source="catalog-service", target="postgres", protocol="PostgreSQL",
+                active_qps=4.0, is_impacted=is_pg_faulted,
+                is_request_path=True, is_inferred_causal=False, is_expected_propagation=is_pg_faulted,
+                latency_ms=280.0 if is_pg_faulted else 6.0, error_rate=0.05 if is_pg_faulted else 0.0
+            ),
+            TopologyEdge(
+                source="api", target="order-service", protocol="HTTP",
+                active_qps=15.0, is_impacted=is_pg_faulted or is_pay_faulted,
+                is_request_path=True, is_inferred_causal=False, is_expected_propagation=is_pg_faulted or is_pay_faulted,
+                latency_ms=240.0 if is_pg_faulted else (260.0 if is_pay_faulted else 9.4),
+                error_rate=0.02 if is_pg_faulted else (0.05 if is_pay_faulted else 0.0)
+            ),
+            TopologyEdge(
+                source="order-service", target="payment-service", protocol="HTTPS",
+                active_qps=15.0, is_impacted=is_pay_faulted,
+                is_request_path=True, is_inferred_causal=False, is_expected_propagation=is_pay_faulted,
+                latency_ms=350.0 if is_pay_faulted else 12.0, error_rate=0.05 if is_pay_faulted else 0.0
+            ),
+            TopologyEdge(
+                source="order-service", target="postgres", protocol="PostgreSQL",
                 active_qps=15.0, is_impacted=is_pg_faulted,
                 is_request_path=True, is_inferred_causal=False, is_expected_propagation=is_pg_faulted,
                 latency_ms=280.0 if is_pg_faulted else 6.0, error_rate=0.05 if is_pg_faulted else 0.0
+            ),
+            TopologyEdge(
+                source="order-service", target="queue", protocol="AMQP",
+                active_qps=15.0, is_impacted=is_queue_faulted,
+                is_request_path=True, is_inferred_causal=False, is_expected_propagation=is_queue_faulted,
+                latency_ms=45.0 if is_queue_faulted else 2.0, error_rate=0.0
+            ),
+            TopologyEdge(
+                source="queue", target="notification-service", protocol="AMQP",
+                active_qps=15.0, is_impacted=is_queue_faulted,
+                is_request_path=True, is_inferred_causal=False, is_expected_propagation=is_queue_faulted,
+                latency_ms=180.0 if is_queue_faulted else 3.5, error_rate=0.0
             )
         ]
 
@@ -323,12 +418,17 @@ class SimulationService:
         now_iso = datetime.now(timezone.utc).isoformat()
         start_epoch = time.time()
 
+        from server.services.scenario_registry import scenario_registry
+        scen_id = req.scenario_id or req.fault_type
+        expected_chain = scenario_registry.get_expected_chain(scen_id, req.target_service)
+        downstream_victims = [s for s in expected_chain if s != req.target_service]
+
         # Instantiate Experiment Lifecycle FSM
         fsm = ExperimentLifecycleFSM(inc_id)
-        fsm.transition_to(ExperimentState.VALIDATING, "validating_target_and_parameters", {"target": req.target_service, "fault": req.fault_type})
+        fsm.transition_to(ExperimentState.VALIDATING, "validating_target_and_parameters", {"target": req.target_service, "fault": req.fault_type, "params": req.parameters or {}})
         fsm.transition_to(ExperimentState.BASELINING, "establishing_steady_state_baseline", {"duration": 5})
         fsm.transition_to(ExperimentState.INJECTING, "applying_fault_mutation", {"target": req.target_service, "duration": req.duration_seconds})
-        fsm.transition_to(ExperimentState.OBSERVING, "monitoring_downstream_telemetry_cascade", {"downstream": ["api", "nginx"] if req.target_service == "postgres" else []})
+        fsm.transition_to(ExperimentState.OBSERVING, "monitoring_downstream_telemetry_cascade", {"downstream": downstream_victims})
 
         # Update Service FSMs
         if req.target_service in fsm.services_fsm:
@@ -338,24 +438,30 @@ class SimulationService:
                 {"intensity": req.intensity, "latency_ms": 280.0 if req.target_service == "postgres" else 180.0}
             )
 
-        if req.target_service == "postgres":
-            fsm.services_fsm["api"].transition_to(ServiceState.DEGRADED, "caller_connection_pool_queuing", {"latency_ms": 240.0})
-            fsm.services_fsm["nginx"].transition_to(ServiceState.DEGRADED, "ingress_gateway_wait", {"latency_ms": 255.0})
+        for victim in downstream_victims:
+            if victim in fsm.services_fsm:
+                fsm.services_fsm[victim].transition_to(
+                    ServiceState.DEGRADED,
+                    "downstream_cascade_anomaly",
+                    {"root_target": req.target_service, "latency_ms": 220.0}
+                )
 
         # Register Ground Truth strictly in isolated store
-        expected_chain = ["postgres", "api", "nginx"] if req.target_service == "postgres" else [req.target_service]
+        combined_params = {"intensity": req.intensity, "duration": req.duration_seconds}
+        if req.parameters:
+            combined_params.update(req.parameters)
+
         ground_truth_manager.register_ground_truth(
             experiment_id=inc_id,
-            scenario_id="slow_postgres_cascade" if req.target_service == "postgres" else req.fault_type,
+            scenario_id=scen_id,
             target_service=req.target_service,
             fault_type=req.fault_type,
-            parameters={"intensity": req.intensity, "duration": req.duration_seconds},
+            parameters=combined_params,
             expected_impact_chain=expected_chain,
             duration_seconds=req.duration_seconds
         )
-        if req.target_service == "postgres":
-            ground_truth_manager.record_observed_propagation(inc_id, "api")
-            ground_truth_manager.record_observed_propagation(inc_id, "nginx")
+        for victim in downstream_victims:
+            ground_truth_manager.record_observed_propagation(inc_id, victim)
 
         self.experiment_fsms[inc_id] = fsm
         self.active_experiment_id = inc_id
@@ -531,14 +637,26 @@ class SimulationService:
         node_types = {
             "client": "client",
             "nginx": "ingress",
-            "api": "service",
+            "api": "gateway",
+            "auth-service": "service",
+            "catalog-service": "service",
+            "order-service": "service",
+            "payment-service": "dependency",
+            "notification-service": "worker",
+            "queue": "broker",
             "postgres": "database",
             "redis": "cache"
         }
         labels = {
-            "client": "Synthetic Traffic Client",
-            "nginx": "Nginx Ingress Proxy (8080)",
-            "api": "Rust Axum API (3000)",
+            "client": "k6 Workload Generator",
+            "nginx": "Nginx Ingress (8080)",
+            "api": "Axum API Router",
+            "auth-service": "Auth & JWT Service",
+            "catalog-service": "Product Catalog Service",
+            "order-service": "Order Processing Service",
+            "payment-service": "Payment Simulator",
+            "notification-service": "Notification Worker",
+            "queue": "Message Broker",
             "postgres": "PostgreSQL 16 Storage",
             "redis": "Redis 7 Cache Store"
         }
@@ -553,6 +671,12 @@ class SimulationService:
                     "client": {"lat": 5.0, "cpu": 0.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "nginx": {"lat": 7.2, "cpu": 2.1, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "api": {"lat": 8.5, "cpu": 3.4, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "auth-service": {"lat": 4.2, "cpu": 1.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "catalog-service": {"lat": 6.1, "cpu": 2.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "order-service": {"lat": 9.4, "cpu": 3.2, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "payment-service": {"lat": 12.0, "cpu": 1.9, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "notification-service": {"lat": 3.5, "cpu": 1.2, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "queue": {"lat": 2.0, "cpu": 2.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "postgres": {"lat": 6.0, "cpu": 4.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "redis": {"lat": 2.1, "cpu": 1.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                 }
@@ -564,6 +688,12 @@ class SimulationService:
                     "client": {"lat": 5.0, "cpu": 0.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "nginx": {"lat": 7.2, "cpu": 2.1, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "api": {"lat": 8.5, "cpu": 3.4, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "auth-service": {"lat": 4.2, "cpu": 1.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "catalog-service": {"lat": 6.1, "cpu": 2.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "order-service": {"lat": 9.4, "cpu": 3.2, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "payment-service": {"lat": 12.0, "cpu": 1.9, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "notification-service": {"lat": 3.5, "cpu": 1.2, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "queue": {"lat": 2.0, "cpu": 2.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "postgres": {"lat": 280.0, "cpu": 58.0, "err": 0.05, "status": "fault", "fsm": "DEGRADED", "inj": True, "abn": False},
                     "redis": {"lat": 2.1, "cpu": 1.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                 }
@@ -575,6 +705,12 @@ class SimulationService:
                     "client": {"lat": 12.0, "cpu": 0.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "nginx": {"lat": 25.0, "cpu": 3.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "api": {"lat": 190.0, "cpu": 14.2, "err": 0.02, "status": "degraded", "fsm": "DEGRADED", "inj": False, "abn": True},
+                    "auth-service": {"lat": 4.2, "cpu": 1.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "catalog-service": {"lat": 180.0, "cpu": 12.0, "err": 0.02, "status": "degraded", "fsm": "DEGRADED", "inj": False, "abn": True},
+                    "order-service": {"lat": 240.0, "cpu": 18.2, "err": 0.03, "status": "degraded", "fsm": "DEGRADED", "inj": False, "abn": True},
+                    "payment-service": {"lat": 12.0, "cpu": 1.9, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "notification-service": {"lat": 3.5, "cpu": 1.2, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "queue": {"lat": 2.0, "cpu": 2.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "postgres": {"lat": 280.0, "cpu": 65.0, "err": 0.05, "status": "fault", "fsm": "UNAVAILABLE", "inj": True, "abn": False},
                     "redis": {"lat": 2.1, "cpu": 1.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                 }
@@ -586,6 +722,12 @@ class SimulationService:
                     "client": {"lat": 260.0, "cpu": 0.6, "err": 0.04, "status": "degraded", "fsm": "DEGRADED", "inj": False, "abn": True},
                     "nginx": {"lat": 255.0, "cpu": 8.5, "err": 0.04, "status": "degraded", "fsm": "DEGRADED", "inj": False, "abn": True},
                     "api": {"lat": 240.0, "cpu": 18.2, "err": 0.03, "status": "degraded", "fsm": "DEGRADED", "inj": False, "abn": True},
+                    "auth-service": {"lat": 4.2, "cpu": 1.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "catalog-service": {"lat": 220.0, "cpu": 16.0, "err": 0.02, "status": "degraded", "fsm": "DEGRADED", "inj": False, "abn": True},
+                    "order-service": {"lat": 240.0, "cpu": 18.2, "err": 0.03, "status": "degraded", "fsm": "DEGRADED", "inj": False, "abn": True},
+                    "payment-service": {"lat": 12.0, "cpu": 1.9, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "notification-service": {"lat": 3.5, "cpu": 1.2, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "queue": {"lat": 2.0, "cpu": 2.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "postgres": {"lat": 280.0, "cpu": 68.0, "err": 0.06, "status": "fault", "fsm": "UNAVAILABLE", "inj": True, "abn": False},
                     "redis": {"lat": 2.1, "cpu": 1.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                 }
@@ -597,6 +739,12 @@ class SimulationService:
                     "client": {"lat": 30.0, "cpu": 0.5, "err": 0.0, "status": "healthy", "fsm": "RECOVERING", "inj": False, "abn": False},
                     "nginx": {"lat": 20.0, "cpu": 2.5, "err": 0.0, "status": "healthy", "fsm": "RECOVERING", "inj": False, "abn": False},
                     "api": {"lat": 18.0, "cpu": 4.0, "err": 0.0, "status": "healthy", "fsm": "RECOVERING", "inj": False, "abn": False},
+                    "auth-service": {"lat": 4.2, "cpu": 1.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "catalog-service": {"lat": 15.0, "cpu": 3.0, "err": 0.0, "status": "healthy", "fsm": "RECOVERING", "inj": False, "abn": False},
+                    "order-service": {"lat": 16.0, "cpu": 4.0, "err": 0.0, "status": "healthy", "fsm": "RECOVERING", "inj": False, "abn": False},
+                    "payment-service": {"lat": 12.0, "cpu": 1.9, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "notification-service": {"lat": 3.5, "cpu": 1.2, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "queue": {"lat": 2.0, "cpu": 2.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "postgres": {"lat": 15.0, "cpu": 6.0, "err": 0.0, "status": "healthy", "fsm": "RECOVERING", "inj": False, "abn": False},
                     "redis": {"lat": 2.1, "cpu": 1.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                 }
@@ -608,6 +756,12 @@ class SimulationService:
                     "client": {"lat": 5.0, "cpu": 0.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "nginx": {"lat": 7.2, "cpu": 2.1, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "api": {"lat": 8.5, "cpu": 3.4, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "auth-service": {"lat": 4.2, "cpu": 1.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "catalog-service": {"lat": 6.1, "cpu": 2.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "order-service": {"lat": 9.4, "cpu": 3.2, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "payment-service": {"lat": 12.0, "cpu": 1.9, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "notification-service": {"lat": 3.5, "cpu": 1.2, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
+                    "queue": {"lat": 2.0, "cpu": 2.5, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "postgres": {"lat": 6.0, "cpu": 4.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                     "redis": {"lat": 2.1, "cpu": 1.8, "err": 0.0, "status": "healthy", "fsm": "HEALTHY", "inj": False, "abn": False},
                 }
@@ -617,6 +771,7 @@ class SimulationService:
             for s_name, d in node_data.items():
                 slice_nodes.append(TopologyNode(
                     id=s_name,
+                    name=s_name,
                     label=labels.get(s_name, s_name),
                     type=node_types.get(s_name, "service"),
                     status=d["status"],
@@ -647,16 +802,58 @@ class SimulationService:
                     latency_ms=node_data["api"]["lat"], error_rate=node_data["api"]["err"]
                 ),
                 TopologyEdge(
-                    source="api", target="redis", protocol="RESP",
-                    active_qps=30.0, is_impacted=False,
+                    source="api", target="auth-service", protocol="gRPC",
+                    active_qps=45.0, is_impacted=False,
+                    is_request_path=True, is_inferred_causal=False, is_expected_propagation=False,
+                    latency_ms=node_data["auth-service"]["lat"], error_rate=0.0
+                ),
+                TopologyEdge(
+                    source="api", target="catalog-service", protocol="HTTP",
+                    active_qps=30.0, is_impacted=edge_impact,
+                    is_request_path=True, is_inferred_causal=False, is_expected_propagation=edge_impact,
+                    latency_ms=node_data["catalog-service"]["lat"], error_rate=node_data["catalog-service"]["err"]
+                ),
+                TopologyEdge(
+                    source="catalog-service", target="redis", protocol="RESP",
+                    active_qps=28.0, is_impacted=False,
                     is_request_path=True, is_inferred_causal=False, is_expected_propagation=False,
                     latency_ms=node_data["redis"]["lat"], error_rate=0.0
                 ),
                 TopologyEdge(
-                    source="api", target="postgres", protocol="PostgreSQL",
+                    source="catalog-service", target="postgres", protocol="PostgreSQL",
+                    active_qps=4.0, is_impacted=edge_impact,
+                    is_request_path=True, is_inferred_causal=False, is_expected_propagation=edge_impact,
+                    latency_ms=node_data["postgres"]["lat"], error_rate=node_data["postgres"]["err"]
+                ),
+                TopologyEdge(
+                    source="api", target="order-service", protocol="HTTP",
+                    active_qps=15.0, is_impacted=edge_impact,
+                    is_request_path=True, is_inferred_causal=False, is_expected_propagation=edge_impact,
+                    latency_ms=node_data["order-service"]["lat"], error_rate=node_data["order-service"]["err"]
+                ),
+                TopologyEdge(
+                    source="order-service", target="payment-service", protocol="HTTPS",
+                    active_qps=15.0, is_impacted=False,
+                    is_request_path=True, is_inferred_causal=False, is_expected_propagation=False,
+                    latency_ms=node_data["payment-service"]["lat"], error_rate=0.0
+                ),
+                TopologyEdge(
+                    source="order-service", target="postgres", protocol="PostgreSQL",
                     active_qps=15.0, is_impacted=edge_impact,
                     is_request_path=True, is_inferred_causal=False, is_expected_propagation=edge_impact,
                     latency_ms=node_data["postgres"]["lat"], error_rate=node_data["postgres"]["err"]
+                ),
+                TopologyEdge(
+                    source="order-service", target="queue", protocol="AMQP",
+                    active_qps=15.0, is_impacted=False,
+                    is_request_path=True, is_inferred_causal=False, is_expected_propagation=False,
+                    latency_ms=node_data["queue"]["lat"], error_rate=0.0
+                ),
+                TopologyEdge(
+                    source="queue", target="notification-service", protocol="AMQP",
+                    active_qps=15.0, is_impacted=False,
+                    is_request_path=True, is_inferred_causal=False, is_expected_propagation=False,
+                    latency_ms=node_data["notification-service"]["lat"], error_rate=0.0
                 )
             ]
 

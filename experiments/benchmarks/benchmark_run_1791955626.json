@@ -1,0 +1,172 @@
+{
+  "timestamp_iso": "2026-10-14T05:27:06.708982+00:00",
+  "total_trials": 2,
+  "algorithms_evaluated": [
+    "oscar_ctrcl",
+    "rcd",
+    "ms_baro",
+    "baro"
+  ],
+  "scenarios_evaluated": [
+    "slow_database",
+    "cpu_saturation"
+  ],
+  "aggregate_metrics": {
+    "OSCAR-CTRCL (Proposed)": {
+      "trials_evaluated": 2,
+      "hit_at_1": 0.5,
+      "hit_at_3": 0.5,
+      "hit_at_5": 1.0,
+      "mrr": 0.625,
+      "avg_runtime_sec": 0.012
+    },
+    "RCD": {
+      "trials_evaluated": 2,
+      "hit_at_1": 0.0,
+      "hit_at_3": 0.5,
+      "hit_at_5": 1.0,
+      "mrr": 0.2667,
+      "avg_runtime_sec": 0.0053
+    },
+    "Multi-Source BARO": {
+      "trials_evaluated": 2,
+      "hit_at_1": 0.5,
+      "hit_at_3": 0.5,
+      "hit_at_5": 0.5,
+      "mrr": 0.5714,
+      "avg_runtime_sec": 0.0037
+    },
+    "BARO": {
+      "trials_evaluated": 2,
+      "hit_at_1": 0.5,
+      "hit_at_3": 0.5,
+      "hit_at_5": 0.5,
+      "mrr": 0.5556,
+      "avg_runtime_sec": 0.0714
+    }
+  },
+  "trials": [
+    {
+      "trial_index": 1,
+      "scenario_id": "slow_database",
+      "target_service": "postgres",
+      "incident_id": "INC-1791955624",
+      "evaluations": {
+        "OSCAR-CTRCL (Proposed)": {
+          "algorithm": "OSCAR-CTRCL (Proposed)",
+          "top_1_prediction": "postgres",
+          "hit_1": true,
+          "hit_3": true,
+          "hit_5": true,
+          "reciprocal_rank": 1.0,
+          "ground_truth": "postgres",
+          "runtime_sec": 0.021417200012365356
+        },
+        "RCD": {
+          "algorithm": "RCD",
+          "top_1_prediction": "nginx",
+          "hit_1": false,
+          "hit_3": false,
+          "hit_5": true,
+          "reciprocal_rank": 0.2,
+          "ground_truth": "postgres",
+          "runtime_sec": 0.005332000000635162
+        },
+        "Multi-Source BARO": {
+          "algorithm": "Multi-Source BARO",
+          "top_1_prediction": "postgres",
+          "hit_1": true,
+          "hit_3": true,
+          "hit_5": true,
+          "reciprocal_rank": 1.0,
+          "ground_truth": "postgres",
+          "runtime_sec": 0.004713999995146878
+        },
+        "BARO": {
+          "algorithm": "BARO",
+          "top_1_prediction": "order-service",
+          "hit_1": false,
+          "hit_3": false,
+          "hit_5": false,
+          "reciprocal_rank": 0.1111111111111111,
+          "ground_truth": "postgres",
+          "runtime_sec": 0.075601500007906
+        }
+      },
+      "expected_vs_observed_match": true,
+      "expected_chain": [
+        "postgres",
+        "order-service",
+        "catalog-service",
+        "api",
+        "nginx"
+      ],
+      "observed_chain": [
+        "postgres",
+        "order-service",
+        "catalog-service",
+        "api",
+        "nginx"
+      ]
+    },
+    {
+      "trial_index": 2,
+      "scenario_id": "cpu_saturation",
+      "target_service": "order-service",
+      "incident_id": "INC-1791955625",
+      "evaluations": {
+        "OSCAR-CTRCL (Proposed)": {
+          "algorithm": "OSCAR-CTRCL (Proposed)",
+          "top_1_prediction": "postgres",
+          "hit_1": false,
+          "hit_3": false,
+          "hit_5": true,
+          "reciprocal_rank": 0.25,
+          "ground_truth": "order-service",
+          "runtime_sec": 0.002524199997424148
+        },
+        "RCD": {
+          "algorithm": "RCD",
+          "top_1_prediction": "nginx",
+          "hit_1": false,
+          "hit_3": true,
+          "hit_5": true,
+          "reciprocal_rank": 0.3333333333333333,
+          "ground_truth": "order-service",
+          "runtime_sec": 0.005321899996488355
+        },
+        "Multi-Source BARO": {
+          "algorithm": "Multi-Source BARO",
+          "top_1_prediction": "postgres",
+          "hit_1": false,
+          "hit_3": false,
+          "hit_5": false,
+          "reciprocal_rank": 0.14285714285714285,
+          "ground_truth": "order-service",
+          "runtime_sec": 0.0026218999992124736
+        },
+        "BARO": {
+          "algorithm": "BARO",
+          "top_1_prediction": "order-service",
+          "hit_1": true,
+          "hit_3": true,
+          "hit_5": true,
+          "reciprocal_rank": 1.0,
+          "ground_truth": "order-service",
+          "runtime_sec": 0.06715230000554584
+        }
+      },
+      "expected_vs_observed_match": true,
+      "expected_chain": [
+        "order-service",
+        "api",
+        "nginx"
+      ],
+      "observed_chain": [
+        "order-service",
+        "api",
+        "nginx"
+      ]
+    }
+  ]
+}

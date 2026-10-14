@@ -33,16 +33,27 @@ class RCAService:
 
     def _create_simulated_incident(self, target_service: str = "postgres", fault_type: str = "cpu_stress") -> IncidentData:
         """Constructs an IncidentData object representing the OSCAR-Sim microservice topology and telemetry."""
-        services = ["client", "nginx", "api", "postgres", "redis"]
+        services = [
+            "client", "nginx", "api", "auth-service",
+            "catalog-service", "order-service", "payment-service",
+            "notification-service", "queue", "postgres", "redis"
+        ]
         
-        # Build topology directed graph: Client -> Nginx -> API -> (Postgres, Redis)
+        # Build topology directed graph with all 11 services and causal paths
         G = nx.DiGraph()
         G.add_nodes_from(services)
         G.add_edges_from([
             ("client", "nginx"),
             ("nginx", "api"),
-            ("api", "postgres"),
-            ("api", "redis")
+            ("api", "auth-service"),
+            ("api", "catalog-service"),
+            ("catalog-service", "redis"),
+            ("catalog-service", "postgres"),
+            ("api", "order-service"),
+            ("order-service", "payment-service"),
+            ("order-service", "postgres"),
+            ("order-service", "queue"),
+            ("queue", "notification-service")
         ])
 
         # 60 timesteps (30 pre, 30 post)
@@ -62,10 +73,15 @@ class RCAService:
                     base_cpu[30:] += 75.0 + rng.normal(0, 3.0, size=30)
                 elif "mem" in fault_type:
                     base_mem[30:] += 350.0 + rng.normal(0, 10.0, size=30)
-            elif s == "api" and target_service in ["postgres", "redis"]:
+                else:
+                    base_lat[30:] += 180.0 + rng.normal(0, 10.0, size=30)
+            elif s in ["order-service", "catalog-service"] and target_service == "postgres":
+                # Direct callers to slow database experience connection pool queueing
+                base_lat[30:] += 130.0 + rng.normal(0, 10.0, size=30)
+            elif s == "api" and target_service in ["postgres", "redis", "order-service"]:
                 # Downstream caller latency cascade
-                base_lat[30:] += 120.0 + rng.normal(0, 15.0, size=30)
-            elif s == "nginx" and target_service in ["postgres", "redis"]:
+                base_lat[30:] += 120.0 + rng.normal(0, 12.0, size=30)
+            elif s == "nginx" and target_service in ["postgres", "redis", "order-service"]:
                 base_lat[30:] += 135.0 + rng.normal(0, 15.0, size=30)
 
             data[f"{s}_cpu"] = base_cpu

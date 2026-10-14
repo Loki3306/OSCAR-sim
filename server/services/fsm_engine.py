@@ -109,6 +109,12 @@ class ExperimentLifecycleFSM:
             "client": ServiceFSM("client"),
             "nginx": ServiceFSM("nginx"),
             "api": ServiceFSM("api"),
+            "auth-service": ServiceFSM("auth-service"),
+            "catalog-service": ServiceFSM("catalog-service"),
+            "order-service": ServiceFSM("order-service"),
+            "payment-service": ServiceFSM("payment-service"),
+            "notification-service": ServiceFSM("notification-service"),
+            "queue": ServiceFSM("queue"),
             "postgres": ServiceFSM("postgres"),
             "redis": ServiceFSM("redis")
         }

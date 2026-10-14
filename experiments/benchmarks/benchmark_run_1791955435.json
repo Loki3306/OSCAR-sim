@@ -1,0 +1,86 @@
+{
+  "timestamp_iso": "2026-10-14T05:23:55.654506+00:00",
+  "total_trials": 2,
+  "algorithms_evaluated": [
+    "oscar_ctrcl",
+    "rcd",
+    "ms_baro",
+    "baro"
+  ],
+  "scenarios_evaluated": [
+    "slow_database",
+    "cpu_saturation"
+  ],
+  "aggregate_metrics": {
+    "oscar_ctrcl": {
+      "trials_evaluated": 0,
+      "hit_at_1": 0.0,
+      "hit_at_3": 0.0,
+      "hit_at_5": 0.0,
+      "mrr": 0.0,
+      "avg_runtime_sec": 0.0
+    },
+    "rcd": {
+      "trials_evaluated": 0,
+      "hit_at_1": 0.0,
+      "hit_at_3": 0.0,
+      "hit_at_5": 0.0,
+      "mrr": 0.0,
+      "avg_runtime_sec": 0.0
+    },
+    "ms_baro": {
+      "trials_evaluated": 0,
+      "hit_at_1": 0.0,
+      "hit_at_3": 0.0,
+      "hit_at_5": 0.0,
+      "mrr": 0.0,
+      "avg_runtime_sec": 0.0
+    },
+    "baro": {
+      "trials_evaluated": 0,
+      "hit_at_1": 0.0,
+      "hit_at_3": 0.0,
+      "hit_at_5": 0.0,
+      "mrr": 0.0,
+      "avg_runtime_sec": 0.0
+    }
+  },
+  "trials": [
+    {
+      "trial_index": 1,
+      "scenario_id": "slow_database",
+      "target_service": "postgres",
+      "incident_id": "INC-1791955433",
+      "evaluations": {},
+      "expected_vs_observed_match": true,
+      "expected_chain": [
+        "postgres",
+        "api",
+        "nginx"
+      ],
+      "observed_chain": [
+        "postgres",
+        "api",
+        "nginx"
+      ]
+    },
+    {
+      "trial_index": 2,
+      "scenario_id": "cpu_saturation",
+      "target_service": "order-service",
+      "incident_id": "INC-1791955434",
+      "evaluations": {},
+      "expected_vs_observed_match": true,
+      "expected_chain": [
+        "postgres",
+        "api",
+        "nginx"
+      ],
+      "observed_chain": [
+        "postgres",
+        "api",
+        "nginx"
+      ]
+    }
+  ]
+}

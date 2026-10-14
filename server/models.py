@@ -14,6 +14,7 @@ class ServiceHealth(BaseModel):
 
 class TopologyNode(BaseModel):
     id: str
+    name: Optional[str] = None
     label: str
     type: str  # ingress, service, database, cache, client
     status: str
@@ -95,10 +96,12 @@ class MetricsQueryResponse(BaseModel):
 
 # --- Fault Models ---
 class FaultTriggerRequest(BaseModel):
-    fault_type: str  # cpu_stress, memory_spike, network_delay, packet_loss, container_pause, container_kill
-    target_service: str  # postgres, redis, api, nginx
+    fault_type: str  # cpu_saturation, memory_pressure, network_latency, packet_loss, service_crash, slow_database, cache_failure, traffic_spike, retry_storm, queue_backlog
+    target_service: str  # Any of the 11 microservices
     duration_seconds: int = Field(ge=5, le=300, default=30)
     intensity: Optional[float] = Field(ge=1.0, le=100.0, default=80.0)
+    scenario_id: Optional[str] = None
+    parameters: Optional[Dict[str, Any]] = None
 
 class FaultExecutionStatus(BaseModel):
     fault_id: str

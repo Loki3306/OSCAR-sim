@@ -6,6 +6,15 @@ from server.services.sim_service import sim_service
 
 router = APIRouter(prefix="/api/faults", tags=["Fault Laboratory"])
 
+@router.get("/scenarios")
+def list_fault_scenarios():
+    """Lists the full library of 10 parameterized distributed failure scenarios."""
+    from server.services.scenario_registry import scenario_registry
+    return {
+        "scenarios": [s.model_dump() for s in scenario_registry.list_all()],
+        "total": len(scenario_registry.list_all())
+    }
+
 @router.get("/supported")
 def get_supported_faults():
     """Lists verified, supported fault injection capabilities and target mappings."""

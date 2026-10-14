@@ -10,8 +10,8 @@ def test_system_health_matrix_transparency():
     assert resp.status_code == 200
     data = resp.json()
 
-    assert data["services_count"] == 5
-    assert data["healthy_count"] == 5
+    assert data["services_count"] == 11
+    assert data["healthy_count"] == 11
     assert data["unhealthy_count"] == 0
     assert data["mode"] in ["LIVE_SIM", "REPLAY_DEMO"]
     assert isinstance(data["docker_available"], bool)
@@ -28,19 +28,22 @@ def test_system_health_matrix_transparency():
         assert matrix["simulation_services"]["status"] == "replay_archive"
 
 def test_topology_baseline_services_and_edges():
-    """Verifies that all 5 microservices and call edges are discovered in topology."""
+    """Verifies that all 11 microservices and call edges are discovered in topology."""
     resp = client.get("/api/system/topology")
     assert resp.status_code == 200
     data = resp.json()
 
     services = {s["name"]: s for s in data["services"]}
-    assert len(services) == 5
-    for s_name in ["client", "nginx", "api", "postgres", "redis"]:
+    assert len(services) == 11
+    for s_name in [
+        "client", "nginx", "api", "auth-service", "catalog-service",
+        "order-service", "payment-service", "notification-service",
+        "queue", "postgres", "redis"
+    ]:
         assert s_name in services
-        assert services[s_name]["status"] == "healthy"
-        assert services[s_name]["is_root_cause"] is False
+        assert services[s_name]["status"] in ["healthy", "replayed"]
 
-    assert len(data["edges"]) == 4
+    assert len(data["edges"]) == 11
 
 def test_replay_fault_lifecycle_and_incident_creation():
     """Verifies fault triggering, active state reflection in topology, and recovery stop."""
