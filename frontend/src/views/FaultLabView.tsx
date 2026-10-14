@@ -30,7 +30,7 @@ interface ScenarioMeta {
 }
 
 interface FaultLabViewProps {
-  onNavigate?: (view: any) => void;
+  onNavigate?: (view: any, context?: any) => void;
 }
 
 export const FaultLabView: React.FC<FaultLabViewProps> = ({ onNavigate }) => {
@@ -54,6 +54,39 @@ export const FaultLabView: React.FC<FaultLabViewProps> = ({ onNavigate }) => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [actionMessage, setActionMessage] = useState<string | null>(null);
+
+  // Guided Transition State
+  const [guidedRedirect, setGuidedRedirect] = useState<{
+    incidentId: string;
+    scenarioId: string;
+    targetService: string;
+    countdown: number;
+  } | null>(null);
+
+  useEffect(() => {
+    let timer: any = null;
+    if (guidedRedirect && guidedRedirect.countdown > 0) {
+      timer = setInterval(() => {
+        setGuidedRedirect(prev => {
+          if (!prev) return null;
+          if (prev.countdown <= 1) {
+            if (onNavigate) {
+              onNavigate('fault_trace', {
+                incidentId: prev.incidentId,
+                scenarioId: prev.scenarioId,
+                targetService: prev.targetService,
+                stage: 'propagating',
+                autoAdvance: true
+              });
+            }
+            return null;
+          }
+          return { ...prev, countdown: prev.countdown - 1 };
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [guidedRedirect, onNavigate]);
 
   const allServices = [
     'postgres',
@@ -236,6 +269,12 @@ export const FaultLabView: React.FC<FaultLabViewProps> = ({ onNavigate }) => {
       });
       const modeLabel = systemStatus?.docker_available ? 'Live Container Mutation' : 'Replay Simulation Mode';
       setActionMessage(`${modeLabel} initiated successfully (Incident ID: ${res.incident_id})`);
+      setGuidedRedirect({
+        incidentId: res.incident_id || `INC-${Date.now()}`,
+        scenarioId: selectedScenarioId,
+        targetService: targetService,
+        countdown: 3
+      });
       await loadData();
     } catch (err: any) {
       setActionMessage(`Execution error: ${err.message}`);
@@ -274,7 +313,61 @@ export const FaultLabView: React.FC<FaultLabViewProps> = ({ onNavigate }) => {
           </div>
         )}
 
-        {actionMessage && (
+        {guidedRedirect && (
+          <div
+            style={{
+              padding: 14,
+              background: '#fef3f2',
+              border: '2px solid #fda29b',
+              borderRadius: 8,
+              marginBottom: 16,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 10,
+              boxShadow: '0 4px 6px -1px rgba(180, 35, 24, 0.1)'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#b42318', fontWeight: 800 }}>
+                <Zap size={18} />
+                <span>Fault Injected: Traveling Shockwave Initiated</span>
+              </div>
+              <span className="badge badge-rose">INCIDENT {guidedRedirect.incidentId}</span>
+            </div>
+            <div style={{ fontSize: 12, color: '#b42318', lineHeight: 1.4 }}>
+              Guiding to <strong>Propagation Trace Laboratory</strong> to observe the traveling shockwave across microservices in <strong>{guidedRedirect.countdown}s</strong>...
+            </div>
+            <div style={{ display: 'flex', gap: 8, marginTop: 4 }}>
+              <button
+                className="action-btn primary"
+                style={{ background: '#b42318', borderColor: '#b42318', color: '#fff', fontWeight: 700, padding: '6px 14px', fontSize: 11 }}
+                onClick={() => {
+                  if (onNavigate) {
+                    onNavigate('fault_trace', {
+                      incidentId: guidedRedirect.incidentId,
+                      scenarioId: guidedRedirect.scenarioId,
+                      targetService: guidedRedirect.targetService,
+                      stage: 'propagating',
+                      autoAdvance: true
+                    });
+                  }
+                  setGuidedRedirect(null);
+                }}
+              >
+                Watch Traveling Cascade Now →
+              </button>
+              <button
+                className="action-btn"
+                style={{ padding: '6px 12px', fontSize: 11 }}
+                onClick={() => setGuidedRedirect(null)}
+              >
+                Stay on Page
+              </button>
+            </div>
+          </div>
+        )}
+
+        {actionMessage && !guidedRedirect && (
           <div
             style={{
               padding: 12,

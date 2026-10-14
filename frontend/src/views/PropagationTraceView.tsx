@@ -17,15 +17,33 @@ import {
   Radio
 } from 'lucide-react';
 import { api } from '../services/api';
-import { ScenarioTraceData, PropagationHopData } from '../types';
+import { ScenarioTraceData, PropagationHopData, InvestigationFlowContext } from '../types';
 
-export const PropagationTraceView: React.FC = () => {
-  const [selectedScenario, setSelectedScenario] = useState<string>('slow_database');
+interface PropagationTraceViewProps {
+  investigationContext?: InvestigationFlowContext | null;
+  onNavigate?: (view: any, context?: any) => void;
+}
+
+export const PropagationTraceView: React.FC<PropagationTraceViewProps> = ({
+  investigationContext,
+  onNavigate
+}) => {
+  const [selectedScenario, setSelectedScenario] = useState<string>(
+    investigationContext?.scenarioId || 'slow_database'
+  );
   const [traceData, setTraceData] = useState<ScenarioTraceData | null>(null);
   const [currentHopIndex, setCurrentHopIndex] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [playSpeed, setPlaySpeed] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(true);
+  const [advanceCountdown, setAdvanceCountdown] = useState<number | null>(null);
+
+  // Sync with investigation context
+  useEffect(() => {
+    if (investigationContext?.scenarioId && investigationContext.scenarioId !== selectedScenario) {
+      setSelectedScenario(investigationContext.scenarioId);
+    }
+  }, [investigationContext?.scenarioId]);
 
   // 11-Service layout coordinates organized in 6 clean columns
   const nodePositions: Record<string, { x: number; y: number }> = {
@@ -91,7 +109,7 @@ export const PropagationTraceView: React.FC = () => {
       const data = await api.getPropagationTrace(scenId);
       setTraceData(data);
       setCurrentHopIndex(0);
-      setIsPlaying(false);
+      setIsPlaying(investigationContext?.autoAdvance ? true : false);
     } catch (err) {
       console.error('Failed to load propagation trace', err);
     } finally {
@@ -102,6 +120,45 @@ export const PropagationTraceView: React.FC = () => {
   const handleRestart = () => {
     setCurrentHopIndex(0);
     setIsPlaying(true);
+    setAdvanceCountdown(null);
+  };
+
+  // Auto-advance countdown when cascade reaches the final hop
+  useEffect(() => {
+    if (traceData && currentHopIndex >= traceData.hops.length - 1 && investigationContext?.autoAdvance) {
+      setAdvanceCountdown(4);
+    } else {
+      setAdvanceCountdown(null);
+    }
+  }, [currentHopIndex, traceData, investigationContext?.autoAdvance]);
+
+  useEffect(() => {
+    let timer: any = null;
+    if (advanceCountdown !== null && advanceCountdown > 0) {
+      timer = setInterval(() => {
+        setAdvanceCountdown(prev => {
+          if (prev === null || prev <= 1) {
+            handleProceedToRCA();
+            return null;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [advanceCountdown]);
+
+  const handleProceedToRCA = () => {
+    setAdvanceCountdown(null);
+    if (onNavigate) {
+      onNavigate('rca_workbench', {
+        incidentId: investigationContext?.incidentId || 'INC-LATEST',
+        scenarioId: selectedScenario,
+        targetService: traceData?.target_service || 'postgres',
+        stage: 'rca_diagnosing',
+        autoAdvance: true
+      });
+    }
   };
 
   const activeHop = traceData && traceData.hops[currentHopIndex] ? traceData.hops[currentHopIndex] : null;
@@ -116,6 +173,78 @@ export const PropagationTraceView: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+      {/* Guided Investigation Stage 1 Banner */}
+      {investigationContext && (
+        <div
+          style={{
+            padding: '10px 16px',
+            background: advanceCountdown !== null ? '#ecfdf3' : '#eff8ff',
+            border: `1px solid ${advanceCountdown !== null ? '#abefc6' : '#b2ddff'}`,
+            borderRadius: 8,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.03)'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div
+              style={{
+                width: 24,
+                height: 24,
+                borderRadius: '50%',
+                background: advanceCountdown !== null ? '#027a48' : '#175cd3',
+                color: '#fff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 12,
+                fontWeight: 800
+              }}
+            >
+              1
+            </div>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: advanceCountdown !== null ? '#027a48' : '#175cd3' }}>
+                {advanceCountdown !== null
+                  ? `Wavefront Complete: Traversed ${traceData?.hops.length || 0} hops to Ingress Gateway (${traceData?.total_propagation_ms}ms)`
+                  : `Visualizing Fault Wavefront: Hop ${currentHopIndex + 1} of ${traceData?.hops.length || 0} (${activeHop?.display_name || ''})`}
+              </div>
+              <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
+                {advanceCountdown !== null
+                  ? `Proceeding to Multi-Model RCA Diagnosis in ${advanceCountdown}s...`
+                  : 'Observing cascading latency and connection queueing across microservice boundaries.'}
+              </div>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <button
+              className="action-btn primary"
+              style={{
+                padding: '6px 14px',
+                fontSize: 11,
+                fontWeight: 700,
+                background: '#027a48',
+                borderColor: '#027a48'
+              }}
+              onClick={handleProceedToRCA}
+            >
+              Proceed to RCA Diagnosis Now →
+            </button>
+            {advanceCountdown !== null && (
+              <button
+                className="action-btn"
+                style={{ padding: '6px 10px', fontSize: 11 }}
+                onClick={() => setAdvanceCountdown(null)}
+              >
+                Pause Auto-Advance
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Top Banner & Scenario Selector */}
       <div className="panel-card" style={{ padding: '12px 18px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>

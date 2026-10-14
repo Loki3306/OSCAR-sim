@@ -11,7 +11,8 @@ import {
   FSMStatusResponse,
   TimelineScrubResponse,
   EvaluationReportData,
-  ScenarioTraceData
+  ScenarioTraceData,
+  RichIncidentReport
 } from '../types';
 
 const BASE_URL = '';
@@ -194,6 +195,13 @@ export const api = {
     if (caseId) query.append('case_id', caseId);
     const res = await fetch(`/api/reports/generate?${query.toString()}`);
     return res.text();
+  },
+
+  async getIncidentReportDetail(incidentId?: string, scenarioId?: string): Promise<RichIncidentReport> {
+    const query = new URLSearchParams();
+    if (incidentId) query.append('incident_id', incidentId);
+    if (scenarioId) query.append('scenario_id', scenarioId);
+    return fetchJson<RichIncidentReport>(`/api/reports/incident-detail?${query.toString()}`);
   },
 
   // Propagation Trace Laboratory

@@ -119,3 +119,19 @@ def test_reports_generation():
     resp = client.get("/api/reports/generate?report_type=incident&format=markdown")
     assert resp.status_code == 200
     assert "# OSCAR SRE Incident Diagnostic Report" in resp.text
+
+    # HTML format
+    resp_html = client.get("/api/reports/generate?report_type=incident&format=html")
+    assert resp_html.status_code == 200
+    assert "SRE Incident Diagnostic Post-Mortem Report" in resp_html.text
+    assert "<svg" in resp_html.text
+
+    # Structured JSON incident detail
+    resp_detail = client.get("/api/reports/incident-detail?scenario_id=slow_database")
+    assert resp_detail.status_code == 200
+    data = resp_detail.json()
+    assert "incident_metadata" in data
+    assert "telemetry_proofs" in data
+    assert "propagation_summary" in data
+    assert "algorithm_consensus" in data
+

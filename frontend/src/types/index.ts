@@ -300,3 +300,91 @@ export interface ScenarioTraceData {
   hops: PropagationHopData[];
   generated_at: string;
 }
+
+export interface InvestigationFlowContext {
+  incidentId: string;
+  scenarioId: string;
+  targetService: string;
+  stage: 'propagating' | 'rca_diagnosing' | 'report_ready';
+  autoAdvance: boolean;
+}
+
+export interface IncidentTelemetryProof {
+  metric: string;
+  service: string;
+  baseline: string;
+  incident_peak: string;
+  delta: string;
+  severity: 'critical' | 'warning' | 'info';
+  threshold: string;
+  breached: boolean;
+}
+
+export interface AlgorithmConsensusItem {
+  algorithm: string;
+  version: string;
+  predicted_service: string;
+  confidence_score: number;
+  rank: number;
+  verdict: string;
+  is_match: boolean;
+  runtime_ms: number;
+  attribution_rationale: string;
+}
+
+export interface RichIncidentReport {
+  incident_metadata: {
+    incident_id: string;
+    title: string;
+    target_service: string;
+    target_label: string;
+    scenario_id: string;
+    scenario_name: string;
+    severity: string;
+    status: string;
+    created_at: string;
+    resolved_at: string;
+    duration_seconds: number;
+    environment: string;
+    impact_scope: string;
+  };
+  executive_summary: {
+    headline: string;
+    problem_description: string;
+    impact_assessment: string;
+    root_cause_service: string;
+    root_cause_label: string;
+  };
+  telemetry_proofs: IncidentTelemetryProof[];
+  statistical_verification: {
+    anomaly_changepoint_time: string;
+    z_score: number;
+    p_value: number;
+    test_method: string;
+    confidence_level: number;
+    unaffected_branch_proof: string;
+  };
+  propagation_summary: {
+    total_propagation_ms: number;
+    blast_chain: string[];
+    unaffected_services: string[];
+    hops: Array<{
+      hop_index: number;
+      offset_ms: number;
+      service: string;
+      display_name: string;
+      role: string;
+      status: string;
+      causal_mechanism: string;
+      telemetry_delta: Record<string, any>;
+      symptoms: string[];
+    }>;
+  };
+  algorithm_consensus: AlgorithmConsensusItem[];
+  remediation_playbook: {
+    immediate_mitigations: string[];
+    architectural_recommendations: string[];
+    runbook_links: Array<{ title: string; ref: string }>;
+  };
+}
+

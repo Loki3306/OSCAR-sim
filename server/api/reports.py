@@ -5,8 +5,17 @@ from typing import Optional
 from server.services.sim_service import sim_service
 from server.services.benchmark_service import benchmark_service
 from server.services.rca_service import rca_service
+from server.services.report_generator import report_generator
 
 router = APIRouter(prefix="/api/reports", tags=["Report Center"])
+
+@router.get("/incident-detail")
+def get_incident_report_detail(
+    incident_id: Optional[str] = Query(None),
+    scenario_id: Optional[str] = Query(None)
+):
+    """Returns structured JSON for the comprehensive SRE post-mortem report."""
+    return report_generator.get_incident_report_data(incident_id=incident_id, scenario_id=scenario_id)
 
 @router.get("/generate")
 def generate_report(
@@ -16,6 +25,13 @@ def generate_report(
     format: str = Query("markdown", description="markdown or html")
 ):
     """Generates an exportable scientific report from verified or simulation data."""
+    if report_type == "incident" and format == "html":
+        report_data = report_generator.get_incident_report_data(
+            incident_id=incident_id,
+            scenario_id=case_id
+        )
+        return HTMLResponse(content=report_generator.generate_html_report(report_data))
+
     if report_type == "incident":
         inc_title = incident_id or case_id or "Active Simulation Incident"
         target = "postgres" if not incident_id or "postgres" in incident_id else "redis"
@@ -100,3 +116,4 @@ def generate_report(
         return HTMLResponse(content=html_content)
 
     return PlainTextResponse(content=md_content)
+
