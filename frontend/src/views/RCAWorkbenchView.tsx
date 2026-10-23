@@ -123,14 +123,10 @@ export const RCAWorkbenchView: React.FC<RCAWorkbenchViewProps> = ({
     let timer: any = null;
     if (autoAdvanceCountdown !== null && autoAdvanceCountdown > 0) {
       timer = setInterval(() => {
-        setAutoAdvanceCountdown(prev => {
-          if (prev === null || prev <= 1) {
-            handleProceedToReport();
-            return null;
-          }
-          return prev - 1;
-        });
+        setAutoAdvanceCountdown(prev => (prev !== null ? prev - 1 : null));
       }, 1000);
+    } else if (autoAdvanceCountdown === 0) {
+      handleProceedToReport();
     }
     return () => clearInterval(timer);
   }, [autoAdvanceCountdown]);
@@ -386,45 +382,83 @@ export const RCAWorkbenchView: React.FC<RCAWorkbenchViewProps> = ({
       </div>
 
       {/* Clear Consensus Overview Banner */}
-      {diagnosisResult && (
-        <div
-          style={{
-            padding: '14px 18px',
-            background: 'var(--card-bg)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: 8,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: 12
-          }}
-        >
-          <div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>
-              Multi-Model Consensus Summary
-            </div>
-            <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--text-main)', marginTop: 2 }}>
-              Consensus Suspect:{' '}
-              <span style={{ color: '#027a48', fontFamily: 'monospace' }}>
-                {evaluationReport?.ground_truth.target_service || 'postgres'}
-              </span>
-              <span style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-muted)', marginLeft: 8 }}>
-                (Confirmed by OSCAR-CTRCL with 95.2% confidence)
-              </span>
-            </div>
-          </div>
+      {diagnosisResult && (() => {
+        // Compute real algorithmic vote tally across active models
+        const voteCounts: Record<string, number> = {};
+        const models = Object.values(diagnosisResult.results);
+        let maxVotes = 0;
+        let consensusSuspect = 'None';
+        models.forEach(m => {
+          const top = m.top_1_prediction;
+          if (top && top !== 'None') {
+            voteCounts[top] = (voteCounts[top] || 0) + 1;
+            if (voteCounts[top] > maxVotes) {
+              maxVotes = voteCounts[top];
+              consensusSuspect = top;
+            }
+          }
+        });
+        const totalModels = models.length;
+        const consensusAgreementPct = totalModels > 0 ? Math.round((maxVotes / totalModels) * 100) : 0;
+        const oscarAgrees = diagnosisResult.results['OSCAR-CTRCL (Proposed)']?.top_1_prediction === consensusSuspect;
 
-          <button
-            className="action-btn primary"
-            style={{ padding: '7px 16px', fontSize: 12, display: 'flex', alignItems: 'center', gap: 6 }}
-            onClick={handleProceedToReport}
+        return (
+          <div
+            style={{
+              padding: '14px 18px',
+              background: 'var(--card-bg)',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: 8,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: 12
+            }}
           >
-            <span>Proceed to SRE Post-Mortem Report</span>
-            <ArrowRight size={13} />
-          </button>
-        </div>
-      )}
+            <div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+                Multi-Model Consensus Summary
+              </div>
+              <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--text-main)', marginTop: 2, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
+                <span>
+                  Consensus Suspect:{' '}
+                  <span style={{ color: '#027a48', fontFamily: 'monospace' }}>
+                    {consensusSuspect}
+                  </span>
+                </span>
+                <span style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-muted)' }}>
+                  ({maxVotes} of {totalModels} models agreed &bull; {consensusAgreementPct}% consensus)
+                </span>
+                {oscarAgrees && (
+                  <span
+                    style={{
+                      fontSize: 10,
+                      fontWeight: 800,
+                      color: '#027a48',
+                      background: '#ecfdf3',
+                      border: '1px solid #abefc6',
+                      padding: '2px 8px',
+                      borderRadius: 4
+                    }}
+                  >
+                    ✓ Confirmed by OSCAR-CTRCL
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <button
+              className="action-btn primary"
+              style={{ padding: '7px 16px', fontSize: 12, display: 'flex', alignItems: 'center', gap: 6 }}
+              onClick={handleProceedToReport}
+            >
+              <span>Proceed to SRE Post-Mortem Report</span>
+              <ArrowRight size={13} />
+            </button>
+          </div>
+        );
+      })()}
 
       {/* Human-Readable Algorithm Comparative Cards */}
       {diagnosisResult && (
@@ -434,7 +468,14 @@ export const RCAWorkbenchView: React.FC<RCAWorkbenchViewProps> = ({
             const evalData = evaluationReport?.algorithm_evaluations[algName];
             const topCandidate = diag.ranked_candidates[0];
             const isHit = evalData ? evalData.hit_1 : topCandidate?.service === evaluationReport?.ground_truth.target_service;
-            const confidencePct = Math.round((topCandidate?.score || 0.8) * 100);
+            
+            // Calculate mathematically sound relative attribution share % among top candidates
+            const totalScore = diag.ranked_candidates.reduce((sum, c) => sum + Math.max(0, c.score), 0);
+            const getRelativeShare = (score: number) => {
+              if (totalScore <= 0) return 50;
+              return Math.min(99, Math.max(1, Math.round((Math.max(0, score) / totalScore) * 100)));
+            };
+            const topSharePct = getRelativeShare(topCandidate?.score || 0);
 
             return (
               <div
@@ -508,11 +549,16 @@ export const RCAWorkbenchView: React.FC<RCAWorkbenchViewProps> = ({
                     Rank-1 Localized Service
                   </div>
                   <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginTop: 4 }}>
-                    <div className="font-mono" style={{ fontSize: 18, fontWeight: 900, color: isHit ? '#027a48' : '#b42318' }}>
+                    <div className="font-mono" style={{ fontSize: 17, fontWeight: 900, color: isHit ? '#027a48' : '#b42318' }}>
                       {diag.top_1_prediction || 'N/A'}
                     </div>
-                    <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--text-main)' }}>
-                      {confidencePct}%
+                    <div style={{ textAlign: 'right' }}>
+                      <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--text-main)' }}>
+                        {topSharePct}% Share
+                      </div>
+                      <div style={{ fontSize: 10, color: 'var(--text-muted)', fontFamily: 'monospace' }}>
+                        Score: {topCandidate ? topCandidate.score.toFixed(3) : '0.000'}
+                      </div>
                     </div>
                   </div>
 
@@ -521,7 +567,7 @@ export const RCAWorkbenchView: React.FC<RCAWorkbenchViewProps> = ({
                     <div
                       style={{
                         height: '100%',
-                        width: `${confidencePct}%`,
+                        width: `${topSharePct}%`,
                         background: isHit ? '#027a48' : '#d92d20',
                         borderRadius: 3
                       }}
@@ -556,6 +602,7 @@ export const RCAWorkbenchView: React.FC<RCAWorkbenchViewProps> = ({
                       <tr>
                         <th style={{ width: 35 }}>Rank</th>
                         <th>Service</th>
+                        <th style={{ textAlign: 'right', width: 60 }}>Share</th>
                         <th style={{ textAlign: 'right', width: 55 }}>Score</th>
                       </tr>
                     </thead>
@@ -567,6 +614,9 @@ export const RCAWorkbenchView: React.FC<RCAWorkbenchViewProps> = ({
                           </td>
                           <td>
                             <strong style={{ fontSize: 11 }}>{cand.service}</strong>
+                          </td>
+                          <td style={{ textAlign: 'right', fontSize: 11, color: 'var(--text-muted)' }}>
+                            {getRelativeShare(cand.score)}%
                           </td>
                           <td className="font-mono font-bold" style={{ textAlign: 'right', fontSize: 11 }}>
                             {cand.score.toFixed(3)}

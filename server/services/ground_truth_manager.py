@@ -119,6 +119,16 @@ class GroundTruthManager:
                 if gt in candidates:
                     rank_idx = candidates.index(gt) + 1
                     rr = 1.0 / rank_idx
+            else:
+                fallback_top = getattr(res, "top_1_prediction", None)
+                if not fallback_top and isinstance(res, dict):
+                    fallback_top = res.get("top_1_prediction") or res.get("top_1")
+                if fallback_top:
+                    top_1 = fallback_top
+                    hit_1 = (top_1 == gt)
+                    hit_3 = hit_1
+                    hit_5 = hit_1
+                    rr = 1.0 if hit_1 else 0.0
 
             runtime = getattr(res, "runtime_sec", 0.0)
             if isinstance(res, dict):

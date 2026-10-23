@@ -206,6 +206,23 @@ class ScenarioRegistry:
         return list(self._scenarios.values())
 
     def get_expected_chain(self, scenario_id: str, target: str) -> List[str]:
+        # Dynamic topology blast paths for OSCAR microservice architecture
+        service_blast_paths = {
+            "redis": ["redis", "catalog-service", "api", "nginx"],
+            "postgres": ["postgres", "order-service", "catalog-service", "api", "nginx"],
+            "payment-service": ["payment-service", "order-service", "api", "nginx"],
+            "auth-service": ["auth-service", "api", "nginx"],
+            "catalog-service": ["catalog-service", "api", "nginx"],
+            "order-service": ["order-service", "api", "nginx"],
+            "queue": ["queue", "order-service", "notification-service"],
+            "api": ["api", "nginx"],
+            "nginx": ["nginx", "client"],
+            "notification-service": ["notification-service", "queue"],
+            "client": ["client", "nginx"]
+        }
+        if target in service_blast_paths:
+            return list(service_blast_paths[target])
+
         scenario = self.get(scenario_id)
         if scenario:
             chain = list(scenario.expected_impact_chain)

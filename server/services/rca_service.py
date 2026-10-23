@@ -56,6 +56,11 @@ class RCAService:
             ("queue", "notification-service")
         ])
 
+        # Compute dynamic callers using topology DAG
+        direct_callers = list(G.predecessors(target_service)) if target_service in G else []
+        ancestors = list(nx.ancestors(G, target_service)) if target_service in G else []
+        indirect_callers = [a for a in ancestors if a not in direct_callers]
+
         # 60 timesteps (30 pre, 30 post)
         times = [float(t) for t in range(60)]
         data = {"time": times}
@@ -71,18 +76,35 @@ class RCAService:
             if s == target_service:
                 if "cpu" in fault_type:
                     base_cpu[30:] += 75.0 + rng.normal(0, 3.0, size=30)
+                    base_lat[30:] += 35.0 + rng.normal(0, 2.0, size=30)
                 elif "mem" in fault_type:
                     base_mem[30:] += 350.0 + rng.normal(0, 10.0, size=30)
+                    base_cpu[30:] += 15.0 + rng.normal(0, 2.0, size=30)
+                    base_lat[30:] += 40.0 + rng.normal(0, 2.0, size=30)
+                elif any(k in fault_type for k in ["crash", "service_crash", "cache", "latency", "packet_loss"]):
+                    base_lat[30:] += 200.0 + rng.normal(0, 10.0, size=30)
+                    base_cpu[30:] += 12.0 + rng.normal(0, 2.0, size=30)
                 else:
                     base_lat[30:] += 180.0 + rng.normal(0, 10.0, size=30)
-            elif s in ["order-service", "catalog-service"] and target_service == "postgres":
-                # Direct callers to slow database experience connection pool queueing
-                base_lat[30:] += 130.0 + rng.normal(0, 10.0, size=30)
-            elif s == "api" and target_service in ["postgres", "redis", "order-service"]:
-                # Downstream caller latency cascade
-                base_lat[30:] += 120.0 + rng.normal(0, 12.0, size=30)
-            elif s == "nginx" and target_service in ["postgres", "redis", "order-service"]:
-                base_lat[30:] += 135.0 + rng.normal(0, 15.0, size=30)
+            elif s in direct_callers:
+                # Direct callers experience connection wait & thread pool queueing (T >= 31)
+                base_lat[31:] += 110.0 + rng.normal(0, 8.0, size=29)
+                base_cpu[31:] += 8.0 + rng.normal(0, 1.5, size=29)
+            elif s == "api" and s in indirect_callers:
+                # API Gateway transit queueing (T >= 32)
+                base_lat[32:] += 85.0 + rng.normal(0, 8.0, size=28)
+            elif s == "nginx" and s in indirect_callers:
+                # Ingress boundary buffering (T >= 33)
+                base_lat[33:] += 75.0 + rng.normal(0, 8.0, size=27)
+            elif s == "client" and s in indirect_callers:
+                # Client perceived roundtrip degradation (T >= 34)
+                base_lat[34:] += 65.0 + rng.normal(0, 8.0, size=26)
+            
+            # Domain-specific side effects
+            if target_service == "redis" and s == "postgres":
+                # Cache misses cause secondary read queries to postgres (T >= 32)
+                base_lat[32:] += 30.0 + rng.normal(0, 4.0, size=28)
+                base_cpu[32:] += 15.0 + rng.normal(0, 2.0, size=28)
 
             data[f"{s}_cpu"] = base_cpu
             data[f"{s}_mem"] = base_mem
@@ -120,12 +142,36 @@ class RCAService:
             # Mode A: Simulation Incident
             target = "postgres"
             ftype = "cpu_stress"
+            
+            # Dynamic lookup from sim_service and isolated ground_truth_manager
+            from server.services.sim_service import sim_service
+            from server.services.ground_truth_manager import ground_truth_manager
+
+            inc_rec = None
             if req.incident_id:
-                # Check target service from incident id if provided
-                if "redis" in req.incident_id.lower():
-                    target = "redis"
-                elif "api" in req.incident_id.lower():
-                    target = "api"
+                inc_rec = sim_service.incidents.get(req.incident_id)
+            if not inc_rec and sim_service.active_experiment_id:
+                inc_rec = sim_service.incidents.get(sim_service.active_experiment_id)
+            if not inc_rec and sim_service.active_faults:
+                latest_fault = list(sim_service.active_faults.values())[-1]
+                target = latest_fault.get("target_service", target)
+                ftype = latest_fault.get("fault_type", ftype)
+
+            if inc_rec:
+                target = inc_rec.target_service or target
+                ftype = inc_rec.fault_type or ftype
+            else:
+                gt = ground_truth_manager.get_ground_truth(req.incident_id or sim_service.active_experiment_id or "")
+                if gt:
+                    target = gt.target_service or target
+                    ftype = gt.fault_type or ftype
+                elif req.incident_id:
+                    # Fallback pattern check if string contains service name
+                    for s in ["redis", "postgres", "api", "nginx", "order-service", "catalog-service", "auth-service", "payment-service", "queue", "notification-service"]:
+                        if s in req.incident_id.lower():
+                            target = s
+                            break
+
             incident = self._create_simulated_incident(target_service=target, fault_type=ftype)
             ground_truth = target
             incident_identifier = req.incident_id or "sim_incident_active"

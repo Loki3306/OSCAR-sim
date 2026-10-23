@@ -78,12 +78,18 @@ export const PropagationTraceView: React.FC<PropagationTraceViewProps> = ({
     { id: 'slow_database', name: 'Slow Database Query Cascade (PostgreSQL Stall)' },
     { id: 'cpu_saturation', name: 'CPU Core Saturation (Order Service)' },
     { id: 'cache_failure', name: 'Redis Cache Eviction Storm & Miss Spike' },
-    { id: 'network_latency', name: 'External Gateway Network Latency (Payment)' }
+    { id: 'network_latency', name: 'External Gateway Network Latency (Payment)' },
+    { id: 'service_crash', name: 'Service Crash / Availability Outage' },
+    { id: 'packet_loss', name: 'Packet Loss & Corruption' },
+    { id: 'memory_pressure', name: 'Memory Pressure & Leak' },
+    { id: 'traffic_spike', name: 'Ingress Traffic Spike & Overload' },
+    { id: 'retry_storm', name: 'Retry Storm Amplification' },
+    { id: 'queue_backlog', name: 'Message Queue Backpressure & Backlog' }
   ];
 
   useEffect(() => {
-    loadTrace(selectedScenario);
-  }, [selectedScenario]);
+    loadTrace(selectedScenario, investigationContext?.targetService);
+  }, [selectedScenario, investigationContext?.targetService]);
 
   // Animation loop for playback
   useEffect(() => {
@@ -103,10 +109,10 @@ export const PropagationTraceView: React.FC<PropagationTraceViewProps> = ({
     return () => clearInterval(timer);
   }, [isPlaying, traceData, playSpeed]);
 
-  const loadTrace = async (scenId: string) => {
+  const loadTrace = async (scenId: string, target?: string) => {
     setLoading(true);
     try {
-      const data = await api.getPropagationTrace(scenId);
+      const data = await api.getPropagationTrace(scenId, target);
       setTraceData(data);
       setCurrentHopIndex(0);
       setIsPlaying(investigationContext?.autoAdvance ? true : false);
@@ -136,14 +142,10 @@ export const PropagationTraceView: React.FC<PropagationTraceViewProps> = ({
     let timer: any = null;
     if (advanceCountdown !== null && advanceCountdown > 0) {
       timer = setInterval(() => {
-        setAdvanceCountdown(prev => {
-          if (prev === null || prev <= 1) {
-            handleProceedToRCA();
-            return null;
-          }
-          return prev - 1;
-        });
+        setAdvanceCountdown(prev => (prev !== null ? prev - 1 : null));
       }, 1000);
+    } else if (advanceCountdown === 0) {
+      handleProceedToRCA();
     }
     return () => clearInterval(timer);
   }, [advanceCountdown]);
@@ -154,7 +156,7 @@ export const PropagationTraceView: React.FC<PropagationTraceViewProps> = ({
       onNavigate('rca_workbench', {
         incidentId: investigationContext?.incidentId || 'INC-LATEST',
         scenarioId: selectedScenario,
-        targetService: traceData?.target_service || 'postgres',
+        targetService: traceData?.target_service || investigationContext?.targetService || 'postgres',
         stage: 'rca_diagnosing',
         autoAdvance: true
       });
