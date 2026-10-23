@@ -65,25 +65,24 @@ export const FaultLabView: React.FC<FaultLabViewProps> = ({ onNavigate }) => {
 
   useEffect(() => {
     let timer: any = null;
-    if (guidedRedirect && guidedRedirect.countdown > 0) {
-      timer = setInterval(() => {
-        setGuidedRedirect(prev => {
-          if (!prev) return null;
-          if (prev.countdown <= 1) {
-            if (onNavigate) {
-              onNavigate('fault_trace', {
-                incidentId: prev.incidentId,
-                scenarioId: prev.scenarioId,
-                targetService: prev.targetService,
-                stage: 'propagating',
-                autoAdvance: true
-              });
-            }
-            return null;
-          }
-          return { ...prev, countdown: prev.countdown - 1 };
-        });
-      }, 1000);
+    if (guidedRedirect) {
+      if (guidedRedirect.countdown > 0) {
+        timer = setInterval(() => {
+          setGuidedRedirect(prev => (prev ? { ...prev, countdown: prev.countdown - 1 } : null));
+        }, 1000);
+      } else if (guidedRedirect.countdown === 0) {
+        const ctx = {
+          incidentId: guidedRedirect.incidentId,
+          scenarioId: guidedRedirect.scenarioId,
+          targetService: guidedRedirect.targetService,
+          stage: 'propagating',
+          autoAdvance: true
+        };
+        setGuidedRedirect(null);
+        if (onNavigate) {
+          onNavigate('fault_trace', ctx);
+        }
+      }
     }
     return () => clearInterval(timer);
   }, [guidedRedirect, onNavigate]);

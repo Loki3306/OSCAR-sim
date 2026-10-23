@@ -40,10 +40,25 @@ export const Navigation: React.FC<NavigationProps> = ({
   return (
     <aside className="sidebar">
       <div className="brand-section">
-        <div className="brand-badge">OSCAR</div>
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <img
+            src="/favicon.svg"
+            alt="OSCAR Logo"
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: 9,
+              boxShadow: '0 2px 8px rgba(99, 102, 241, 0.25)',
+              display: 'block'
+            }}
+          />
+        </div>
         <div className="brand-text">
-          <h1>RCA Platform</h1>
-          <p>Microservice Diagnostics</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <h1 style={{ margin: 0, fontSize: 16, fontWeight: 900, letterSpacing: '0.04em' }}>OSCAR</h1>
+            <span style={{ fontSize: 9, fontWeight: 800, padding: '1px 5px', borderRadius: 4, background: '#ede9fe', color: '#6d28d9' }}>2.0</span>
+          </div>
+          <p style={{ margin: 0, fontSize: 11, color: 'var(--text-muted)', fontWeight: 500 }}>RCA & Observability Lab</p>
         </div>
       </div>
 
